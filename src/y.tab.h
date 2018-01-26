@@ -7,4 +7,6 @@
 #define t_DOT 1006
 #define t_NUM 1007
 #define t_ID 1008
+#define t_EQUAL 1009
+
 int yylval;
