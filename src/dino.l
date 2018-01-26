@@ -13,27 +13,47 @@ struct {
 int t_index=0;
 int t_flag=0;
 %}
+
 letter [a-zA-Z]
 digit [0-9]
-id {letter}({letter}|{digit})*
+id {letter}({letter}|{digit}|_)*
 number {digit}+
+decimal {number}"."{digit}*((e|E)("+"|"-")?{number})?
+hex (0x|0X)[a-fA-F0-9]+
+stringConstant \"[^"\n]*\"
+boolean (true|false)
+comment ("//".*)|("/*"[^("*/")]*"*/")
+
 ws [ \t\n]
+
+
+
+/*commented rules
+
+
+
+*/
+
 
 %%
 
 {ws}    ;
 
-int {t_flag=INT; printf("%s\n", yytext); return (t_INT);}
-float {t_flag=FLOAT; printf("%s\n", yytext); return (t_FLOAT);}
-"+" {printf("%s\n", yytext); return (t_ADDOP);}
-"*" {printf("%s\n", yytext); return (t_MULOP);}
-"," {printf("%s\n", yytext); return (t_COMMA);}
-";" {printf("%s\n", yytext); return (t_SEMICOL);}
-"." {printf("%s\n", yytext); return (t_DOT);}
-{number} {printf("%s\n", yytext); return (t_NUM);}
+{number} {printf("%s\nnumber\n", yytext); return (t_NUM);}
+
+{decimal} {printf("%s\ndecimal\n", yytext);/*return (t_DOUBLECONSTANT);*/}
+{hex} {printf("%s\nhex\n", yytext);/*return (t_INTCONSTANT);*/}
+{stringConstant} {printf("%s\nstring constant\n", yytext);/*return (t_STRINGCONSTANT);*/}
+{boolean} {printf("%s\nboolean constant\n", yytext);/*return (t_BOOLEANCONSTANT);*/}
+{comment} {printf("%s\ncomment\n", yytext);/*return (t_BOOLEANCONSTANT);*/}
+
+
+if {printf("%s\nif statement\n", yytext);/*return (t_IF);*/}
+
+
 
 {id}    {yytext[yyleng]='\0'; yylval=insert(yytext);
-    printf("%s\n", yytext); return(t_ID);}
+    printf("%s\nid\n", yytext); return(t_ID);}
 .   {printf("error!\n"); return (0);}
     
 %%
