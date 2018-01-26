@@ -50,9 +50,13 @@ ws [ \t]
 
 
 boolean {t_flag=BOOLEAN; printf("boolean ", yytext); return (t_BOOLEAN);}
+int {t_flag=INT; printf("int ", yytext); return (t_INT);}
+double {t_flag=DOUBLE; printf("double ", yytext); return (t_DOUBLE);}
+string {t_flag=STRING; printf("string ", yytext); return (t_STRING);}
+
+
 break {printf("break ", yytext); return (t_BREAK);}
 extends {printf("extends ", yytext); return (t_EXTENDS);}
-int {t_flag=INT; printf("int ", yytext); return (t_INT);}
 readln {printf("readln ", yytext); return (t_READLN);}
 while {printf("while ", yytext); return (t_WHILE);}
 else {printf("else ", yytext); return (t_ELSE);}
@@ -63,11 +67,11 @@ class {printf("class ", yytext); return (t_CLASS);}
 for {printf("for ", yytext); return (t_FOR);} 
 interface {printf("interface ", yytext); return (t_INTERFACE);}
 return {printf("return ", yytext); return (t_RETURN);}
-double {t_flag=DOUBLE; printf("double ", yytext); return (t_DOUBLE);}
 if {printf("if ", yytext); return (t_IF);}
 newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
-string {t_flag=STRING; printf("string ", yytext); return (t_STRING);}
-"*" {printf("star ", yytext); return (t_MULTIPLICATION);}
+
+
+"*" {printf("multiplication ", yytext); return (t_MULTIPLICATION);}
 "<=" {printf("lessequal ", yytext); return (t_LESSEQUAL);}
 "!=" {printf("notequal ", yytext); return (t_NOTEQUAL);}
 "(" {printf("leftparen ", yytext); return (t_LEFTPAREN);}
@@ -77,8 +81,8 @@ string {t_flag=STRING; printf("string ", yytext); return (t_STRING);}
 ";" {printf("semicolon ", yytext); return (t_SEMICOLON);}
 ")" {printf("rightparen ", yytext); return (t_RIGHTPAREN);}
 "}" {printf("rightbrace ", yytext); return (t_RIGHTBRACE);}
-"{" {printf("leftbrac ", yytext); return (t_LEFTBRACE);}
-"+" {printf("add ", yytext); return (t_PLUS);}
+"{" {printf("leftbrace ", yytext); return (t_LEFTBRACE);}
+"+" {printf("plus ", yytext); return (t_PLUS);}
 "%" {printf("mod ", yytext); return (t_MOD);}
 ">=" {printf("greatereaqual ", yytext); return (t_GREATEREQUAL);}
 "||" {printf("or ", yytext); return (t_OR);}
@@ -91,14 +95,13 @@ string {t_flag=STRING; printf("string ", yytext); return (t_STRING);}
 "." {printf("period ", yytext); return (t_PERIOD);}
 "]" {printf("rightbracket ", yytext); return (t_RIGHTBRACKET);}
 
-{newline} {printf("\n");}
 
 {intconstant} {printf("intconstant ", yytext); return (t_INTCONSTANT);}
 {booleanconstant} {printf("boolconstant ", yytext); return (t_BOOLEANCONSTANT);}
 {doubleconstant} {printf("doubleconstant ", yytext); return (t_DOUBLECONSTANT);}
 {stringconstant} {printf("stringconstant ", yytext); return (t_STRINGCONSTANT);}
-{comment} ;
-
+{comment} {printf(" ");}
+{newline} {printf("\n");}
 
 
 {id}    {yytext[yyleng]='\0'; yylval=insert(yytext);
