@@ -109,6 +109,65 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
 .   {printf("error!\n"); return (0);}
     
 %%
+    
+    typedef struct {
+        char* symbol;
+	size_t used;
+	size_t size;
+    } ArrayChar;
+
+    typedef struct{
+	int *next;
+	size_t used;
+	size_t size;
+    } ArrayInt;
+
+    int switchLocator[51];
+    ArrayChar* symbol;
+    ArrayInt* next;
+    
+    void initCharArray(ArrayChar* a, size_t initialSize) {
+	a->symbol = (char*)malloc(initialSize*sizeof(char));
+	a->used = 0;
+	a->size = initialSize;
+    }
+
+    void initIntArray(ArrayInt* a, size_t initialSize) {
+	a->next = (int*)malloc(initialSize*sizeof(int));
+	a->used = 0;
+	a->size = initialSize;
+    }
+
+    void freeCharArray(ArrayChar* a) {
+	free(a->symbol);
+	a->symbol = NULL;
+	a-> used = a-> size = 0;
+    }
+
+    void freeIntArray(ArrayInt* a){
+	free(a->next);
+	a->next = NULL;
+	a-> used = a-> size =0;
+    }
+    
+    void insertCharArray(ArrayChar* a, char value, int index) {
+	if(a->used == a->size) {
+	   a->size *= 2;
+	   a->symbol = (int*)realloc(a->symbol, a->size*sizeof(char));
+	}
+	a->symbol[index] = value;
+	a->used++;
+    }
+
+    void insertIntArray(ArrayInt* a, int value, int index) {
+	if(a->used == a->size) {
+	   a->size *= 2;
+	   a->next = (int*)realloc(a->next, a->size*sizeof(int));
+	}
+	a->next[index] = value;
+	a->used++;
+    }
+
     int insert(char *s) {
         int i=0;
         while (i< t_index) {
@@ -118,6 +177,10 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
         strcpy(table[t_index].name, s);
         table[t_index].type = t_flag;
         t_index++;
+
+	initCharArray(&symbol, 5);
+	initIntArray(&next, 5);
+
         return t_index-1;
     }
 int main () {
