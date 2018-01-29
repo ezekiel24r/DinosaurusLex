@@ -138,8 +138,6 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
     
 //trieInsert
     void trieInsert(char *s){
-
-        char *n = s;
         int ptr = -1;
         
         switch (*s){
@@ -323,7 +321,6 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
         //ptr now points to first search position in array
         s++;
         while (1) {
-            printf("WHILELOOP!\n");
             if (symTable[ptr] == -1){
                 //empty position, insert rest of word
                 while(*s != '\0'){
@@ -343,7 +340,6 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
                 ptr++;
             }
            else if (*s == '\0' && symTable[ptr] == '@'){
-                printf("match!");
                 //id already here, do nothing
                 return;
             }            
@@ -393,7 +389,6 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
         return t_index-1;
     }
 int main () {
-    printf("hi\n");
     initFirstLetter();
     initSymAndNext();
     while (yylex()) {}

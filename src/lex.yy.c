@@ -2142,8 +2142,6 @@ void yyfree (void * ptr )
     
 //trieInsert
     void trieInsert(char *s){
-
-        char *n = s;
         int ptr = -1;
         
         switch (*s){
@@ -2327,7 +2325,6 @@ void yyfree (void * ptr )
         //ptr now points to first search position in array
         s++;
         while (1) {
-            printf("WHILELOOP!\n");
             if (symTable[ptr] == -1){
                 //empty position, insert rest of word
                 while(*s != '\0'){
@@ -2347,7 +2344,6 @@ void yyfree (void * ptr )
                 ptr++;
             }
            else if (*s == '\0' && symTable[ptr] == '@'){
-                printf("match!");
                 //id already here, do nothing
                 return;
             }            
@@ -2397,7 +2393,6 @@ void yyfree (void * ptr )
         return t_index-1;
     }
 int main () {
-    printf("hi\n");
     initFirstLetter();
     initSymAndNext();
     while (yylex()) {}
