@@ -569,6 +569,8 @@ int firstLetter[52];
 char *symTable;
 int *nextTable;
 int tail = 0;
+//1 or esle all * is 0
+int timesResized = 1;
 
 void initFirstLetter();
 void initSymAndNext();
@@ -576,11 +578,11 @@ void resizeArrays();
 void trieInsert();
 void triePrint();
 
-#line 579 "lex.yy.c"
+#line 581 "lex.yy.c"
 /*commented rules
 
 */
-#line 583 "lex.yy.c"
+#line 585 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -797,10 +799,10 @@ YY_DECL
 		}
 
 	{
-#line 59 "dino.l"
+#line 61 "dino.l"
 
 
-#line 803 "lex.yy.c"
+#line 805 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -859,268 +861,268 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 61 "dino.l"
+#line 63 "dino.l"
 ;
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 65 "dino.l"
+#line 67 "dino.l"
 {t_flag=BOOLEAN; printf("boolean ", yytext); return (t_BOOLEAN);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 66 "dino.l"
+#line 68 "dino.l"
 {t_flag=INT; printf("int ", yytext); return (t_INT);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 67 "dino.l"
+#line 69 "dino.l"
 {t_flag=DOUBLE; printf("double ", yytext); return (t_DOUBLE);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 68 "dino.l"
+#line 70 "dino.l"
 {t_flag=STRING; printf("string ", yytext); return (t_STRING);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 71 "dino.l"
+#line 73 "dino.l"
 {printf("break ", yytext); return (t_BREAK);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 72 "dino.l"
+#line 74 "dino.l"
 {printf("extends ", yytext); return (t_EXTENDS);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 73 "dino.l"
+#line 75 "dino.l"
 {printf("readln ", yytext); return (t_READLN);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 74 "dino.l"
+#line 76 "dino.l"
 {printf("while ", yytext); return (t_WHILE);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 75 "dino.l"
+#line 77 "dino.l"
 {printf("else ", yytext); return (t_ELSE);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 76 "dino.l"
+#line 78 "dino.l"
 {printf("implements ", yytext); return (t_IMPLEMENTS);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 77 "dino.l"
+#line 79 "dino.l"
 {printf("println ", yytext); return (t_PRINTLN);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 78 "dino.l"
+#line 80 "dino.l"
 {printf("void ", yytext); return (t_VOID);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 79 "dino.l"
+#line 81 "dino.l"
 {printf("class ", yytext); return (t_CLASS);} 
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 80 "dino.l"
+#line 82 "dino.l"
 {printf("for ", yytext); return (t_FOR);} 
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 81 "dino.l"
+#line 83 "dino.l"
 {printf("interface ", yytext); return (t_INTERFACE);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 82 "dino.l"
+#line 84 "dino.l"
 {printf("return ", yytext); return (t_RETURN);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 83 "dino.l"
+#line 85 "dino.l"
 {printf("if ", yytext); return (t_IF);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 84 "dino.l"
+#line 86 "dino.l"
 {printf("newarray ", yytext); return (t_NEWARRAY);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 87 "dino.l"
+#line 89 "dino.l"
 {printf("multiplication ", yytext); return (t_MULTIPLICATION);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 88 "dino.l"
+#line 90 "dino.l"
 {printf("lessequal ", yytext); return (t_LESSEQUAL);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 89 "dino.l"
+#line 91 "dino.l"
 {printf("notequal ", yytext); return (t_NOTEQUAL);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 90 "dino.l"
+#line 92 "dino.l"
 {printf("leftparen ", yytext); return (t_LEFTPAREN);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 91 "dino.l"
+#line 93 "dino.l"
 {printf("division ", yytext); return (t_DIVISION);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 92 "dino.l"
+#line 94 "dino.l"
 {printf("greater ", yytext); return (t_GREATER);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 93 "dino.l"
+#line 95 "dino.l"
 {printf("and ", yytext); return (t_AND);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 94 "dino.l"
+#line 96 "dino.l"
 {printf("semicolon ", yytext); return (t_SEMICOLON);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 95 "dino.l"
+#line 97 "dino.l"
 {printf("rightparen ", yytext); return (t_RIGHTPAREN);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 96 "dino.l"
+#line 98 "dino.l"
 {printf("rightbrace ", yytext); return (t_RIGHTBRACE);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 97 "dino.l"
+#line 99 "dino.l"
 {printf("leftbrace ", yytext); return (t_LEFTBRACE);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 98 "dino.l"
+#line 100 "dino.l"
 {printf("plus ", yytext); return (t_PLUS);}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 99 "dino.l"
+#line 101 "dino.l"
 {printf("mod ", yytext); return (t_MOD);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 100 "dino.l"
+#line 102 "dino.l"
 {printf("greatereaqual ", yytext); return (t_GREATEREQUAL);}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 101 "dino.l"
+#line 103 "dino.l"
 {printf("or ", yytext); return (t_OR);}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 102 "dino.l"
+#line 104 "dino.l"
 {printf("comma ", yytext); return (t_COMMA);}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 103 "dino.l"
+#line 105 "dino.l"
 {printf("leftbracket ", yytext); return (t_LEFTBRACKET);}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 104 "dino.l"
+#line 106 "dino.l"
 {printf("minus ", yytext); return (t_MINUS);}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 105 "dino.l"
+#line 107 "dino.l"
 {printf("less ", yytext); return (t_LESS);}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 106 "dino.l"
+#line 108 "dino.l"
 {printf("assignop ", yytext); return (t_ASSIGNOP);}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 107 "dino.l"
+#line 109 "dino.l"
 {printf("equal ", yytext); return (t_EQUAL);}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 108 "dino.l"
+#line 110 "dino.l"
 {printf("not ", yytext); return (t_NOT);}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 109 "dino.l"
+#line 111 "dino.l"
 {printf("period ", yytext); return (t_PERIOD);}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 110 "dino.l"
+#line 112 "dino.l"
 {printf("rightbracket ", yytext); return (t_RIGHTBRACKET);}
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 113 "dino.l"
+#line 115 "dino.l"
 {printf("intconstant ", yytext); return (t_INTCONSTANT);}
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 114 "dino.l"
+#line 116 "dino.l"
 {printf("boolconstant ", yytext); return (t_BOOLEANCONSTANT);}
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 115 "dino.l"
+#line 117 "dino.l"
 {printf("doubleconstant ", yytext); return (t_DOUBLECONSTANT);}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 116 "dino.l"
+#line 118 "dino.l"
 {printf("stringconstant ", yytext); return (t_STRINGCONSTANT);}
 	YY_BREAK
 case 48:
 /* rule 48 can match eol */
 YY_RULE_SETUP
-#line 117 "dino.l"
+#line 119 "dino.l"
 {printf(" ");}
 	YY_BREAK
 case 49:
 /* rule 49 can match eol */
 YY_RULE_SETUP
-#line 118 "dino.l"
+#line 120 "dino.l"
 {printf("\n");}
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 121 "dino.l"
+#line 123 "dino.l"
 {yytext[yyleng]='\0'; yylval=insert(yytext);
     printf("id ", yytext); return(t_ID);}
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 123 "dino.l"
+#line 125 "dino.l"
 {printf("error!\n"); return (0);}
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 125 "dino.l"
+#line 127 "dino.l"
 ECHO;
 	YY_BREAK
-#line 1123 "lex.yy.c"
+#line 1125 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2125,7 +2127,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 125 "dino.l"
+#line 127 "dino.l"
 
 
     void initFirstLetter(){
@@ -2136,24 +2138,35 @@ void yyfree (void * ptr )
 
     void initSymAndNext(){
 	symTable = (char*)malloc(MAXTRANSITIONS*sizeof(char));
+	printf("before seg fault");
 	nextTable = (int*)malloc(MAXTRANSITIONS*sizeof(int));
         for(int i = 0; i < MAXTRANSITIONS; i++){
             symTable[i] = -1;
             nextTable[i] = -1;
         }
+	symTable[MAXTRANSITIONS-1] = MAXTRANSITIONS;
+	//printf("maxtranstions %i", MAXTRANSITIONS);
     }
 	
-	void resizeArrays() {
-        	int n = sizeof(symTable)/sizeof(symTable[0]);
-        	int j = sizeof(nextTable)/sizeof(nextTable[0]);
-		char* symTableNew = (char*)realloc(symTable, 2*n*sizeof(char));
-        	int* nextTableNew = (int*)realloc(nextTable, 2*j*sizeof(int));
-		free(symTable);
-		free(nextTable);
-		symTable = symTableNew;
-        	nextTable = nextTableNew;
-		free(symTableNew);
-        	free(nextTableNew);
+    void resizeArrays() {
+        int symTableLength = symTable[MAXTRANSITIONS*timesResized-1];
+	char* symTableNew = (char*)realloc(symTable, 2*symTableLength*sizeof(char));
+       	int* nextTableNew = (int*)realloc(nextTable, 2*symTableLength*sizeof(int));
+	//where n is the last index of old table
+	//and y is last index of new table
+	int y = 2*symTableLength;
+	for(int i = symTableLength; i < y; i++){
+            symTableNew[i] = -1;
+	    nextTableNew[i] = -1;
+	}
+	symTableNew[y-1] = y;
+	free(symTable);
+	free(nextTable);
+	symTable = symTableNew;
+       	nextTable = nextTableNew;
+	free(symTableNew);
+       	free(nextTableNew);
+	timesResized++;
     }
     
 //trieInsert
@@ -2321,12 +2334,13 @@ void yyfree (void * ptr )
                 printf("unknown char in id!");
         }
         
-		int symTableLength = sizeof(symTable)/sizeof(symTable[0]);
-		
-		if(tail+20 > symTableLength)
-			resizeArrays;
-
-		int pos = ptr;
+	int symTableLength = symTable[MAXTRANSITIONS*timesResized-1];
+	//resize array
+	if(tail+20 > symTableLength){
+            resizeArrays;
+            printf("executed resize");
+	}
+	int pos = ptr;
         ptr = firstLetter[pos];
         if(ptr == -1){
             //find next location to start
@@ -2397,6 +2411,7 @@ void yyfree (void * ptr )
         for(int i=0; i<20; i++){
             printf("%5i", firstLetter[i]);
         }
+	printf("\n");
 	//print top letters from U to Z
         printf("\n           ");
         for(int i = 85; i < 91; i++)
@@ -2408,25 +2423,64 @@ void yyfree (void * ptr )
 	printf("\nswitch:");
 	for(int i = 20; i < 40; i++)
 	    printf("%5i", firstLetter[i]);
+	printf("\n");
 	//print top letters o to z
 	printf("\n           ");
 	for(int i = 111; i < 123; i ++)
             printf("%c    ", i);
         //print switch from o to z
 	printf("\nswitch:");
-        for(int i = 40; i < 60; i++)
+        for(int i = 40; i < 52; i++)
             printf("%5i", firstLetter[i]);
 	
-	printf("\n");
-	
-	for(int i=0; i<50; i++){
-            printf("%c,", symTable[i]);
-        }
-        printf("\n");
-        for(int i=0; i<50; i++){
-            printf("%i,", nextTable[i]);
-        }
-        printf("\n");
+	printf("\n\n");
+//need debugging below	
+        int symTableLength = symTable[MAXTRANSITIONS*timesResized-1];
+        int rows = symTableLength/20+1;
+        int rowGroupCounter = 1;
+	int symbolTableCounter = 0;
+	int j;
+        //printf("%i    ",symTableLength); 
+	//printf("%i",rows);
+         
+	for(int i = 1; i < rows*3+1; i++){
+	     if(symTableLength-symbolTableCounter < 20){
+               	if(rowGroupCounter==1){
+		    printf("       ");
+		    for(j = symbolTableCounter; j < symTableLength; j++)
+		        printf("%5i",j);
+		    rowGroupCounter++;
+	        }else if(rowGroupCounter==2){
+	            printf("\nsymbol:");
+                    for(j = symbolTableCounter; j < symTableLength; j++)
+		        printf("%5c",symTable[j]);
+                    rowGroupCounter++;
+	        }else if(rowGroupCounter==3){
+                    printf("\nnext:  ");
+                    for(j = symbolTableCounter; j < symTableLength; j++)
+		        printf("%5i",nextTable[j]);
+		    printf("\n\n");
+		}
+	    }else if(rowGroupCounter==1){
+                printf("       ");
+		for(j = symbolTableCounter; j < symbolTableCounter+20; j++)
+		    printf("%5i",j);
+		rowGroupCounter++;
+	    }else if(rowGroupCounter==2){
+	        printf("\nsymbol:");
+                for(j = symbolTableCounter; j < symbolTableCounter+20; j++)
+		    printf("%5c",symTable[j]);
+                rowGroupCounter++;
+	    }else if(rowGroupCounter==3){
+                printf("\nnext:  ");
+                for(j = symbolTableCounter; j < symbolTableCounter+20; j++)
+		    printf("%5i",nextTable[j]);
+		printf("\n\n");
+		rowGroupCounter = 1;
+		symbolTableCounter+=20;
+	    }
+       }
+       printf("\n");
     }
     
     int insert(char *s) {
@@ -2439,7 +2493,7 @@ void yyfree (void * ptr )
         table[t_index].type = t_flag;
         t_index++;
         trieInsert(s);
-        triePrint();
+        //triePrint();
 
         return t_index-1;
     }
@@ -2447,6 +2501,7 @@ int main () {
     initFirstLetter();
     initSymAndNext();
     while (yylex()) {}
+    //triePrint();
 }
 
 

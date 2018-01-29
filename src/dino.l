@@ -21,6 +21,8 @@ int firstLetter[52];
 char *symTable;
 int *nextTable;
 int tail = 0;
+//1 or esle all * is 0
+int timesResized = 1;
 
 void initFirstLetter();
 void initSymAndNext();
@@ -132,24 +134,35 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
 
     void initSymAndNext(){
 	symTable = (char*)malloc(MAXTRANSITIONS*sizeof(char));
+	printf("before seg fault");
 	nextTable = (int*)malloc(MAXTRANSITIONS*sizeof(int));
         for(int i = 0; i < MAXTRANSITIONS; i++){
             symTable[i] = -1;
             nextTable[i] = -1;
         }
+	symTable[MAXTRANSITIONS-1] = MAXTRANSITIONS;
+	//printf("maxtranstions %i", MAXTRANSITIONS);
     }
 	
-	void resizeArrays() {
-        	int n = sizeof(symTable)/sizeof(symTable[0]);
-        	int j = sizeof(nextTable)/sizeof(nextTable[0]);
-		char* symTableNew = (char*)realloc(symTable, 2*n*sizeof(char));
-        	int* nextTableNew = (int*)realloc(nextTable, 2*j*sizeof(int));
-		free(symTable);
-		free(nextTable);
-		symTable = symTableNew;
-        	nextTable = nextTableNew;
-		free(symTableNew);
-        	free(nextTableNew);
+    void resizeArrays() {
+        int symTableLength = symTable[MAXTRANSITIONS*timesResized-1];
+	char* symTableNew = (char*)realloc(symTable, 2*symTableLength*sizeof(char));
+       	int* nextTableNew = (int*)realloc(nextTable, 2*symTableLength*sizeof(int));
+	//where n is the last index of old table
+	//and y is last index of new table
+	int y = 2*symTableLength;
+	for(int i = symTableLength; i < y; i++){
+            symTableNew[i] = -1;
+	    nextTableNew[i] = -1;
+	}
+	symTableNew[y-1] = y;
+	free(symTable);
+	free(nextTable);
+	symTable = symTableNew;
+       	nextTable = nextTableNew;
+	free(symTableNew);
+       	free(nextTableNew);
+	timesResized++;
     }
     
 //trieInsert
@@ -317,12 +330,13 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
                 printf("unknown char in id!");
         }
         
-		int symTableLength = sizeof(symTable)/sizeof(symTable[0]);
-		
-		if(tail+20 > symTableLength)
-			resizeArrays;
-
-		int pos = ptr;
+	int symTableLength = symTable[MAXTRANSITIONS*timesResized-1];
+	//resize array
+	if(tail+20 > symTableLength){
+            resizeArrays;
+            printf("executed resize");
+	}
+	int pos = ptr;
         ptr = firstLetter[pos];
         if(ptr == -1){
             //find next location to start
@@ -393,6 +407,7 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
         for(int i=0; i<20; i++){
             printf("%5i", firstLetter[i]);
         }
+	printf("\n");
 	//print top letters from U to Z
         printf("\n           ");
         for(int i = 85; i < 91; i++)
@@ -404,52 +419,64 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
 	printf("\nswitch:");
 	for(int i = 20; i < 40; i++)
 	    printf("%5i", firstLetter[i]);
+	printf("\n");
 	//print top letters o to z
 	printf("\n           ");
 	for(int i = 111; i < 123; i ++)
             printf("%c    ", i);
         //print switch from o to z
 	printf("\nswitch:");
-        for(int i = 40; i < 60; i++)
+        for(int i = 40; i < 52; i++)
             printf("%5i", firstLetter[i]);
 	
 	printf("\n\n");
-	
-        int symTableLength = sizeof(symTable)/sizeof(symTable[0]);
-        int rows = symTableLength%20 + 1;
-        int rowCounter = 0;
-	int columnCounter = 0;
-
-	for(int i = 0; i < symTableLength; i++){
-	    
-	    
-	    if(rowCounter == 1){
-                printf("           ");
-		printf("%i    ", i);
-		if(columnCounter == 20) {
-		    continue;
-		    columnCounter = 0;
-		    rowCounter++;
-		    printf("\n");
+//need debugging below	
+        int symTableLength = symTable[MAXTRANSITIONS*timesResized-1];
+        int rows = symTableLength/20+1;
+        int rowGroupCounter = 1;
+	int symbolTableCounter = 0;
+	int j;
+        //printf("%i    ",symTableLength); 
+	//printf("%i",rows);
+         
+	for(int i = 1; i < rows*3+1; i++){
+	     if(symTableLength-symbolTableCounter < 20){
+               	if(rowGroupCounter==1){
+		    printf("       ");
+		    for(j = symbolTableCounter; j < symTableLength; j++)
+		        printf("%5i",j);
+		    rowGroupCounter++;
+	        }else if(rowGroupCounter==2){
+	            printf("\nsymbol:");
+                    for(j = symbolTableCounter; j < symTableLength; j++)
+		        printf("%5c",symTable[j]);
+                    rowGroupCounter++;
+	        }else if(rowGroupCounter==3){
+                    printf("\nnext:  ");
+                    for(j = symbolTableCounter; j < symTableLength; j++)
+		        printf("%5i",nextTable[j]);
+		    printf("\n\n");
 		}
-		columnCounter++;
-	    } else if (counter == 2) {
-                printf("symbol:");
-                
-		
-		printf("%5c", symTable[i]);
-                
+	    }else if(rowGroupCounter==1){
+                printf("       ");
+		for(j = symbolTableCounter; j < symbolTableCounter+20; j++)
+		    printf("%5i",j);
+		rowGroupCounter++;
+	    }else if(rowGroupCounter==2){
+	        printf("\nsymbol:");
+                for(j = symbolTableCounter; j < symbolTableCounter+20; j++)
+		    printf("%5c",symTable[j]);
+                rowGroupCounter++;
+	    }else if(rowGroupCounter==3){
+                printf("\nnext:  ");
+                for(j = symbolTableCounter; j < symbolTableCounter+20; j++)
+		    printf("%5i",nextTable[j]);
+		printf("\n\n");
+		rowGroupCounter = 1;
+		symbolTableCounter+=20;
 	    }
-	
-	
-	}
-	
-        }
-        printf("\n");
-        for(int i=0; i<50; i++){
-            printf("%i,", nextTable[i]);
-        }
-        printf("\n");
+       }
+       printf("\n");
     }
     
     int insert(char *s) {
@@ -462,7 +489,7 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
         table[t_index].type = t_flag;
         t_index++;
         trieInsert(s);
-        triePrint();
+        //triePrint();
 
         return t_index-1;
     }
@@ -470,5 +497,6 @@ int main () {
     initFirstLetter();
     initSymAndNext();
     while (yylex()) {}
+    //triePrint();
 }
 
