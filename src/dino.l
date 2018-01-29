@@ -18,8 +18,8 @@ int t_index=0;
 int t_flag=0;
 
 int firstLetter[52];
-int symTable[1000];
-int nextTable [1000];
+int symTable[MAXTRANSITIONS];
+int nextTable [MAXTRANSITIONS];
 int tail = 0;
 
 void initFirstLetter();
@@ -130,7 +130,7 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
     }
 
     void initSymAndNext(){
-        for(int i = 0; i < 1000; i++){
+        for(int i = 0; i < MAXTRANSITIONS; i++){
             symTable[i] = -1;
             nextTable[i] = -1;
         }
