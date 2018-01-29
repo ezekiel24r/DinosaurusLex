@@ -111,108 +111,92 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
     
 %%
 
+    void initTrieTable();
+    void resizeArrays();
+    void InsertIntoTrieTable(char* s);
+    void insertSymbolArray(char value, int index);
+    void create(char* s, int switchTableValue);
 
-    void create(char* s, int switchTableIndex);
-
-    int switchTable[51];
-    ArrayChar* symbol;
-    /*ArrayInt  next;*/
-    int lastIndexInSwitchTable = 0;
+    int switchTable[51]; 
+    char* symbolArray;
+    int usedSymbolArray;
+    int sizeSymbolArray;
+    int* nextArray;
     
     void initTrieTable(){
 	for(int i = 0; i < 51; i ++)
 	    switchTable[i] = -1;
-        initCharArray(symbol, 100);
-	/*initIntArray(next, 10);*/
+        symbolArray = (char*)malloc(100*sizeof(char));
+        usedSymbolArray = 1;
+	sizeSymbolArray = 100;
+	nextArray = (int*)malloc(100*sizeof(int));
     }
 
-    void initCharArray(ArrayChar* a, size_t initialSize) {
-	a->symbol = (char*)malloc(initialSize*sizeof(char));
-	printf("got it");
-	a->used = 0;
-	a->size = initialSize;
-    }
-	/*
-    void initIntArray(ArrayInt* a, size_t initialSize) {
-	a->next = (int*)malloc(initialSize*sizeof(int));
-	a->used = 0;
-	a->size = initialSize;
-    }
-
-    void freeCharArray(ArrayChar* a) {
-	free(a->symbol);
-	a->symbol = NULL;
-	a-> used = a-> size = 0;
-    }
-
-    void freeIntArray(ArrayInt* a){
-	free(a->next);
-	a->next = NULL;
-	a-> used = a-> size = 0;
+    void resizeArrays() {
+        int n = sizeof(symbolArray)/sizeof(symbolArray[0]);
+        int j = sizeof(nextArray)/sizeof(nextArray[0]);
+	char* symbolArrayNew = (char*)realloc(symbolArray, 2*n*sizeof(char));
+        int* nextArrayNew = (int*)realloc(nextArray, 2*j*sizeof(int));
+	free(symbolArray);
+	free(nextArray);
+	symbolArray = symbolArrayNew;
+        nextArray = nextArrayNew;
+	free(symbolArrayNew);
+        free(nextArrayNew);
     }
     
-    void insertCharArray(char value, int index) {
-	ArrayChar* a;
-	if(a->used == a->size) {
-	   a->size *= 2;
-	   a->symbol = (char*)realloc(a->symbol, a->size*sizeof(char));
-	}
-	a->symbol[index] = value;
-	a->used++;
-    }
-
-    void insertIntArray(int value, int index) {
-	ArrayInt* a;
-	if(a->used == a->size) {
-	   a->size *= 2;
-	   a->next = (int*)realloc(a->next, a->size*sizeof(int));
-	}
-	a->next[index] = value;
-	a->used++;
-    }
-
     void insertIntoTrieTable(char* s) {
         int idValueIndex = 0;
 	char idValue = s[idValueIndex];
 	int switchTableIndex = s[idValue]-65;
+        int switchTableValue = switchTable[switchTableIndex];
 
-	if(switchTable[switchTableIndex] == -1)
-	    create(s, switchTableIndex);
+        if(usedSymbolArray == 0) {
+	    switchTable[switchTableIndex] = 0;
+	    create(s, switchTable[switchTableIndex]);
+	} else if(switchTable[switchTableIndex] == -1)
+	    create(s, switchTable[switchTableIndex]);
 	else {
 	    idValueIndex++;
             idValue = s[idValueIndex];
-	     true   = 1
-	       false  = 0 
+	    /* true   = 1
+	       false  = 0 */ 
 	    int exit = 0;
-            while(exit==0) {
-                if(symbol->symbol[switchTable[switchTableIndex]] == idValue)
+            while(exit == 0) {
+                if(symbolArray[switchTableValue] == idValue)
                     if (idValue != '\0') {
-                        switchTableIndex++;
+                        switchTableValue++;
 			idValueIndex++;
 		    } else
 		        exit = 1;
-                else if (next->next[idValue] != -1)
-		    idValue = next->next[idValue];
+                else if (nextArray[switchTableValue] != -1)
+		    switchTableValue = nextArray[switchTableValue];
                 else {
-                    create(s, switchTableIndex);
+                    create(s, switchTable[switchTableIndex]);
                     exit = 1;
 		}
 	    }
 	}
     }
+    
+    void insertSymbolArray(char value, int index){
+        if (usedSymbolArray+20 > sizeSymbolArray)
+	    resizeArrays();
+	symbolArray[index] = value;
+	usedSymbolArray++;
+    }
 
-    void create(char* s, int switchTableIndex){
-	switchTable[switchTableIndex] = lastIndexInSwitchTable;
-        
+    void create(char* s, int switchTableValue){
 	int sLength = sizeof(s)/sizeof(s[0]);
 	int i;
+
 	for(i = 0; i < sLength; i++) {
-	    insertCharArray(s[i], switchTable[switchTableIndex+i]);
-        
+	    insertSymbolArray(s[i], switchTableValue+i);
 	}
-	insertCharArray('*', sLength);
+	insertSymbolArray('*', sLength);
+	usedSymbolArray++;
     }
-	*/
+
     int insert(char *s) {
         int i=0;
         while (i< t_index) {
@@ -222,17 +206,16 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
         strcpy(table[t_index].name, s);
         table[t_index].type = t_flag;
         t_index++;
-	/*insertIntoTrieTable(s);*/
+	insertIntoTrieTable(s);
         return t_index-1;
     }
-
 
 int main () {
     initTrieTable();
     while (yylex()) {}
-    for(int i = 0; i < 51; i++){
+    /*for(int i = 0; i < 51; i++){
         printf("%i  ", switchTable[i]);
-    }
+    }*/
 
 }
 
