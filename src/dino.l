@@ -7,6 +7,7 @@
 #define BOOLEAN 4
 #define STRING 5
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "y.tab.h"
 struct {
@@ -110,41 +111,28 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
     
 %%
 
-    typedef struct {
-        char* symbol;
-	size_t used;
-	size_t size;
-    } ArrayChar;
 
-    typedef struct{
-	int *next;
-	size_t used;
-	size_t size;
-    } ArrayInt;
-
-    void initCharArray(ArrayChar* a, size_t initialSize);
-    void initIntArray(ArrayInt* a, size_t initialSize);
-    void insertIntoTriTable(char* s);
     void create(char* s, int switchTableIndex);
 
     int switchTable[51];
     ArrayChar* symbol;
-    ArrayInt* next;
+    /*ArrayInt  next;*/
     int lastIndexInSwitchTable = 0;
     
     void initTrieTable(){
 	for(int i = 0; i < 51; i ++)
 	    switchTable[i] = -1;
-        initCharArray(symbol, 10);
-	initIntArray(next, 10);
+        initCharArray(symbol, 100);
+	/*initIntArray(next, 10);*/
     }
 
     void initCharArray(ArrayChar* a, size_t initialSize) {
 	a->symbol = (char*)malloc(initialSize*sizeof(char));
+	printf("got it");
 	a->used = 0;
 	a->size = initialSize;
     }
-
+	/*
     void initIntArray(ArrayInt* a, size_t initialSize) {
 	a->next = (int*)malloc(initialSize*sizeof(int));
 	a->used = 0;
@@ -193,8 +181,8 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
 	else {
 	    idValueIndex++;
             idValue = s[idValueIndex];
-	    /* true   = 1
-	       false  = 0 */
+	     true   = 1
+	       false  = 0 
 	    int exit = 0;
             while(exit==0) {
                 if(symbol->symbol[switchTable[switchTableIndex]] == idValue)
@@ -224,7 +212,7 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
 	}
 	insertCharArray('*', sLength);
     }
-
+	*/
     int insert(char *s) {
         int i=0;
         while (i< t_index) {
@@ -234,7 +222,7 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
         strcpy(table[t_index].name, s);
         table[t_index].type = t_flag;
         t_index++;
-	insertIntoTrieTable(s);
+	/*insertIntoTrieTable(s);*/
         return t_index-1;
     }
 
