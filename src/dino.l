@@ -212,6 +212,10 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
 
 int main () {
     initTrieTable();
+    
+    for(int i = 65; i < 85; i ++)
+        printf("%c     ",i );
+    for(int i = 85; i < 
     while (yylex()) {}
     /*for(int i = 0; i < 51; i++){
         printf("%i  ", switchTable[i]);
