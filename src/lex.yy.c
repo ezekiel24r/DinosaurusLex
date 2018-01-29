@@ -547,9 +547,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "dino.l"
 #line 2 "dino.l"
-#define MAX_LENGTH 10
 #define MAXTRANSITIONS 1000
-#define MAX 100
 #define INT 1
 #define FLOAT 2
 #define DOUBLE 3
@@ -558,28 +556,22 @@ char *yytext;
 #include <stdio.h>
 #include <string.h>
 #include "y.tab.h"
-struct {
-    char name[MAX_LENGTH];
-    int type;
-}table[MAX];
+
 int t_index=0;
 int t_flag=0;
 
 int firstLetter[52];
-int symTable[MAXTRANSITIONS];
-int nextTable [MAXTRANSITIONS];
+char symTable[MAXTRANSITIONS];
+int nextTable[MAXTRANSITIONS];
 int tail = 0;
 
 void initFirstLetter();
 void initSymAndNext();
-void trieInsert();
+int trieInsert(char * s);
 void triePrint();
 
-#line 578 "lex.yy.c"
-/*commented rules
-
-*/
-#line 582 "lex.yy.c"
+#line 573 "lex.yy.c"
+#line 574 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -796,10 +788,10 @@ YY_DECL
 		}
 
 	{
-#line 58 "dino.l"
+#line 42 "dino.l"
 
 
-#line 802 "lex.yy.c"
+#line 794 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -858,268 +850,268 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 60 "dino.l"
+#line 44 "dino.l"
 ;
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 64 "dino.l"
+#line 46 "dino.l"
 {t_flag=BOOLEAN; printf("boolean ", yytext); return (t_BOOLEAN);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 65 "dino.l"
+#line 47 "dino.l"
 {t_flag=INT; printf("int ", yytext); return (t_INT);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 66 "dino.l"
+#line 48 "dino.l"
 {t_flag=DOUBLE; printf("double ", yytext); return (t_DOUBLE);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 67 "dino.l"
+#line 49 "dino.l"
 {t_flag=STRING; printf("string ", yytext); return (t_STRING);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 70 "dino.l"
+#line 51 "dino.l"
 {printf("break ", yytext); return (t_BREAK);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 71 "dino.l"
+#line 52 "dino.l"
 {printf("extends ", yytext); return (t_EXTENDS);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 72 "dino.l"
+#line 53 "dino.l"
 {printf("readln ", yytext); return (t_READLN);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 73 "dino.l"
+#line 54 "dino.l"
 {printf("while ", yytext); return (t_WHILE);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 74 "dino.l"
+#line 55 "dino.l"
 {printf("else ", yytext); return (t_ELSE);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 75 "dino.l"
+#line 56 "dino.l"
 {printf("implements ", yytext); return (t_IMPLEMENTS);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 76 "dino.l"
+#line 57 "dino.l"
 {printf("println ", yytext); return (t_PRINTLN);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 77 "dino.l"
+#line 58 "dino.l"
 {printf("void ", yytext); return (t_VOID);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 78 "dino.l"
+#line 59 "dino.l"
 {printf("class ", yytext); return (t_CLASS);} 
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 79 "dino.l"
+#line 60 "dino.l"
 {printf("for ", yytext); return (t_FOR);} 
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 80 "dino.l"
+#line 61 "dino.l"
 {printf("interface ", yytext); return (t_INTERFACE);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 81 "dino.l"
+#line 62 "dino.l"
 {printf("return ", yytext); return (t_RETURN);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 82 "dino.l"
+#line 63 "dino.l"
 {printf("if ", yytext); return (t_IF);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 83 "dino.l"
+#line 64 "dino.l"
 {printf("newarray ", yytext); return (t_NEWARRAY);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 86 "dino.l"
+#line 66 "dino.l"
 {printf("multiplication ", yytext); return (t_MULTIPLICATION);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 87 "dino.l"
+#line 67 "dino.l"
 {printf("lessequal ", yytext); return (t_LESSEQUAL);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 88 "dino.l"
+#line 68 "dino.l"
 {printf("notequal ", yytext); return (t_NOTEQUAL);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 89 "dino.l"
+#line 69 "dino.l"
 {printf("leftparen ", yytext); return (t_LEFTPAREN);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 90 "dino.l"
+#line 70 "dino.l"
 {printf("division ", yytext); return (t_DIVISION);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 91 "dino.l"
+#line 71 "dino.l"
 {printf("greater ", yytext); return (t_GREATER);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 92 "dino.l"
+#line 72 "dino.l"
 {printf("and ", yytext); return (t_AND);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 93 "dino.l"
+#line 73 "dino.l"
 {printf("semicolon ", yytext); return (t_SEMICOLON);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 94 "dino.l"
+#line 74 "dino.l"
 {printf("rightparen ", yytext); return (t_RIGHTPAREN);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 95 "dino.l"
+#line 75 "dino.l"
 {printf("rightbrace ", yytext); return (t_RIGHTBRACE);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 96 "dino.l"
+#line 76 "dino.l"
 {printf("leftbrace ", yytext); return (t_LEFTBRACE);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 97 "dino.l"
+#line 77 "dino.l"
 {printf("plus ", yytext); return (t_PLUS);}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 98 "dino.l"
+#line 78 "dino.l"
 {printf("mod ", yytext); return (t_MOD);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 99 "dino.l"
+#line 79 "dino.l"
 {printf("greatereaqual ", yytext); return (t_GREATEREQUAL);}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 100 "dino.l"
+#line 80 "dino.l"
 {printf("or ", yytext); return (t_OR);}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 101 "dino.l"
+#line 81 "dino.l"
 {printf("comma ", yytext); return (t_COMMA);}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 102 "dino.l"
+#line 82 "dino.l"
 {printf("leftbracket ", yytext); return (t_LEFTBRACKET);}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 103 "dino.l"
+#line 83 "dino.l"
 {printf("minus ", yytext); return (t_MINUS);}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 104 "dino.l"
+#line 84 "dino.l"
 {printf("less ", yytext); return (t_LESS);}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 105 "dino.l"
+#line 85 "dino.l"
 {printf("assignop ", yytext); return (t_ASSIGNOP);}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 106 "dino.l"
+#line 86 "dino.l"
 {printf("equal ", yytext); return (t_EQUAL);}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 107 "dino.l"
+#line 87 "dino.l"
 {printf("not ", yytext); return (t_NOT);}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 108 "dino.l"
+#line 88 "dino.l"
 {printf("period ", yytext); return (t_PERIOD);}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 109 "dino.l"
+#line 89 "dino.l"
 {printf("rightbracket ", yytext); return (t_RIGHTBRACKET);}
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 112 "dino.l"
+#line 92 "dino.l"
 {printf("intconstant ", yytext); return (t_INTCONSTANT);}
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 113 "dino.l"
+#line 93 "dino.l"
 {printf("boolconstant ", yytext); return (t_BOOLEANCONSTANT);}
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 114 "dino.l"
+#line 94 "dino.l"
 {printf("doubleconstant ", yytext); return (t_DOUBLECONSTANT);}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 115 "dino.l"
+#line 95 "dino.l"
 {printf("stringconstant ", yytext); return (t_STRINGCONSTANT);}
 	YY_BREAK
 case 48:
 /* rule 48 can match eol */
 YY_RULE_SETUP
-#line 116 "dino.l"
+#line 96 "dino.l"
 {printf(" ");}
 	YY_BREAK
 case 49:
 /* rule 49 can match eol */
 YY_RULE_SETUP
-#line 117 "dino.l"
+#line 97 "dino.l"
 {printf("\n");}
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 120 "dino.l"
-{yytext[yyleng]='\0'; yylval=insert(yytext);
-    printf("id ", yytext); return(t_ID);}
+#line 100 "dino.l"
+{yytext[yyleng]='\0'; yylval=trieInsert(yytext);
+        printf("id ", yytext); return(t_ID);}
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 122 "dino.l"
+#line 102 "dino.l"
 {printf("error!\n"); return (0);}
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 124 "dino.l"
+#line 104 "dino.l"
 ECHO;
 	YY_BREAK
-#line 1122 "lex.yy.c"
+#line 1114 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2124,195 +2116,212 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 124 "dino.l"
+#line 104 "dino.l"
 
+//intializes the firstLetter array
+void initFirstLetter(){
+    for(int i=0; i<52; i++){
+        firstLetter[i] = -1;
+    }
+}
 
-    void initFirstLetter(){
-        for(int i=0; i<52; i++){
-            firstLetter[i] = -1;
-        }
+//initializes the symbolTable and the nextTable arrays
+void initSymAndNext(){
+    for(int i = 0; i < MAXTRANSITIONS; i++){
+        symTable[i] = -1;
+        nextTable[i] = -1;
+    }
+}
+
+//trieInsert adds id's to the trie Table (firstLetter, symTable, and nextTable)
+//char s is a pointer to the string of input to be processed
+int trieInsert(char *s){
+    //create pointer to navigate the trie table
+    int ptr = -1;
+
+    //check what the first letter of input is and set the pointer to the respective array position
+    switch (*s){
+        case 'a':
+            ptr = 0;
+            break;
+        case 'b':
+            ptr = 1;
+            break;
+        case 'c':
+            ptr = 2;
+            break;
+        case 'd':
+            ptr = 3;
+            break;
+        case 'e':
+            ptr = 4;
+            break;
+        case 'f':
+            ptr = 5;
+            break;
+        case 'g':
+            ptr = 6;
+            break;
+        case 'h':
+            ptr = 7;
+            break;
+        case 'i':
+            ptr = 8;
+            break;
+        case 'j':
+            ptr = 9;
+            break;
+        case 'k':
+            ptr = 10;
+            break;
+        case 'l':
+            ptr = 11;
+            break;
+        case 'm':
+            ptr = 12;
+            break;
+        case 'n':
+            ptr = 13;
+            break;
+        case 'o':
+            ptr = 14;
+            break;
+        case 'p':
+            ptr = 15;
+            break;
+        case 'q':
+            ptr = 16;
+            break;
+        case 'r':
+            ptr = 17;
+            break;
+        case 's':
+            ptr = 18;
+            break;
+        case 't':
+            ptr = 19;
+            break;
+        case 'u':
+            ptr = 20;
+            break;
+        case 'v':
+            ptr = 21;
+            break;
+        case 'w':
+            ptr = 22;
+            break;
+        case 'y':
+            ptr = 23;
+            break;
+        case 'x':
+            ptr = 24;
+            break;
+        case 'z':
+            ptr = 25;
+            break;
+        case 'A':
+            ptr = 26;
+            break;
+        case 'B':
+            ptr = 27;
+            break;
+        case 'C':
+            ptr = 28;
+            break;
+        case 'D':
+            ptr = 29;
+            break;
+        case 'E':
+            ptr = 30;
+            break;
+        case 'F':
+            ptr = 31;
+            break;
+        case 'G':
+            ptr = 32;
+            break;
+        case 'H':
+            ptr = 33;
+            break;
+        case 'I':
+            ptr = 34;
+            break;
+        case 'J':
+            ptr = 35;
+            break;
+        case 'K':
+            ptr = 36;
+            break;
+        case 'L':
+            ptr = 37;
+            break;
+        case 'M':
+            ptr = 38;
+            break;
+        case 'N':
+            ptr = 39;
+            break;
+        case 'O':
+            ptr = 40;
+            break;
+        case 'P':
+            ptr = 41;
+            break;
+        case 'Q':
+            ptr = 42;
+            break;
+        case 'R':
+            ptr = 43;
+            break;
+        case 'S':
+            ptr = 44;
+            break;
+        case 'T':
+            ptr = 45;
+            break;
+        case 'U':
+            ptr = 46;
+            break;
+        case 'V':
+            ptr = 47;
+            break;
+        case 'W':
+            ptr = 48;
+            break;
+        case 'Y':
+            ptr = 49;
+            break;
+        case 'X':
+            ptr = 50;
+            break;
+        case 'Z':
+            ptr = 51;
+            break;
+        default:
+            printf("unknown char in id!");
     }
 
-    void initSymAndNext(){
-        for(int i = 0; i < MAXTRANSITIONS; i++){
-            symTable[i] = -1;
-            nextTable[i] = -1;
-        }
-    }
-    
-//trieInsert
-    void trieInsert(char *s){
-        int ptr = -1;
-        
-        switch (*s){
-            case 'a':
-                ptr = 0;
-                break;
-            case 'b':
-                ptr = 1;
-                break;
-            case 'c':
-                ptr = 2;
-                break;
-            case 'd':
-                ptr = 3;
-                break;
-            case 'e':
-                ptr = 4;
-                break;
-            case 'f':
-                ptr = 5;
-                break;
-            case 'g':
-                ptr = 6;
-                break;
-            case 'h':
-                ptr = 7;
-                break;
-            case 'i':
-                ptr = 8;
-                break;
-            case 'j':
-                ptr = 9;
-                break;
-            case 'k':
-                ptr = 10;
-                break;
-            case 'l':
-                ptr = 11;
-                break;
-            case 'm':
-                ptr = 12;
-                break;
-            case 'n':
-                ptr = 13;
-                break;
-            case 'o':
-                ptr = 14;
-                break;
-            case 'p':
-                ptr = 15;
-                break;
-            case 'q':
-                ptr = 16;
-                break;
-            case 'r':
-                ptr = 17;
-                break;
-            case 's':
-                ptr = 18;
-                break;
-            case 't':
-                ptr = 19;
-                break;
-            case 'u':
-                ptr = 20;
-                break;
-            case 'v':
-                ptr = 21;
-                break;
-            case 'w':
-                ptr = 22;
-                break;
-            case 'y':
-                ptr = 23;
-                break;
-            case 'x':
-                ptr = 24;
-                break;
-            case 'z':
-                ptr = 25;
-                break;
-            case 'A':
-                ptr = 26;
-                break;
-            case 'B':
-                ptr = 27;
-                break;
-            case 'C':
-                ptr = 28;
-                break;
-            case 'D':
-                ptr = 29;
-                break;
-            case 'E':
-                ptr = 30;
-                break;
-            case 'F':
-                ptr = 31;
-                break;
-            case 'G':
-                ptr = 32;
-                break;
-            case 'H':
-                ptr = 33;
-                break;
-            case 'I':
-                ptr = 34;
-                break;
-            case 'J':
-                ptr = 35;
-                break;
-            case 'K':
-                ptr = 36;
-                break;
-            case 'L':
-                ptr = 37;
-                break;
-            case 'M':
-                ptr = 38;
-                break;
-            case 'N':
-                ptr = 39;
-                break;
-            case 'O':
-                ptr = 40;
-                break;
-            case 'P':
-                ptr = 41;
-                break;
-            case 'Q':
-                ptr = 42;
-                break;
-            case 'R':
-                ptr = 43;
-                break;
-            case 'S':
-                ptr = 44;
-                break;
-            case 'T':
-                ptr = 45;
-                break;
-            case 'U':
-                ptr = 46;
-                break;
-            case 'V':
-                ptr = 47;
-                break;
-            case 'W':
-                ptr = 48;
-                break;
-            case 'Y':
-                ptr = 49;
-                break;
-            case 'X':
-                ptr = 50;
-                break;
-            case 'Z':
-                ptr = 51;
-                break;
-            default:
-                printf("unknown char in id!");
-        }
-        int pos = ptr;
-        ptr = firstLetter[pos];
-        if(ptr == -1){
-            //find next location to start
-            ptr = tail;
-            firstLetter[pos] = tail;
+    int pos = ptr;                  //pos is used to remember the position used in the firstLetter array
+    ptr = firstLetter[pos];         //set ptr to the value given by firstLetter
+    if(ptr == -1){                  //if the value is -1, there is no match, so insert the id in the trie
+        ptr = tail;                     //go to the end of symTable
+        firstLetter[pos] = tail;        //map the firstLetter element to this position
+        s++;                            //increment s (because we already processed the first character)
+        while(*s != '\0'){              //insert rest of the id and then the delimiter
+            symTable[ptr] = *s;     
+            ptr++;
             s++;
-            //insert word and then delimiter
-            while(*s != '\0'){
+            tail++;
+        }
+        symTable[ptr] = '@';
+        tail++;
+        t_index++;
+        return t_index-1;
+    }
+    s++;
+    while (1) {                     //loop to search and insert in the trie table
+        if (symTable[ptr] == -1){       //empty position found, insert rest of string
+            while(*s != '\0'){          
                 symTable[ptr] = *s;
                 ptr++;
                 s++;
@@ -2320,78 +2329,47 @@ void yyfree (void * ptr )
             }
             symTable[ptr] = '@';
             tail++;
-            return;
+            t_index++;
+            return t_index-1;
         }
-        //ptr now points to first search position in array
-        s++;
-        while (1) {
-            if (symTable[ptr] == -1){
-                //empty position, insert rest of word
-                while(*s != '\0'){
-                    symTable[ptr] = *s;
-                    ptr++;
-                    s++;
-                    tail++;
-                }
-                //add delimiter
-                symTable[ptr] = '@';
-                tail++;
-                return;
+        else if (symTable[ptr] == *s){      //letter matched, move on through string and array
+            s++;
+            ptr++;
+        }
+        else if (*s == '\0' && symTable[ptr] == '@'){    //id already in table, do nothing
+            return t_index;
+        }            
+        else if (symTable[ptr] != *s){                  //mismatch, check for next possible position
+            if(nextTable[ptr] != -1){       //if next has a value, move to it
+                ptr = nextTable[ptr];
             }
-            else if (symTable[ptr] == *s){
-                //letter matched, move on through string and array
-                s++;
-                ptr++;
+            else{
+                nextTable[ptr] = tail;      //if next has no value, move to tail
+                ptr = nextTable[ptr];
             }
-           else if (*s == '\0' && symTable[ptr] == '@'){
-                //id already here, do nothing
-                return;
-            }            
-            else if (symTable[ptr] != *s){
-                //mismatch, check for next possible position
-                if(nextTable[ptr] != -1){
-                    ptr = nextTable[ptr];
-                }
-                else{
-                    nextTable[ptr] = tail;
-                    ptr = nextTable[ptr];
-                }
-            }
- 
+        }
 
-        }
 
     }
+    return t_index-1;
 
-    void triePrint(){
-        for(int i=0; i<52; i++){
-            printf("%i,", firstLetter[i]);
-        }
-        printf("\n");
-        for(int i=0; i<50; i++){
-            printf("%c,", symTable[i]);
-        }
-        printf("\n");
-        for(int i=0; i<50; i++){
-            printf("%i,", nextTable[i]);
-        }
-        printf("\n");
-    }
-    
-    int insert(char *s) {
-        int i=0;
-        while (i< t_index) {
-            if (strcmp(s, table[i].name)==0) return i;
-            i++;
-        }
-        strcpy(table[t_index].name, s);
-        table[t_index].type = t_flag;
-        t_index++;
-        trieInsert(s);
-        triePrint();
+}
 
-        return t_index-1;
+void triePrint(){
+    for(int i=0; i<52; i++){
+        printf("%i,", firstLetter[i]);
     }
+    printf("\n");
+    for(int i=0; i<50; i++){
+        printf("%c,", symTable[i]);
+    }
+    printf("\n");
+    for(int i=0; i<50; i++){
+        printf("%i,", nextTable[i]);
+    }
+    printf("\n");
+}
+
 int main () {
     initFirstLetter();
     initSymAndNext();
