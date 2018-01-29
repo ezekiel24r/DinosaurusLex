@@ -104,7 +104,7 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
 {newline} {printf("\n");}
 
 
-{id}    {yytext[yyleng]='\0'; yylval=insert(yytext);
+{id}    {yytext[yyleng]='\0'; yylval=insert(yytext); insertIntoTrieTable(yytext);
     printf("id ", yytext); return(t_ID);}
 .   {printf("error!\n"); return (0);}
     
@@ -122,50 +122,98 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
 	size_t size;
     } ArrayInt;
 
-    int switchLocator[51];
-    ArrayChar* symbol;
-    ArrayInt* next;
+    int switchTable[51];
+    char* symbol;
+    int* next;
     
-    void initCharArray(ArrayChar* a, size_t initialSize) {
+    void initTrieTable(){
+	for(int i = 0; i < 51; i ++)
+	    switchTable[i] = -1;
+        initCharArray(&symbol, 10);
+	initIntArray(&next, 10);
+    }
+
+    void initCharArray(char* a, size_t initialSize) {
 	a->symbol = (char*)malloc(initialSize*sizeof(char));
 	a->used = 0;
 	a->size = initialSize;
     }
 
-    void initIntArray(ArrayInt* a, size_t initialSize) {
+    void initIntArray(int* a, size_t initialSize) {
 	a->next = (int*)malloc(initialSize*sizeof(int));
 	a->used = 0;
 	a->size = initialSize;
     }
 
-    void freeCharArray(ArrayChar* a) {
+    void freeCharArray(char* a) {
 	free(a->symbol);
 	a->symbol = NULL;
 	a-> used = a-> size = 0;
     }
 
-    void freeIntArray(ArrayInt* a){
+    void freeIntArray(int* a){
 	free(a->next);
 	a->next = NULL;
-	a-> used = a-> size =0;
+	a-> used = a-> size = 0;
     }
     
-    void insertCharArray(ArrayChar* a, char value, int index) {
+    void insertCharArray(char* a, char value, int index) {
 	if(a->used == a->size) {
 	   a->size *= 2;
-	   a->symbol = (int*)realloc(a->symbol, a->size*sizeof(char));
+	   a->symbol = (char*)realloc(a->symbol, a->size*sizeof(char));
 	}
 	a->symbol[index] = value;
 	a->used++;
     }
 
-    void insertIntArray(ArrayInt* a, int value, int index) {
+    void insertIntArray(int* a, int value, int index) {
 	if(a->used == a->size) {
 	   a->size *= 2;
 	   a->next = (int*)realloc(a->next, a->size*sizeof(int));
 	}
 	a->next[index] = value;
 	a->used++;
+    }
+
+    void insertIntoTrieTable(char* s) {
+        int idValueIndex = 0;
+	char idValue = s[idValueIndex];
+	int lastIndexInSwitchTable = 0;
+	int switchTableIndex = switchTable[idValue - 65];
+
+	if(switchTable[switchTableIndex] == -1)
+	    create(s, switchTableIndex, lastIndexInSwitchTable);
+	else {
+	    idValueIndex++;
+            idValue = s[idValueIndex];
+	    bool exit = false;
+            while(exit==false) {
+                if(symbol[index] == idValue)
+                    if idValue != '\0' {
+                        index++;
+			idValueIndex++;
+		    } else
+		        exit = true;
+                else if (next[idValue] != -1)
+		    idValue = next[idValue];
+                else {
+                    Create();
+                    exit = true;
+		}
+	    }
+	}
+    }
+
+    void create(char* s, int switchTableIndex, int lastIndexInSwitchTable){
+	switchTable[switchTableIndex] = lastIndexInSwitchTable;
+        
+	int sLength = sizeof(s)/sizeof(s[0]);
+	int i;
+	for(i = 0; i < sLength; i++) {
+	    insertCharArray(s,s[i], switchTable[switchTableIndex+i]);
+        
+	}
+
     }
 
     int insert(char *s) {
@@ -177,12 +225,12 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
         strcpy(table[t_index].name, s);
         table[t_index].type = t_flag;
         t_index++;
-
-	initCharArray(&symbol, 5);
-	initIntArray(&next, 5);
-
+	insertIntoTrieTable(s);
         return t_index-1;
     }
+
+
 int main () {
+    initTrieTable();
     while (yylex()) {}
 }
