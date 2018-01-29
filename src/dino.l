@@ -1,5 +1,6 @@
 %{
 #define MAX_LENGTH 10
+#define MAXTRANSITIONS 1000
 #define MAX 100
 #define INT 1
 #define FLOAT 2
@@ -17,8 +18,8 @@ int t_index=0;
 int t_flag=0;
 
 int firstLetter[52];
-int symTable[100];
-int nextTable [100];
+int symTable[1000];
+int nextTable [1000];
 int tail = 0;
 
 void initFirstLetter();
@@ -129,7 +130,7 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
     }
 
     void initSymAndNext(){
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < 1000; i++){
             symTable[i] = -1;
             nextTable[i] = -1;
         }
@@ -367,11 +368,11 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
             printf("%i,", firstLetter[i]);
         }
         printf("\n");
-        for(int i=0; i<1000; i++){
+        for(int i=0; i<50; i++){
             printf("%c,", symTable[i]);
         }
         printf("\n");
-        for(int i=0; i<1000; i++){
+        for(int i=0; i<50; i++){
             printf("%i,", nextTable[i]);
         }
         printf("\n");
