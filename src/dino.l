@@ -104,12 +104,12 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
 {newline} {printf("\n");}
 
 
-{id}    {yytext[yyleng]='\0'; yylval=insert(yytext); insertIntoTrieTable(yytext);
+{id}    {yytext[yyleng]='\0'; yylval=insert(yytext);
     printf("id ", yytext); return(t_ID);}
 .   {printf("error!\n"); return (0);}
     
 %%
-    
+
     typedef struct {
         char* symbol;
 	size_t used;
@@ -122,16 +122,21 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
 	size_t size;
     } ArrayInt;
 
+    void initCharArray(ArrayChar* a, size_t initialSize);
+    void initIntArray(ArrayInt* a, size_t initialSize);
+    void insertIntoTriTable(char* s);
+    void create(char* s, int switchTableIndex);
+
     int switchTable[51];
-    char* symbol;
-    int* next;
+    ArrayChar* symbol;
+    ArrayInt* next;
     int lastIndexInSwitchTable = 0;
     
     void initTrieTable(){
 	for(int i = 0; i < 51; i ++)
 	    switchTable[i] = -1;
-        initCharArray(&symbol, 10);
-	initIntArray(&next, 10);
+        initCharArray(symbol, 10);
+	initIntArray(next, 10);
     }
 
     void initCharArray(ArrayChar* a, size_t initialSize) {
@@ -192,14 +197,14 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
 	       false  = 0 */
 	    int exit = 0;
             while(exit==0) {
-                if(symbol[switchTable[switchTableIndex]] == idValue)
+                if(symbol->symbol[switchTable[switchTableIndex]] == idValue)
                     if (idValue != '\0') {
                         switchTableIndex++;
 			idValueIndex++;
 		    } else
 		        exit = 1;
-                else if (next[idValue] != -1)
-		    idValue = next[idValue];
+                else if (next->next[idValue] != -1)
+		    idValue = next->next[idValue];
                 else {
                     create(s, switchTableIndex);
                     exit = 1;
@@ -238,7 +243,7 @@ int main () {
     initTrieTable();
     while (yylex()) {}
     for(int i = 0; i < 51; i++){
-        print(switchTable[i] + "   ");
+        printf("%i  ", switchTable[i]);
     }
 
 }
