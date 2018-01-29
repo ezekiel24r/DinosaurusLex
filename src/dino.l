@@ -1,6 +1,6 @@
 %{
 #define MAX_LENGTH 10
-#define MAXTRANSITIONS 1000
+#define MAXTRANSITIONS 35
 #define MAX 100
 #define INT 1
 #define FLOAT 2
@@ -18,12 +18,13 @@ int t_index=0;
 int t_flag=0;
 
 int firstLetter[52];
-int symTable[MAXTRANSITIONS];
-int nextTable [MAXTRANSITIONS];
+char *symTable;
+int *nextTable;
 int tail = 0;
 
 void initFirstLetter();
 void initSymAndNext();
+void resizeArrays();
 void trieInsert();
 void triePrint();
 
@@ -130,10 +131,25 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
     }
 
     void initSymAndNext(){
+	symTable = (char*)malloc(MAXTRANSITIONS*sizeof(char));
+	nextTable = (int*)malloc(MAXTRANSITIONS*sizeof(int));
         for(int i = 0; i < MAXTRANSITIONS; i++){
             symTable[i] = -1;
             nextTable[i] = -1;
         }
+    }
+	
+	void resizeArrays() {
+        	int n = sizeof(symTable)/sizeof(symTable[0]);
+        	int j = sizeof(nextTable)/sizeof(nextTable[0]);
+		char* symTableNew = (char*)realloc(symTable, 2*n*sizeof(char));
+        	int* nextTableNew = (int*)realloc(nextTable, 2*j*sizeof(int));
+		free(symTable);
+		free(nextTable);
+		symTable = symTableNew;
+        	nextTable = nextTableNew;
+		free(symTableNew);
+        	free(nextTableNew);
     }
     
 //trieInsert
@@ -300,7 +316,13 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
             default:
                 printf("unknown char in id!");
         }
-        int pos = ptr;
+        
+		int symTableLength = sizeof(symTable)/sizeof(symTable[0]);
+		
+		if(tail+20 > symTableLength)
+			resizeArrays;
+
+		int pos = ptr;
         ptr = firstLetter[pos];
         if(ptr == -1){
             //find next location to start
@@ -318,6 +340,7 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
             tail++;
             return;
         }
+		
         //ptr now points to first search position in array
         s++;
         while (1) {
@@ -360,12 +383,67 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
     }
 
     void triePrint(){
-        for(int i=0; i<52; i++){
-            printf("%i,", firstLetter[i]);
+    	//print Top letters from A to T
+	printf("           ");
+	for(int i=65; i < 85; i++){
+	    printf("%c    ", i);
+	}
+	//printing switch from A to T
+	printf("\nswitch:");
+        for(int i=0; i<20; i++){
+            printf("%5i", firstLetter[i]);
         }
-        printf("\n");
-        for(int i=0; i<50; i++){
-            printf("%c,", symTable[i]);
+	//print top letters from U to Z
+        printf("\n           ");
+        for(int i = 85; i < 91; i++)
+	    printf("%c    ", i);
+	//print a to n
+	for(int i = 97; i < 111;i++)
+	    printf("%c    ", i);
+	//print switch from U to n
+	printf("\nswitch:");
+	for(int i = 20; i < 40; i++)
+	    printf("%5i", firstLetter[i]);
+	//print top letters o to z
+	printf("\n           ");
+	for(int i = 111; i < 123; i ++)
+            printf("%c    ", i);
+        //print switch from o to z
+	printf("\nswitch:");
+        for(int i = 40; i < 60; i++)
+            printf("%5i", firstLetter[i]);
+	
+	printf("\n\n");
+	
+        int symTableLength = sizeof(symTable)/sizeof(symTable[0]);
+        int rows = symTableLength%20 + 1;
+        int rowCounter = 0;
+	int columnCounter = 0;
+
+	for(int i = 0; i < symTableLength; i++){
+	    
+	    
+	    if(rowCounter == 1){
+                printf("           ");
+		printf("%i    ", i);
+		if(columnCounter == 20) {
+		    continue;
+		    columnCounter = 0;
+		    rowCounter++;
+		    printf("\n");
+		}
+		columnCounter++;
+	    } else if (counter == 2) {
+                printf("symbol:");
+                
+		
+		printf("%5c", symTable[i]);
+                
+	    }
+	
+	
+	}
+	
         }
         printf("\n");
         for(int i=0; i<50; i++){
