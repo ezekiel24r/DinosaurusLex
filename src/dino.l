@@ -98,7 +98,7 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
 
 
 {id}    {yytext[yyleng]='\0'; yylval=trieInsert(yytext);
-        printf("id ", yytext); return(t_ID);}
+        printf("id ", yytext); triePrint(); return(t_ID);}
 .   {printf("error!\n"); return (0);}
     
 %%
@@ -340,16 +340,44 @@ int trieInsert(char *s){
 }
 
 void triePrint(){
+    printf("\n");
     for(int i=0; i<52; i++){
-        printf("%i,", firstLetter[i]);
+        if(firstLetter[i] == (char)(-1)){
+            printf(" ~ |", firstLetter[i]);
+        }
+        else if(firstLetter[i] > 99){
+            printf("%i|", firstLetter[i]);
+        }
+        else if(firstLetter[i] > 9){
+            printf(" %i|", firstLetter[i]);
+        }
+        else{
+            printf("% i |", firstLetter[i]);
+        }
     }
     printf("\n");
     for(int i=0; i<50; i++){
-        printf("%c,", symTable[i]);
+        if(symTable[i] == (char)(-1)){
+            printf(" ~ |", symTable[i]);
+        }
+        else{
+            printf(" %c |", symTable[i]);
+        }
     }
     printf("\n");
     for(int i=0; i<50; i++){
-        printf("%i,", nextTable[i]);
+        if(nextTable[i] == (char)(-1)){
+            printf(" ~ |", nextTable[i]);
+        }
+        else if(nextTable[i] > 99){
+            printf("%i|", nextTable[i]);
+        }
+        else if(nextTable[i] > 9){
+            printf(" %i|", nextTable[i]);
+        }
+        else{
+            printf("% i |", nextTable[i]);
+        }
     }
     printf("\n");
 }
