@@ -31,7 +31,6 @@ number {digit}+
 doubleconstant {number}"."{digit}*((e|E)("+"|"-")?{number})?
 hex (0x|0X)[a-fA-F0-9]+
 stringconstant \"[^"\n]*\"
-booleanconstant (true|false)
 multilinecomment ("/*")([^*]*"*"+[^*/])*([^*]*)("*"+)"/"
 comment ("//".*)|{multilinecomment}
 intconstant {hex}|{number}
@@ -80,6 +79,10 @@ if {printf("if ", yytext); yylval=trieInsert(yytext);
     return (t_IF);}
 newarray {printf("newarray ", yytext); yylval=trieInsert(yytext);
     return (t_NEWARRAY);}
+true {printf("boolconstant ", yytext); yylval=trieInsert(yytext); 
+    return (t_BOOLEANCONSTANT);}
+false {printf("boolconstant ", yytext); yylval=trieInsert(yytext); 
+    return (t_BOOLEANCONSTANT);}
 
 "*" {printf("multiplication ", yytext); return (t_MULTIPLICATION);}
 "<=" {printf("lessequal ", yytext); return (t_LESSEQUAL);}
@@ -108,7 +111,6 @@ newarray {printf("newarray ", yytext); yylval=trieInsert(yytext);
 
 
 {intconstant} {printf("intconstant ", yytext); return (t_INTCONSTANT);}
-{booleanconstant} {printf("boolconstant ", yytext); return (t_BOOLEANCONSTANT);}
 {doubleconstant} {printf("doubleconstant ", yytext); return (t_DOUBLECONSTANT);}
 {stringconstant} {printf("stringconstant ", yytext); return (t_STRINGCONSTANT);}
 {comment} {printf(" ");}
