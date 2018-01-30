@@ -415,7 +415,6 @@ void triePrint(){
 		printf("%5i", firstLetter[i]);
 
 	printf("\n\n");
-//need debugging below	
 	int rows = MAXTRANSITIONS/20+1;
 	int rowGroupCounter = 1;
 	int symbolTableCounter = 0;
