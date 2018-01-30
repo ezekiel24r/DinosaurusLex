@@ -2138,7 +2138,7 @@ void yyfree (void * ptr )
 
     void initSymAndNext(){
 	symTable = (char*)malloc(MAXTRANSITIONS*sizeof(char));
-	printf("before seg fault");
+	//printf("before seg fault");
 	nextTable = (int*)malloc(MAXTRANSITIONS*sizeof(int));
         for(int i = 0; i < MAXTRANSITIONS; i++){
             symTable[i] = -1;
@@ -2337,8 +2337,9 @@ void yyfree (void * ptr )
 	int symTableLength = symTable[MAXTRANSITIONS*timesResized-1];
 	//resize array
 	if(tail+20 > symTableLength){
-            resizeArrays;
-            printf("executed resize");
+            printf("EXECUTED RESIZE");
+	    resizeArrays;
+           // printf("done resize");
 	}
 	int pos = ptr;
         ptr = firstLetter[pos];
@@ -2401,6 +2402,7 @@ void yyfree (void * ptr )
     }
 
     void triePrint(){
+        printf("executing print");
     	//print Top letters from A to T
 	printf("           ");
 	for(int i=65; i < 85; i++){
@@ -2501,7 +2503,7 @@ int main () {
     initFirstLetter();
     initSymAndNext();
     while (yylex()) {}
-    //triePrint();
+    triePrint();
 }
 
 
