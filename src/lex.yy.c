@@ -2420,6 +2420,7 @@ void triePrint(){
 	int rowGroupCounter = 1;
 	int symbolTableCounter = 0;
 	int j;
+	int endFlag = 0;
 	
 	for(int i = 1; i < rows*3+1; i++){
 		//only used when last row has less than 20 elements
@@ -2431,8 +2432,13 @@ void triePrint(){
 				rowGroupCounter++;
 			}else if(rowGroupCounter==2){
 				printf("\nsymbol:");
-				for(j = symbolTableCounter; j < MAXTRANSITIONS; j++)
-					printf("%5c",symTable[j]);
+				for(j = symbolTableCounter; j < MAXTRANSITIONS; j++){
+				    if(symTable[j] == -1){
+				        endFlag = 1;
+					break;
+				    }
+				    else printf("%5c",symTable[j]);
+				}
 				rowGroupCounter++;
 			}else if(rowGroupCounter==3){
 				printf("\nnext:  ");
@@ -2450,8 +2456,13 @@ void triePrint(){
 			rowGroupCounter++;
 		}else if(rowGroupCounter==2){
 			printf("\nsymbol:");
-			for(j = symbolTableCounter; j < symbolTableCounter+20; j++)
-				printf("%5c",symTable[j]);
+			for(j = symbolTableCounter; j < symbolTableCounter+20; j++){
+				if(symTable[j] == -1){
+				    endFlag = 1;
+				    break;
+				}
+				else printf("%5c",symTable[j]);
+			    }
 			rowGroupCounter++;
 		}else if(rowGroupCounter==3){
 			printf("\nnext:  ");
@@ -2464,6 +2475,9 @@ void triePrint(){
 			printf("\n\n");
 			rowGroupCounter = 1;
 			symbolTableCounter+=20;
+			if(endFlag == 1){
+			    return;
+			}
 		}
    }
    printf("\n");
