@@ -856,110 +856,110 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 46 "dino.l"
-{t_flag=BOOLEAN; printf("boolean ", yytext);yylval=trieInsert(yytext);
- return (t_BOOLEAN);}
+{t_flag=BOOLEAN; printf("boolean ", yytext); yylval=trieInsert(yytext); 
+    return (t_BOOLEAN);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 48 "dino.l"
 {t_flag=INT; printf("int ", yytext); yylval=trieInsert(yytext);
-return (t_INT);}
+    return (t_INT);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 50 "dino.l"
 {t_flag=DOUBLE; printf("double ", yytext); yylval=trieInsert(yytext);
-return (t_DOUBLE);}
+    return (t_DOUBLE);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 52 "dino.l"
 {t_flag=STRING; printf("string ", yytext); yylval=trieInsert(yytext);
-return (t_STRING);}
+    return (t_STRING);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 55 "dino.l"
 {printf("break ", yytext); yylval=trieInsert(yytext);
-return (t_BREAK);}
+    return (t_BREAK);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 57 "dino.l"
 {printf("extends ", yytext); yylval=trieInsert(yytext);
-return (t_EXTENDS);}
+    return (t_EXTENDS);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 59 "dino.l"
 {printf("readln ", yytext); yylval=trieInsert(yytext);
-return (t_READLN);}
+    return (t_READLN);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 61 "dino.l"
 {printf("while ", yytext); yylval=trieInsert(yytext);
-return (t_WHILE);}
+    return (t_WHILE);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 63 "dino.l"
 {printf("else ", yytext); yylval=trieInsert(yytext);
-return (t_ELSE);}
+    return (t_ELSE);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 65 "dino.l"
 {printf("implements ", yytext); yylval=trieInsert(yytext);
-return (t_IMPLEMENTS);}
+    return (t_IMPLEMENTS);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 67 "dino.l"
 {printf("println ", yytext); yylval=trieInsert(yytext);
-return (t_PRINTLN);}
+    return (t_PRINTLN);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 69 "dino.l"
 {printf("void ", yytext); yylval=trieInsert(yytext);
-return (t_VOID);}
+    return (t_VOID);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 71 "dino.l"
 {printf("class ", yytext); yylval=trieInsert(yytext);
-return (t_CLASS);} 
+    return (t_CLASS);} 
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 73 "dino.l"
 {printf("for ", yytext); yylval=trieInsert(yytext);
-return (t_FOR);} 
+    return (t_FOR);} 
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 75 "dino.l"
 {printf("interface ", yytext); yylval=trieInsert(yytext);
-return (t_INTERFACE);}
+    return (t_INTERFACE);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 77 "dino.l"
 {printf("return ", yytext); yylval=trieInsert(yytext);
-return (t_RETURN);}
+    return (t_RETURN);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 79 "dino.l"
 {printf("if ", yytext); yylval=trieInsert(yytext);
-return (t_IF);}
+    return (t_IF);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 81 "dino.l"
 {printf("newarray ", yytext); yylval=trieInsert(yytext);
-return (t_NEWARRAY);}
+    return (t_NEWARRAY);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
@@ -1029,7 +1029,7 @@ YY_RULE_SETUP
 case 33:
 YY_RULE_SETUP
 #line 97 "dino.l"
-{printf("greatereaqual ", yytext); return (t_GREATEREQUAL);}
+{printf("greaterequal ", yytext); return (t_GREATEREQUAL);}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
@@ -2159,160 +2159,160 @@ int trieInsert(char *s){
 
     //check what the first letter of input is and set the pointer to the respective array position
     switch (*s){
-        case 'a':
+        case 'A':
             ptr = 0;
             break;
-        case 'b':
+        case 'B':
             ptr = 1;
             break;
-        case 'c':
+        case 'C':
             ptr = 2;
             break;
-        case 'd':
+        case 'D':
             ptr = 3;
             break;
-        case 'e':
+        case 'E':
             ptr = 4;
             break;
-        case 'f':
+        case 'F':
             ptr = 5;
             break;
-        case 'g':
+        case 'G':
             ptr = 6;
             break;
-        case 'h':
+        case 'H':
             ptr = 7;
             break;
-        case 'i':
+        case 'I':
             ptr = 8;
             break;
-        case 'j':
+        case 'J':
             ptr = 9;
             break;
-        case 'k':
+        case 'K':
             ptr = 10;
             break;
-        case 'l':
+        case 'L':
             ptr = 11;
             break;
-        case 'm':
+        case 'M':
             ptr = 12;
             break;
-        case 'n':
+        case 'N':
             ptr = 13;
             break;
-        case 'o':
+        case 'O':
             ptr = 14;
             break;
-        case 'p':
+        case 'P':
             ptr = 15;
             break;
-        case 'q':
+        case 'Q':
             ptr = 16;
             break;
-        case 'r':
+        case 'R':
             ptr = 17;
             break;
-        case 's':
+        case 'S':
             ptr = 18;
             break;
-        case 't':
+        case 'T':
             ptr = 19;
             break;
-        case 'u':
+        case 'U':
             ptr = 20;
             break;
-        case 'v':
+        case 'V':
             ptr = 21;
             break;
-        case 'w':
+        case 'W':
             ptr = 22;
             break;
-        case 'y':
+        case 'Y':
             ptr = 23;
             break;
-        case 'x':
+        case 'X':
             ptr = 24;
             break;
-        case 'z':
+        case 'Z':
             ptr = 25;
             break;
-        case 'A':
+        case 'a':
             ptr = 26;
             break;
-        case 'B':
+        case 'b':
             ptr = 27;
             break;
-        case 'C':
+        case 'c':
             ptr = 28;
             break;
-        case 'D':
+        case 'd':
             ptr = 29;
             break;
-        case 'E':
+        case 'e':
             ptr = 30;
             break;
-        case 'F':
+        case 'f':
             ptr = 31;
             break;
-        case 'G':
+        case 'g':
             ptr = 32;
             break;
-        case 'H':
+        case 'h':
             ptr = 33;
             break;
-        case 'I':
+        case 'i':
             ptr = 34;
             break;
-        case 'J':
+        case 'j':
             ptr = 35;
             break;
-        case 'K':
+        case 'k':
             ptr = 36;
             break;
-        case 'L':
+        case 'l':
             ptr = 37;
             break;
-        case 'M':
+        case 'm':
             ptr = 38;
             break;
-        case 'N':
+        case 'n':
             ptr = 39;
             break;
-        case 'O':
+        case 'o':
             ptr = 40;
             break;
-        case 'P':
+        case 'p':
             ptr = 41;
             break;
-        case 'Q':
+        case 'q':
             ptr = 42;
             break;
-        case 'R':
+        case 'r':
             ptr = 43;
             break;
-        case 'S':
+        case 's':
             ptr = 44;
             break;
-        case 'T':
+        case 't':
             ptr = 45;
             break;
-        case 'U':
+        case 'u':
             ptr = 46;
             break;
-        case 'V':
+        case 'v':
             ptr = 47;
             break;
-        case 'W':
+        case 'w':
             ptr = 48;
             break;
-        case 'Y':
+        case 'y':
             ptr = 49;
             break;
-        case 'X':
+        case 'x':
             ptr = 50;
             break;
-        case 'Z':
+        case 'z':
             ptr = 51;
             break;
         default:
@@ -2388,9 +2388,10 @@ void triePrint(){
         else{
             printf("% i |", firstLetter[i]);
         }
+        if(i%21 == 20) printf("\n");
     }
     printf("\n");
-    for(int i=0; i<50; i++){
+    for(int i=0; i<25; i++){
         if(symTable[i] == (char)(-1)){
             printf(" ~ |", symTable[i]);
         }
@@ -2399,7 +2400,7 @@ void triePrint(){
         }
     }
     printf("\n");
-    for(int i=0; i<50; i++){
+    for(int i=0; i<25; i++){
         if(nextTable[i] == (char)(-1)){
             printf(" ~ |", nextTable[i]);
         }
