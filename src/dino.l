@@ -43,25 +43,43 @@ ws [ \t\r]
 
 {ws}    ;
 
-boolean {t_flag=BOOLEAN; printf("boolean ", yytext); return (t_BOOLEAN);}
-int {t_flag=INT; printf("int ", yytext); return (t_INT);}
-double {t_flag=DOUBLE; printf("double ", yytext); return (t_DOUBLE);}
-string {t_flag=STRING; printf("string ", yytext); return (t_STRING);}
+boolean {t_flag=BOOLEAN; printf("boolean ", yytext); yylval=trieInsert(yytext); 
+    return (t_BOOLEAN);}
+int {t_flag=INT; printf("int ", yytext); yylval=trieInsert(yytext);
+    return (t_INT);}
+double {t_flag=DOUBLE; printf("double ", yytext); yylval=trieInsert(yytext);
+    return (t_DOUBLE);}
+string {t_flag=STRING; printf("string ", yytext); yylval=trieInsert(yytext);
+    return (t_STRING);}
 
-break {printf("break ", yytext); return (t_BREAK);}
-extends {printf("extends ", yytext); return (t_EXTENDS);}
-readln {printf("readln ", yytext); return (t_READLN);}
-while {printf("while ", yytext); return (t_WHILE);}
-else {printf("else ", yytext); return (t_ELSE);}
-implements {printf("implements ", yytext); return (t_IMPLEMENTS);}
-println {printf("println ", yytext); return (t_PRINTLN);}
-void {printf("void ", yytext); return (t_VOID);}
-class {printf("class ", yytext); return (t_CLASS);} 
-for {printf("for ", yytext); return (t_FOR);} 
-interface {printf("interface ", yytext); return (t_INTERFACE);}
-return {printf("return ", yytext); return (t_RETURN);}
-if {printf("if ", yytext); return (t_IF);}
-newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
+break {printf("break ", yytext); yylval=trieInsert(yytext);
+    return (t_BREAK);}
+extends {printf("extends ", yytext); yylval=trieInsert(yytext);
+    return (t_EXTENDS);}
+readln {printf("readln ", yytext); yylval=trieInsert(yytext);
+    return (t_READLN);}
+while {printf("while ", yytext); yylval=trieInsert(yytext);
+    return (t_WHILE);}
+else {printf("else ", yytext); yylval=trieInsert(yytext);
+    return (t_ELSE);}
+implements {printf("implements ", yytext); yylval=trieInsert(yytext);
+    return (t_IMPLEMENTS);}
+println {printf("println ", yytext); yylval=trieInsert(yytext);
+    return (t_PRINTLN);}
+void {printf("void ", yytext); yylval=trieInsert(yytext);
+    return (t_VOID);}
+class {printf("class ", yytext); yylval=trieInsert(yytext);
+    return (t_CLASS);} 
+for {printf("for ", yytext); yylval=trieInsert(yytext);
+    return (t_FOR);} 
+interface {printf("interface ", yytext); yylval=trieInsert(yytext);
+    return (t_INTERFACE);}
+return {printf("return ", yytext); yylval=trieInsert(yytext);
+    return (t_RETURN);}
+if {printf("if ", yytext); yylval=trieInsert(yytext);
+    return (t_IF);}
+newarray {printf("newarray ", yytext); yylval=trieInsert(yytext);
+    return (t_NEWARRAY);}
 
 "*" {printf("multiplication ", yytext); return (t_MULTIPLICATION);}
 "<=" {printf("lessequal ", yytext); return (t_LESSEQUAL);}

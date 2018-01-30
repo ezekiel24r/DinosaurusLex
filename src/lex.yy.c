@@ -856,262 +856,280 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 46 "dino.l"
-{t_flag=BOOLEAN; printf("boolean ", yytext); return (t_BOOLEAN);}
+{t_flag=BOOLEAN; printf("boolean ", yytext);yylval=trieInsert(yytext);
+ return (t_BOOLEAN);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 47 "dino.l"
-{t_flag=INT; printf("int ", yytext); return (t_INT);}
+#line 48 "dino.l"
+{t_flag=INT; printf("int ", yytext); yylval=trieInsert(yytext);
+return (t_INT);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 48 "dino.l"
-{t_flag=DOUBLE; printf("double ", yytext); return (t_DOUBLE);}
+#line 50 "dino.l"
+{t_flag=DOUBLE; printf("double ", yytext); yylval=trieInsert(yytext);
+return (t_DOUBLE);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 49 "dino.l"
-{t_flag=STRING; printf("string ", yytext); return (t_STRING);}
+#line 52 "dino.l"
+{t_flag=STRING; printf("string ", yytext); yylval=trieInsert(yytext);
+return (t_STRING);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 51 "dino.l"
-{printf("break ", yytext); return (t_BREAK);}
+#line 55 "dino.l"
+{printf("break ", yytext); yylval=trieInsert(yytext);
+return (t_BREAK);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 52 "dino.l"
-{printf("extends ", yytext); return (t_EXTENDS);}
+#line 57 "dino.l"
+{printf("extends ", yytext); yylval=trieInsert(yytext);
+return (t_EXTENDS);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 53 "dino.l"
-{printf("readln ", yytext); return (t_READLN);}
+#line 59 "dino.l"
+{printf("readln ", yytext); yylval=trieInsert(yytext);
+return (t_READLN);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 54 "dino.l"
-{printf("while ", yytext); return (t_WHILE);}
+#line 61 "dino.l"
+{printf("while ", yytext); yylval=trieInsert(yytext);
+return (t_WHILE);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 55 "dino.l"
-{printf("else ", yytext); return (t_ELSE);}
+#line 63 "dino.l"
+{printf("else ", yytext); yylval=trieInsert(yytext);
+return (t_ELSE);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 56 "dino.l"
-{printf("implements ", yytext); return (t_IMPLEMENTS);}
+#line 65 "dino.l"
+{printf("implements ", yytext); yylval=trieInsert(yytext);
+return (t_IMPLEMENTS);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 57 "dino.l"
-{printf("println ", yytext); return (t_PRINTLN);}
+#line 67 "dino.l"
+{printf("println ", yytext); yylval=trieInsert(yytext);
+return (t_PRINTLN);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 58 "dino.l"
-{printf("void ", yytext); return (t_VOID);}
+#line 69 "dino.l"
+{printf("void ", yytext); yylval=trieInsert(yytext);
+return (t_VOID);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 59 "dino.l"
-{printf("class ", yytext); return (t_CLASS);} 
+#line 71 "dino.l"
+{printf("class ", yytext); yylval=trieInsert(yytext);
+return (t_CLASS);} 
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 60 "dino.l"
-{printf("for ", yytext); return (t_FOR);} 
+#line 73 "dino.l"
+{printf("for ", yytext); yylval=trieInsert(yytext);
+return (t_FOR);} 
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 61 "dino.l"
-{printf("interface ", yytext); return (t_INTERFACE);}
+#line 75 "dino.l"
+{printf("interface ", yytext); yylval=trieInsert(yytext);
+return (t_INTERFACE);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 62 "dino.l"
-{printf("return ", yytext); return (t_RETURN);}
+#line 77 "dino.l"
+{printf("return ", yytext); yylval=trieInsert(yytext);
+return (t_RETURN);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 63 "dino.l"
-{printf("if ", yytext); return (t_IF);}
+#line 79 "dino.l"
+{printf("if ", yytext); yylval=trieInsert(yytext);
+return (t_IF);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 64 "dino.l"
-{printf("newarray ", yytext); return (t_NEWARRAY);}
+#line 81 "dino.l"
+{printf("newarray ", yytext); yylval=trieInsert(yytext);
+return (t_NEWARRAY);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 66 "dino.l"
+#line 84 "dino.l"
 {printf("multiplication ", yytext); return (t_MULTIPLICATION);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 67 "dino.l"
+#line 85 "dino.l"
 {printf("lessequal ", yytext); return (t_LESSEQUAL);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 68 "dino.l"
+#line 86 "dino.l"
 {printf("notequal ", yytext); return (t_NOTEQUAL);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 69 "dino.l"
+#line 87 "dino.l"
 {printf("leftparen ", yytext); return (t_LEFTPAREN);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 70 "dino.l"
+#line 88 "dino.l"
 {printf("division ", yytext); return (t_DIVISION);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 71 "dino.l"
+#line 89 "dino.l"
 {printf("greater ", yytext); return (t_GREATER);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 72 "dino.l"
+#line 90 "dino.l"
 {printf("and ", yytext); return (t_AND);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 73 "dino.l"
+#line 91 "dino.l"
 {printf("semicolon ", yytext); return (t_SEMICOLON);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 74 "dino.l"
+#line 92 "dino.l"
 {printf("rightparen ", yytext); return (t_RIGHTPAREN);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 75 "dino.l"
+#line 93 "dino.l"
 {printf("rightbrace ", yytext); return (t_RIGHTBRACE);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 76 "dino.l"
+#line 94 "dino.l"
 {printf("leftbrace ", yytext); return (t_LEFTBRACE);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 77 "dino.l"
+#line 95 "dino.l"
 {printf("plus ", yytext); return (t_PLUS);}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 78 "dino.l"
+#line 96 "dino.l"
 {printf("mod ", yytext); return (t_MOD);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 79 "dino.l"
+#line 97 "dino.l"
 {printf("greatereaqual ", yytext); return (t_GREATEREQUAL);}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 80 "dino.l"
+#line 98 "dino.l"
 {printf("or ", yytext); return (t_OR);}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 81 "dino.l"
+#line 99 "dino.l"
 {printf("comma ", yytext); return (t_COMMA);}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 82 "dino.l"
+#line 100 "dino.l"
 {printf("leftbracket ", yytext); return (t_LEFTBRACKET);}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 83 "dino.l"
+#line 101 "dino.l"
 {printf("minus ", yytext); return (t_MINUS);}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 84 "dino.l"
+#line 102 "dino.l"
 {printf("less ", yytext); return (t_LESS);}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 85 "dino.l"
+#line 103 "dino.l"
 {printf("assignop ", yytext); return (t_ASSIGNOP);}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 86 "dino.l"
+#line 104 "dino.l"
 {printf("equal ", yytext); return (t_EQUAL);}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 87 "dino.l"
+#line 105 "dino.l"
 {printf("not ", yytext); return (t_NOT);}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 88 "dino.l"
+#line 106 "dino.l"
 {printf("period ", yytext); return (t_PERIOD);}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 89 "dino.l"
+#line 107 "dino.l"
 {printf("rightbracket ", yytext); return (t_RIGHTBRACKET);}
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 92 "dino.l"
+#line 110 "dino.l"
 {printf("intconstant ", yytext); return (t_INTCONSTANT);}
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 93 "dino.l"
+#line 111 "dino.l"
 {printf("boolconstant ", yytext); return (t_BOOLEANCONSTANT);}
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 94 "dino.l"
+#line 112 "dino.l"
 {printf("doubleconstant ", yytext); return (t_DOUBLECONSTANT);}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 95 "dino.l"
+#line 113 "dino.l"
 {printf("stringconstant ", yytext); return (t_STRINGCONSTANT);}
 	YY_BREAK
 case 48:
 /* rule 48 can match eol */
 YY_RULE_SETUP
-#line 96 "dino.l"
+#line 114 "dino.l"
 {printf(" ");}
 	YY_BREAK
 case 49:
 /* rule 49 can match eol */
 YY_RULE_SETUP
-#line 97 "dino.l"
+#line 115 "dino.l"
 {printf("\n");}
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 100 "dino.l"
+#line 118 "dino.l"
 {yytext[yyleng]='\0'; yylval=trieInsert(yytext);
         printf("id ", yytext); triePrint(); return(t_ID);}
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 102 "dino.l"
+#line 120 "dino.l"
 {printf("error!\n"); return (0);}
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 104 "dino.l"
+#line 122 "dino.l"
 ECHO;
 	YY_BREAK
-#line 1114 "lex.yy.c"
+#line 1132 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2116,7 +2134,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 104 "dino.l"
+#line 122 "dino.l"
 
 //intializes the firstLetter array
 void initFirstLetter(){
