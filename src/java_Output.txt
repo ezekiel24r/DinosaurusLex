@@ -1,0 +1,124 @@
+ 
+ 
+class id leftparen rightparen extends id implements interface id leftbrace 
+ 
+int id leftparen int leftbracket rightbracket id rightparen leftbrace 
+
+for leftparen int id assignop intconstant semicolon id less id period id semicolon id assignop id plus intconstant rightparen leftbrace 
+if leftparen id leftbracket id rightbracket less intconstant rightparen 
+return boolconstant semicolon 
+rightbrace 
+rightbrace 
+ 
+id id void id leftparen id id leftbracket rightbracket rightparen leftbrace 
+int id assignop intconstant semicolon 
+double id assignop doubleconstant semicolon 
+double id assignop period intconstant semicolon 
+double id assignop doubleconstant semicolon 
+int id assignop intconstant semicolon 
+id id assignop stringconstant semicolon 
+boolean id assignop boolconstant semicolon 
+double id assignop doubleconstant semicolon 
+boolean id semicolon 
+boolean id semicolon 
+boolean id semicolon 
+ 
+int leftbracket rightbracket id assignop leftbrace intconstant comma intconstant comma intconstant comma intconstant rightbrace semicolon 
+ 
+id id assignop readln semicolon 
+double leftbracket rightbracket id assignop newarray semicolon 
+boolean id assignop id leftparen id rightparen semicolon 
+
+if leftparen id mod intconstant equal intconstant and id lessequal intconstant rightparen 
+id assignop boolconstant semicolon 
+else 
+id assignop boolconstant semicolon 
+
+id assignop id plus intconstant semicolon 
+id assignop id multiplication intconstant semicolon 
+ 
+if leftparen id greaterequal intconstant or id greaterequal intconstant rightparen 
+id assignop boolconstant semicolon 
+else 
+id assignop boolconstant semicolon 
+
+id assignop id minus doubleconstant semicolon 
+id assignop id division intconstant semicolon 
+
+id assignop not leftparen id rightparen semicolon 
+if leftparen id greater intconstant or id less intconstant rightparen 
+id assignop boolconstant semicolon 
+else 
+id assignop boolconstant semicolon 
+ 
+if leftparen id notequal id rightparen 
+id assignop boolconstant semicolon 
+else 
+id assignop boolconstant semicolon 
+ 
+while leftparen id greater intconstant rightparen leftbrace 
+id assignop id minus intconstant semicolon 
+if leftparen id equal intconstant rightparen 
+break semicolon 
+rightbrace 
+ 
+id period id period println leftparen stringconstant rightparen semicolon 
+rightbrace 
+rightbrace 
+           A    B    C    D    E    F    G    H    I    J    K    L    M    N    O    P    Q    R    S    T    
+switch:  136  144   41   -1   -1   -1   -1   -1   -1   -1   -1   -1   -1   -1   16   -1   -1   -1  101   -1
+
+           U    V    W    X    Y    Z    a    b    c    d    e    f    g    h    i    j    k    l    m    n    
+switch:   -1   -1   -1   -1   -1   -1  107  137    0  120    9   58   52   -1   22   -1   -1   62   97   55
+
+           o    p    q    r    s    t    u    v    w    x    y    z    
+switch:  222   81   -1   70   87    5   -1   93  206   -1   -1   -1
+
+           0    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19
+symbol:    l    a    s    s    *    e    s    t    *    x    t    e    n    d    s    *    b    j    e    c
+next:    173                      151                 162                                                  
+
+          20   21   22   23   24   25   26   27   28   29   30   31   32   33   34   35   36   37   38   39
+symbol:    t    *    m    p    l    e    m    e    n    t    s    *    n    t    e    r    f    a    c    e
+next:               32                                                61        51                         
+
+          40   41   42   43   44   45   46   47   48   49   50   51   52   53   54   55   56   57   58   59
+symbol:    *    o    m    p    a    r    a    b    l    e    *    *    e    t    *    u    m    *    o    r
+next:         111                                                    166            186             76     
+
+          60   61   62   63   64   65   66   67   68   69   70   71   72   73   74   75   76   77   78   79
+symbol:    *    *    e    n    g    t    h    *    f    *    e    t    u    r    n    *    a    l    s    e
+next:          68                                               179                                        
+
+          80   81   82   83   84   85   86   87   88   89   90   91   92   93   94   95   96   97   98   99
+symbol:    *    u    b    l    i    c    *    t    a    t    i    c    *    o    i    d    *    a    i    n
+next:         225                                                         132                              
+
+         100  101  102  103  104  105  106  107  108  109  110  111  112  113  114  115  116  117  118  119
+symbol:    *    t    r    i    n    g    *    r    g    s    *    O    N    S    T    _    N    U    M    *
+next:         216                           135  177                                     126               
+
+         120  121  122  123  124  125  126  127  128  129  130  131  132  133  134  135  136  137  138  139
+symbol:    o    u    b    l    e    *    D    U    B    *    2    *    a    r    *    *    *    o    o    l
+next:                                                 130                                     211          
+
+         140  141  142  143  144  145  146  147  148  149  150  151  152  153  154  155  156  157  158  159
+symbol:    e    a    n    *    o    o    l    e    a    n    *    r    u    e    *    i    n    t    f    o
+next:                                                                          155                         
+
+         160  161  162  163  164  165  166  167  168  169  170  171  172  173  174  175  176  177  178  179
+symbol:    r    *    v    e    n    *    r    e    a    t    e    r    *    o    m    p    *    r    *    a
+next:              202                                                    194                      184     
+
+         180  181  182  183  184  185  186  187  188  189  190  191  192  193  194  195  196  197  198  199
+symbol:    d    l    n    *    2    *    e    w    a    r    r    a    y    *    h    e    c    k    A    r
+next:                                                                                                      
+
+         200  201  202  203  204  205  206  207  208  209  210  211  212  213  214  215  216  217  218  219
+symbol:    r    *    l    s    e    *    h    i    l    e    *    r    e    a    k    *    y    s    t    e
+next:                                                                                                      
+
+         220  221  222  223  224  225  226  227  228  229  230  231  232  233  234  235  236  237  238  239
+symbol:    m    *    u    t    *    r    i    n    t    l    n    *
+next:                                                                                                      
+

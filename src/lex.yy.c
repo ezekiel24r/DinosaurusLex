@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 52
-#define YY_END_OF_BUFFER 53
+#define YY_NUM_RULES 53
+#define YY_END_OF_BUFFER 54
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -360,25 +360,25 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[157] =
+static const flex_int16_t yy_accept[158] =
     {   0,
-        0,    0,   53,   51,    1,   49,   41,   51,   32,   51,
-       23,   28,   20,   31,   35,   37,   42,   24,   44,   44,
-       27,   38,   39,   25,   50,   36,   43,   50,   50,   50,
-       50,   50,   50,   50,   50,   50,   50,   50,   50,   50,
-       30,   51,   29,   22,    0,   47,   26,    0,   48,   46,
-       44,    0,   21,   40,   33,   50,   50,   50,   50,   50,
-       50,   50,   50,   50,   18,   50,   50,   50,   50,   50,
-       50,   50,   50,   50,   34,    0,    0,   48,   46,    0,
-       44,   50,   50,   50,   50,   50,   50,   50,   15,   50,
-        3,   50,   50,   50,   50,   50,   50,   50,   50,    0,
+        0,    0,   54,   52,    1,   50,   43,   52,   34,   52,
+       25,   30,   22,   33,   37,   39,   44,   26,   46,   46,
+       29,   40,   41,   27,   51,   38,   45,   51,   51,   51,
+       51,   51,   51,   51,   51,   51,   51,   51,   51,   51,
+       32,   52,   31,   24,    0,   48,   28,    0,   49,   47,
+       46,    0,   23,   42,   35,   51,   51,   51,   51,   51,
+       51,   51,   51,   51,   18,   51,   51,   51,   51,   51,
+       51,   51,   51,   51,   36,    0,    0,   49,   47,    0,
+       46,   51,   51,   51,   51,   51,   51,   51,   15,   51,
+        3,   51,   51,   51,   51,   51,   51,   51,   51,    0,
 
-       48,    0,   46,   50,   50,   50,   50,   10,   50,   50,
-       50,   50,   50,   50,   50,   50,   50,   45,   13,   50,
-       50,    6,   14,   50,   50,   50,   50,   50,   50,   50,
-       50,   50,    9,   50,    4,   50,   50,   50,   50,   50,
-        8,   17,    5,    2,    7,   50,   50,   50,   12,   50,
-       50,   19,   50,   16,   11,    0
+       49,    0,   47,   51,   51,   51,   51,   10,   51,   51,
+       51,   51,   51,   51,   51,   51,   51,   20,   13,   51,
+       51,    6,   14,   51,   51,   21,   51,   51,   51,   51,
+       51,   51,   51,    9,   51,    4,   51,   51,   51,   51,
+       51,    8,   17,    5,    2,    7,   51,   51,   51,   12,
+       51,   51,   19,   51,   16,   11,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -423,7 +423,7 @@ static const YY_CHAR yy_meta[55] =
         4,    1,    1,    1
     } ;
 
-static const flex_int16_t yy_base[163] =
+static const flex_int16_t yy_base[164] =
     {   0,
         0,    0,  203,  204,  204,  204,  182,  196,  204,  193,
       204,  204,  204,  204,  204,  204,  204,   45,   42,   47,
@@ -438,33 +438,33 @@ static const flex_int16_t yy_base[163] =
 
       204,   71,   80,  116,  110,  102,  107,    0,  104,  111,
       110,   98,   97,   94,  100,   94,   96,    0,    0,  103,
-      106,    0,    0,  101,  101,   92,   97,   86,   90,   87,
-       86,   91,    0,   84,    0,   79,   90,   93,   92,   79,
-        0,    0,    0,    0,    0,   78,   81,   51,    0,   48,
-       56,    0,   40,    0,    0,  204,  100,  102,  106,  110,
-       77,  114
+      106,    0,    0,  101,  101,    0,   92,   97,   86,   90,
+       87,   86,   91,    0,   84,    0,   79,   90,   93,   92,
+       79,    0,    0,    0,    0,    0,   78,   81,   51,    0,
+       48,   56,    0,   40,    0,    0,  204,  100,  102,  106,
+      110,   77,  114
     } ;
 
-static const flex_int16_t yy_def[163] =
+static const flex_int16_t yy_def[164] =
     {   0,
-      156,    1,  156,  156,  156,  156,  156,  157,  156,  156,
-      156,  156,  156,  156,  156,  156,  156,  156,  156,  156,
-      156,  156,  156,  156,  158,  156,  156,  158,  158,  158,
-      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
-      156,  156,  156,  156,  157,  156,  156,  159,  160,  156,
-      156,  161,  156,  156,  156,  158,  158,  158,  158,  158,
-      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
-      158,  158,  158,  158,  156,  159,  162,  160,  156,  156,
-      161,  158,  158,  158,  158,  158,  158,  158,  158,  158,
-      158,  158,  158,  158,  158,  158,  158,  158,  158,  159,
+      157,    1,  157,  157,  157,  157,  157,  158,  157,  157,
+      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
+      157,  157,  157,  157,  159,  157,  157,  159,  159,  159,
+      159,  159,  159,  159,  159,  159,  159,  159,  159,  159,
+      157,  157,  157,  157,  158,  157,  157,  160,  161,  157,
+      157,  162,  157,  157,  157,  159,  159,  159,  159,  159,
+      159,  159,  159,  159,  159,  159,  159,  159,  159,  159,
+      159,  159,  159,  159,  157,  160,  163,  161,  157,  157,
+      162,  159,  159,  159,  159,  159,  159,  159,  159,  159,
+      159,  159,  159,  159,  159,  159,  159,  159,  159,  160,
 
-      156,  156,  156,  158,  158,  158,  158,  158,  158,  158,
-      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
-      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
-      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
-      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
-      158,  158,  158,  158,  158,    0,  156,  156,  156,  156,
-      156,  156
+      157,  157,  157,  159,  159,  159,  159,  159,  159,  159,
+      159,  159,  159,  159,  159,  159,  159,  159,  159,  159,
+      159,  159,  159,  159,  159,  159,  159,  159,  159,  159,
+      159,  159,  159,  159,  159,  159,  159,  159,  159,  159,
+      159,  159,  159,  159,  159,  159,  159,  159,  159,  159,
+      159,  159,  159,  159,  159,  159,    0,  157,  157,  157,
+      157,  157,  157
     } ;
 
 static const flex_int16_t yy_nxt[259] =
@@ -477,26 +477,26 @@ static const flex_int16_t yy_nxt[259] =
        25,   41,   42,   43,   48,   50,   63,   51,   51,   49,
        50,   61,   51,   51,   65,   57,   52,   58,   94,   64,
        66,   67,   62,   79,   79,   50,   77,   51,   51,   81,
-       80,  101,   79,   79,  155,   95,  103,  103,  154,   80,
-       80,   52,  102,  153,  102,  103,  103,  103,  103,   80,
+       80,  101,   79,   79,  156,   95,  103,  103,  155,   80,
+       80,   52,  102,  154,  102,  103,  103,  103,  103,   80,
 
-       45,  152,   45,   45,   56,   56,   76,   76,   76,   76,
-       78,  151,   78,   78,  100,  100,  100,  100,  150,  149,
-      148,  147,  146,  145,  144,  143,  142,  141,  140,  139,
-      138,  137,  136,  135,  134,  133,  132,  131,  130,  129,
-      128,  127,  126,  118,  125,  124,  123,  122,  121,   77,
+       45,  153,   45,   45,   56,   56,   76,   76,   76,   76,
+       78,  152,   78,   78,  100,  100,  100,  100,  151,  150,
+      149,  148,  147,  146,  145,  144,  143,  142,  141,  140,
+      139,  138,  137,  136,  135,  134,  133,  132,  131,  130,
+      129,  128,  127,  126,  125,  124,  123,  122,  121,   77,
       120,  119,  118,  117,  116,  115,  114,  113,  112,  111,
       110,  109,  108,  107,  106,  105,  104,   77,   99,   98,
        97,   96,   93,   92,   91,   90,   89,   88,   87,   86,
        85,   84,   83,   82,   77,   46,   75,   74,   73,   72,
        71,   70,   69,   68,   60,   59,   55,   54,   53,   47,
 
-       46,   44,  156,    3,  156,  156,  156,  156,  156,  156,
-      156,  156,  156,  156,  156,  156,  156,  156,  156,  156,
-      156,  156,  156,  156,  156,  156,  156,  156,  156,  156,
-      156,  156,  156,  156,  156,  156,  156,  156,  156,  156,
-      156,  156,  156,  156,  156,  156,  156,  156,  156,  156,
-      156,  156,  156,  156,  156,  156,  156,  156
+       46,   44,  157,    3,  157,  157,  157,  157,  157,  157,
+      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
+      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
+      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
+      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
+      157,  157,  157,  157,  157,  157,  157,  157
     } ;
 
 static const flex_int16_t yy_chk[259] =
@@ -508,14 +508,14 @@ static const flex_int16_t yy_chk[259] =
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,   18,   19,   32,   19,   19,   18,
        20,   31,   20,   20,   33,   28,   19,   28,   70,   32,
-       33,   33,   31,   50,   50,   51,   77,   51,   51,  161,
-       50,   77,   79,   79,  153,   70,  102,  102,  151,   79,
-       50,   19,   80,  150,   80,  103,  103,   80,   80,   79,
+       33,   33,   31,   50,   50,   51,   77,   51,   51,  162,
+       50,   77,   79,   79,  154,   70,  102,  102,  152,   79,
+       50,   19,   80,  151,   80,  103,  103,   80,   80,   79,
 
-      157,  148,  157,  157,  158,  158,  159,  159,  159,  159,
-      160,  147,  160,  160,  162,  162,  162,  162,  146,  140,
-      139,  138,  137,  136,  134,  132,  131,  130,  129,  128,
-      127,  126,  125,  124,  121,  120,  117,  116,  115,  114,
+      158,  149,  158,  158,  159,  159,  160,  160,  160,  160,
+      161,  148,  161,  161,  163,  163,  163,  163,  147,  141,
+      140,  139,  138,  137,  135,  133,  132,  131,  130,  129,
+      128,  127,  125,  124,  121,  120,  117,  116,  115,  114,
       113,  112,  111,  110,  109,  107,  106,  105,  104,  100,
        99,   98,   97,   96,   95,   94,   93,   92,   91,   90,
        88,   87,   86,   85,   84,   83,   82,   76,   74,   73,
@@ -523,12 +523,12 @@ static const flex_int16_t yy_chk[259] =
        60,   59,   58,   57,   48,   45,   42,   40,   39,   38,
        37,   36,   35,   34,   30,   29,   24,   23,   22,   10,
 
-        8,    7,    3,  156,  156,  156,  156,  156,  156,  156,
-      156,  156,  156,  156,  156,  156,  156,  156,  156,  156,
-      156,  156,  156,  156,  156,  156,  156,  156,  156,  156,
-      156,  156,  156,  156,  156,  156,  156,  156,  156,  156,
-      156,  156,  156,  156,  156,  156,  156,  156,  156,  156,
-      156,  156,  156,  156,  156,  156,  156,  156
+        8,    7,    3,  157,  157,  157,  157,  157,  157,  157,
+      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
+      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
+      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
+      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
+      157,  157,  157,  157,  157,  157,  157,  157
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -547,9 +547,28 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "dino.l"
 #line 2 "dino.l"
-#define MAX_LENGTH 10
-#define MAXTRANSITIONS 35
-#define MAX 100
+/* CS 411: Compilers and Interpreters
+   Project 1
+   Team Members: Eric Rensel, Anthony Vu, Awais Ibrahim
+
+   How to compile and run program (if your computer does not have Lex intalled):
+   	1. Connect to the cal poly pomona campus server using an ssh shell (such as putty)
+		@ login.cpp.edu.
+	2. Use an ssh file transfer program (such as winscp) to transfer all files from the src
+		folder into a folder in the ssh shell.
+   	3. Make sure dino.l, test.toy, and java.toy are in the same folder.
+	4. Type "lex dino.l" to change the lex file into c code. This should create "lex.yy.c"
+	5. Type "cc lex.yy.c -lfl" to compile the c code file.
+	6. Type "./a.out" to test the lexical analyzer with your own input. At any point you can
+		press ctrl+d to print the trie table and exit out of the program.
+	7. Type "./a.out < test.toy" to use the input file given in the project specifications.
+	8. Type "./a.out < java.toy" to use our test file that we created to account for all 
+		possible inputs for the lexical analyzer.
+    If your computer has lex installed, steps 1 and 2 can be skipped and the src files can be put 
+    	into your own working directory.
+
+*/
+#define MAXTRANSITIONS 1000
 #define INT 1
 #define FLOAT 2
 #define DOUBLE 3
@@ -558,29 +577,22 @@ char *yytext;
 #include <stdio.h>
 #include <string.h>
 #include "y.tab.h"
-struct {
-    char name[MAX_LENGTH];
-    int type;
-}table[MAX];
+
 int t_index=0;
 int t_flag=0;
 
 int firstLetter[52];
-char *symTable;
-int *nextTable;
+char symTable[MAXTRANSITIONS];
+int nextTable[MAXTRANSITIONS];
 int tail = 0;
 
 void initFirstLetter();
 void initSymAndNext();
-void resizeArrays();
-void trieInsert();
+int trieInsert(char * s);
 void triePrint();
 
-#line 579 "lex.yy.c"
-/*commented rules
-
-*/
-#line 583 "lex.yy.c"
+#line 594 "lex.yy.c"
+#line 595 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -797,10 +809,10 @@ YY_DECL
 		}
 
 	{
-#line 59 "dino.l"
+#line 62 "dino.l"
 
 
-#line 803 "lex.yy.c"
+#line 815 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -827,7 +839,7 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 157 )
+				if ( yy_current_state >= 158 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -859,268 +871,293 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 61 "dino.l"
+#line 64 "dino.l"
 ;
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 65 "dino.l"
-{t_flag=BOOLEAN; printf("boolean ", yytext); return (t_BOOLEAN);}
+#line 66 "dino.l"
+{t_flag=BOOLEAN; printf("boolean ", yytext); yylval=trieInsert(yytext); 
+    return (t_BOOLEAN);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 66 "dino.l"
-{t_flag=INT; printf("int ", yytext); return (t_INT);}
+#line 68 "dino.l"
+{t_flag=INT; printf("int ", yytext); yylval=trieInsert(yytext);
+    return (t_INT);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 67 "dino.l"
-{t_flag=DOUBLE; printf("double ", yytext); return (t_DOUBLE);}
+#line 70 "dino.l"
+{t_flag=DOUBLE; printf("double ", yytext); yylval=trieInsert(yytext);
+    return (t_DOUBLE);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 68 "dino.l"
-{t_flag=STRING; printf("string ", yytext); return (t_STRING);}
+#line 72 "dino.l"
+{t_flag=STRING; printf("string ", yytext); yylval=trieInsert(yytext);
+    return (t_STRING);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 71 "dino.l"
-{printf("break ", yytext); return (t_BREAK);}
+#line 75 "dino.l"
+{printf("break ", yytext); yylval=trieInsert(yytext);
+    return (t_BREAK);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 72 "dino.l"
-{printf("extends ", yytext); return (t_EXTENDS);}
+#line 77 "dino.l"
+{printf("extends ", yytext); yylval=trieInsert(yytext);
+    return (t_EXTENDS);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 73 "dino.l"
-{printf("readln ", yytext); return (t_READLN);}
+#line 79 "dino.l"
+{printf("readln ", yytext); yylval=trieInsert(yytext);
+    return (t_READLN);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 74 "dino.l"
-{printf("while ", yytext); return (t_WHILE);}
+#line 81 "dino.l"
+{printf("while ", yytext); yylval=trieInsert(yytext);
+    return (t_WHILE);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 75 "dino.l"
-{printf("else ", yytext); return (t_ELSE);}
+#line 83 "dino.l"
+{printf("else ", yytext); yylval=trieInsert(yytext);
+    return (t_ELSE);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 76 "dino.l"
-{printf("implements ", yytext); return (t_IMPLEMENTS);}
+#line 85 "dino.l"
+{printf("implements ", yytext); yylval=trieInsert(yytext);
+    return (t_IMPLEMENTS);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 77 "dino.l"
-{printf("println ", yytext); return (t_PRINTLN);}
+#line 87 "dino.l"
+{printf("println ", yytext); yylval=trieInsert(yytext);
+    return (t_PRINTLN);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 78 "dino.l"
-{printf("void ", yytext); return (t_VOID);}
+#line 89 "dino.l"
+{printf("void ", yytext); yylval=trieInsert(yytext);
+    return (t_VOID);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 79 "dino.l"
-{printf("class ", yytext); return (t_CLASS);} 
+#line 91 "dino.l"
+{printf("class ", yytext); yylval=trieInsert(yytext);
+    return (t_CLASS);} 
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 80 "dino.l"
-{printf("for ", yytext); return (t_FOR);} 
+#line 93 "dino.l"
+{printf("for ", yytext); yylval=trieInsert(yytext);
+    return (t_FOR);} 
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 81 "dino.l"
-{printf("interface ", yytext); return (t_INTERFACE);}
+#line 95 "dino.l"
+{printf("interface ", yytext); yylval=trieInsert(yytext);
+    return (t_INTERFACE);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 82 "dino.l"
-{printf("return ", yytext); return (t_RETURN);}
+#line 97 "dino.l"
+{printf("return ", yytext); yylval=trieInsert(yytext);
+    return (t_RETURN);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 83 "dino.l"
-{printf("if ", yytext); return (t_IF);}
+#line 99 "dino.l"
+{printf("if ", yytext); yylval=trieInsert(yytext);
+    return (t_IF);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 84 "dino.l"
-{printf("newarray ", yytext); return (t_NEWARRAY);}
+#line 101 "dino.l"
+{printf("newarray ", yytext); yylval=trieInsert(yytext);
+    return (t_NEWARRAY);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 87 "dino.l"
-{printf("multiplication ", yytext); return (t_MULTIPLICATION);}
+#line 103 "dino.l"
+{printf("boolconstant ", yytext); yylval=trieInsert(yytext); 
+    return (t_BOOLEANCONSTANT);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 88 "dino.l"
-{printf("lessequal ", yytext); return (t_LESSEQUAL);}
+#line 105 "dino.l"
+{printf("boolconstant ", yytext); yylval=trieInsert(yytext); 
+    return (t_BOOLEANCONSTANT);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 89 "dino.l"
-{printf("notequal ", yytext); return (t_NOTEQUAL);}
+#line 108 "dino.l"
+{printf("multiplication ", yytext); return (t_MULTIPLICATION);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 90 "dino.l"
-{printf("leftparen ", yytext); return (t_LEFTPAREN);}
+#line 109 "dino.l"
+{printf("lessequal ", yytext); return (t_LESSEQUAL);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 91 "dino.l"
-{printf("division ", yytext); return (t_DIVISION);}
+#line 110 "dino.l"
+{printf("notequal ", yytext); return (t_NOTEQUAL);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 92 "dino.l"
-{printf("greater ", yytext); return (t_GREATER);}
+#line 111 "dino.l"
+{printf("leftparen ", yytext); return (t_LEFTPAREN);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 93 "dino.l"
-{printf("and ", yytext); return (t_AND);}
+#line 112 "dino.l"
+{printf("division ", yytext); return (t_DIVISION);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 94 "dino.l"
-{printf("semicolon ", yytext); return (t_SEMICOLON);}
+#line 113 "dino.l"
+{printf("greater ", yytext); return (t_GREATER);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 95 "dino.l"
-{printf("rightparen ", yytext); return (t_RIGHTPAREN);}
+#line 114 "dino.l"
+{printf("and ", yytext); return (t_AND);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 96 "dino.l"
-{printf("rightbrace ", yytext); return (t_RIGHTBRACE);}
+#line 115 "dino.l"
+{printf("semicolon ", yytext); return (t_SEMICOLON);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 97 "dino.l"
-{printf("leftbrace ", yytext); return (t_LEFTBRACE);}
+#line 116 "dino.l"
+{printf("rightparen ", yytext); return (t_RIGHTPAREN);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 98 "dino.l"
-{printf("plus ", yytext); return (t_PLUS);}
+#line 117 "dino.l"
+{printf("rightbrace ", yytext); return (t_RIGHTBRACE);}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 99 "dino.l"
-{printf("mod ", yytext); return (t_MOD);}
+#line 118 "dino.l"
+{printf("leftbrace ", yytext); return (t_LEFTBRACE);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 100 "dino.l"
-{printf("greatereaqual ", yytext); return (t_GREATEREQUAL);}
+#line 119 "dino.l"
+{printf("plus ", yytext); return (t_PLUS);}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 101 "dino.l"
-{printf("or ", yytext); return (t_OR);}
+#line 120 "dino.l"
+{printf("mod ", yytext); return (t_MOD);}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 102 "dino.l"
-{printf("comma ", yytext); return (t_COMMA);}
+#line 121 "dino.l"
+{printf("greaterequal ", yytext); return (t_GREATEREQUAL);}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 103 "dino.l"
-{printf("leftbracket ", yytext); return (t_LEFTBRACKET);}
+#line 122 "dino.l"
+{printf("or ", yytext); return (t_OR);}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 104 "dino.l"
-{printf("minus ", yytext); return (t_MINUS);}
+#line 123 "dino.l"
+{printf("comma ", yytext); return (t_COMMA);}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 105 "dino.l"
-{printf("less ", yytext); return (t_LESS);}
+#line 124 "dino.l"
+{printf("leftbracket ", yytext); return (t_LEFTBRACKET);}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 106 "dino.l"
-{printf("assignop ", yytext); return (t_ASSIGNOP);}
+#line 125 "dino.l"
+{printf("minus ", yytext); return (t_MINUS);}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 107 "dino.l"
-{printf("equal ", yytext); return (t_EQUAL);}
+#line 126 "dino.l"
+{printf("less ", yytext); return (t_LESS);}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 108 "dino.l"
-{printf("not ", yytext); return (t_NOT);}
+#line 127 "dino.l"
+{printf("assignop ", yytext); return (t_ASSIGNOP);}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 109 "dino.l"
-{printf("period ", yytext); return (t_PERIOD);}
+#line 128 "dino.l"
+{printf("equal ", yytext); return (t_EQUAL);}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 110 "dino.l"
-{printf("rightbracket ", yytext); return (t_RIGHTBRACKET);}
+#line 129 "dino.l"
+{printf("not ", yytext); return (t_NOT);}
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 113 "dino.l"
-{printf("intconstant ", yytext); return (t_INTCONSTANT);}
+#line 130 "dino.l"
+{printf("period ", yytext); return (t_PERIOD);}
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 114 "dino.l"
-{printf("boolconstant ", yytext); return (t_BOOLEANCONSTANT);}
+#line 131 "dino.l"
+{printf("rightbracket ", yytext); return (t_RIGHTBRACKET);}
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 115 "dino.l"
-{printf("doubleconstant ", yytext); return (t_DOUBLECONSTANT);}
+#line 134 "dino.l"
+{printf("intconstant ", yytext); return (t_INTCONSTANT);}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 116 "dino.l"
-{printf("stringconstant ", yytext); return (t_STRINGCONSTANT);}
+#line 135 "dino.l"
+{printf("doubleconstant ", yytext); return (t_DOUBLECONSTANT);}
 	YY_BREAK
 case 48:
-/* rule 48 can match eol */
 YY_RULE_SETUP
-#line 117 "dino.l"
-{printf(" ");}
+#line 136 "dino.l"
+{printf("stringconstant ", yytext); return (t_STRINGCONSTANT);}
 	YY_BREAK
 case 49:
 /* rule 49 can match eol */
 YY_RULE_SETUP
-#line 118 "dino.l"
-{printf("\n");}
+#line 137 "dino.l"
+{printf(" ");}
 	YY_BREAK
 case 50:
+/* rule 50 can match eol */
 YY_RULE_SETUP
-#line 121 "dino.l"
-{yytext[yyleng]='\0'; yylval=insert(yytext);
-    printf("id ", yytext); return(t_ID);}
+#line 138 "dino.l"
+{printf("\n");}
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 123 "dino.l"
-{printf("error!\n"); return (0);}
+#line 141 "dino.l"
+{yytext[yyleng]='\0'; yylval=trieInsert(yytext);
+        printf("id ", yytext);/* triePrint();*/ return(t_ID);}
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 125 "dino.l"
+#line 143 "dino.l"
+{printf("error!\n"); return (0);}
+	YY_BREAK
+case 53:
+YY_RULE_SETUP
+#line 145 "dino.l"
 ECHO;
 	YY_BREAK
-#line 1123 "lex.yy.c"
+#line 1160 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1417,7 +1454,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 157 )
+			if ( yy_current_state >= 158 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1445,11 +1482,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 157 )
+		if ( yy_current_state >= 158 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 156);
+	yy_is_jam = (yy_current_state == 157);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -2125,328 +2162,352 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 125 "dino.l"
+#line 145 "dino.l"
 
+//intializes the firstLetter array
+void initFirstLetter(){
+    for(int i=0; i<52; i++){
+        firstLetter[i] = -1;
+    }
+}
 
-    void initFirstLetter(){
-        for(int i=0; i<52; i++){
-            firstLetter[i] = -1;
-        }
+//initializes the symbolTable and the nextTable arrays
+void initSymAndNext(){
+    for(int i = 0; i < MAXTRANSITIONS; i++){
+        symTable[i] = -1;
+        nextTable[i] = -1;
+    }
+}
+
+//trieInsert adds id's to the trie Table (firstLetter, symTable, and nextTable)
+//char s is a pointer to the string of input to be processed
+int trieInsert(char *s){
+    //create pointer to navigate the trie table
+    int ptr = -1;
+
+    //check what the first letter of input is and set the pointer to the respective array position
+    switch (*s){
+        case 'A':
+            ptr = 0;
+            break;
+        case 'B':
+            ptr = 1;
+            break;
+        case 'C':
+            ptr = 2;
+            break;
+        case 'D':
+            ptr = 3;
+            break;
+        case 'E':
+            ptr = 4;
+            break;
+        case 'F':
+            ptr = 5;
+            break;
+        case 'G':
+            ptr = 6;
+            break;
+        case 'H':
+            ptr = 7;
+            break;
+        case 'I':
+            ptr = 8;
+            break;
+        case 'J':
+            ptr = 9;
+            break;
+        case 'K':
+            ptr = 10;
+            break;
+        case 'L':
+            ptr = 11;
+            break;
+        case 'M':
+            ptr = 12;
+            break;
+        case 'N':
+            ptr = 13;
+            break;
+        case 'O':
+            ptr = 14;
+            break;
+        case 'P':
+            ptr = 15;
+            break;
+        case 'Q':
+            ptr = 16;
+            break;
+        case 'R':
+            ptr = 17;
+            break;
+        case 'S':
+            ptr = 18;
+            break;
+        case 'T':
+            ptr = 19;
+            break;
+        case 'U':
+            ptr = 20;
+            break;
+        case 'V':
+            ptr = 21;
+            break;
+        case 'W':
+            ptr = 22;
+            break;
+        case 'Y':
+            ptr = 23;
+            break;
+        case 'X':
+            ptr = 24;
+            break;
+        case 'Z':
+            ptr = 25;
+            break;
+        case 'a':
+            ptr = 26;
+            break;
+        case 'b':
+            ptr = 27;
+            break;
+        case 'c':
+            ptr = 28;
+            break;
+        case 'd':
+            ptr = 29;
+            break;
+        case 'e':
+            ptr = 30;
+            break;
+        case 'f':
+            ptr = 31;
+            break;
+        case 'g':
+            ptr = 32;
+            break;
+        case 'h':
+            ptr = 33;
+            break;
+        case 'i':
+            ptr = 34;
+            break;
+        case 'j':
+            ptr = 35;
+            break;
+        case 'k':
+            ptr = 36;
+            break;
+        case 'l':
+            ptr = 37;
+            break;
+        case 'm':
+            ptr = 38;
+            break;
+        case 'n':
+            ptr = 39;
+            break;
+        case 'o':
+            ptr = 40;
+            break;
+        case 'p':
+            ptr = 41;
+            break;
+        case 'q':
+            ptr = 42;
+            break;
+        case 'r':
+            ptr = 43;
+            break;
+        case 's':
+            ptr = 44;
+            break;
+        case 't':
+            ptr = 45;
+            break;
+        case 'u':
+            ptr = 46;
+            break;
+        case 'v':
+            ptr = 47;
+            break;
+        case 'w':
+            ptr = 48;
+            break;
+        case 'y':
+            ptr = 49;
+            break;
+        case 'x':
+            ptr = 50;
+            break;
+        case 'z':
+            ptr = 51;
+            break;
+        default:
+            printf("unknown char in id!");
     }
 
-    void initSymAndNext(){
-	symTable = (char*)malloc(MAXTRANSITIONS*sizeof(char));
-	nextTable = (int*)malloc(MAXTRANSITIONS*sizeof(int));
-        for(int i = 0; i < MAXTRANSITIONS; i++){
-            symTable[i] = -1;
-            nextTable[i] = -1;
-        }
-    }
-	
-	void resizeArrays() {
-        	int n = sizeof(symTable)/sizeof(symTable[0]);
-        	int j = sizeof(nextTable)/sizeof(nextTable[0]);
-		char* symTableNew = (char*)realloc(symTable, 2*n*sizeof(char));
-        	int* nextTableNew = (int*)realloc(nextTable, 2*j*sizeof(int));
-		free(symTable);
-		free(nextTable);
-		symTable = symTableNew;
-        	nextTable = nextTableNew;
-		free(symTableNew);
-        	free(nextTableNew);
-    }
-    
-//trieInsert
-    void trieInsert(char *s){
-        int ptr = -1;
-        
-        switch (*s){
-            case 'a':
-                ptr = 0;
-                break;
-            case 'b':
-                ptr = 1;
-                break;
-            case 'c':
-                ptr = 2;
-                break;
-            case 'd':
-                ptr = 3;
-                break;
-            case 'e':
-                ptr = 4;
-                break;
-            case 'f':
-                ptr = 5;
-                break;
-            case 'g':
-                ptr = 6;
-                break;
-            case 'h':
-                ptr = 7;
-                break;
-            case 'i':
-                ptr = 8;
-                break;
-            case 'j':
-                ptr = 9;
-                break;
-            case 'k':
-                ptr = 10;
-                break;
-            case 'l':
-                ptr = 11;
-                break;
-            case 'm':
-                ptr = 12;
-                break;
-            case 'n':
-                ptr = 13;
-                break;
-            case 'o':
-                ptr = 14;
-                break;
-            case 'p':
-                ptr = 15;
-                break;
-            case 'q':
-                ptr = 16;
-                break;
-            case 'r':
-                ptr = 17;
-                break;
-            case 's':
-                ptr = 18;
-                break;
-            case 't':
-                ptr = 19;
-                break;
-            case 'u':
-                ptr = 20;
-                break;
-            case 'v':
-                ptr = 21;
-                break;
-            case 'w':
-                ptr = 22;
-                break;
-            case 'y':
-                ptr = 23;
-                break;
-            case 'x':
-                ptr = 24;
-                break;
-            case 'z':
-                ptr = 25;
-                break;
-            case 'A':
-                ptr = 26;
-                break;
-            case 'B':
-                ptr = 27;
-                break;
-            case 'C':
-                ptr = 28;
-                break;
-            case 'D':
-                ptr = 29;
-                break;
-            case 'E':
-                ptr = 30;
-                break;
-            case 'F':
-                ptr = 31;
-                break;
-            case 'G':
-                ptr = 32;
-                break;
-            case 'H':
-                ptr = 33;
-                break;
-            case 'I':
-                ptr = 34;
-                break;
-            case 'J':
-                ptr = 35;
-                break;
-            case 'K':
-                ptr = 36;
-                break;
-            case 'L':
-                ptr = 37;
-                break;
-            case 'M':
-                ptr = 38;
-                break;
-            case 'N':
-                ptr = 39;
-                break;
-            case 'O':
-                ptr = 40;
-                break;
-            case 'P':
-                ptr = 41;
-                break;
-            case 'Q':
-                ptr = 42;
-                break;
-            case 'R':
-                ptr = 43;
-                break;
-            case 'S':
-                ptr = 44;
-                break;
-            case 'T':
-                ptr = 45;
-                break;
-            case 'U':
-                ptr = 46;
-                break;
-            case 'V':
-                ptr = 47;
-                break;
-            case 'W':
-                ptr = 48;
-                break;
-            case 'Y':
-                ptr = 49;
-                break;
-            case 'X':
-                ptr = 50;
-                break;
-            case 'Z':
-                ptr = 51;
-                break;
-            default:
-                printf("unknown char in id!");
-        }
-        
-		int symTableLength = sizeof(symTable)/sizeof(symTable[0]);
-		
-		if(tail+20 > symTableLength)
-			resizeArrays;
-
-		int pos = ptr;
-        ptr = firstLetter[pos];
-        if(ptr == -1){
-            //find next location to start
-            ptr = tail;
-            firstLetter[pos] = tail;
+    int pos = ptr;                  //pos is used to remember the position used in the firstLetter array
+    ptr = firstLetter[pos];         //set ptr to the value given by firstLetter
+    if(ptr == -1){                  //if the value is -1, there is no match, so insert the id in the trie
+        ptr = tail;                     //go to the end of symTable
+        firstLetter[pos] = tail;        //map the firstLetter element to this position
+        s++;                            //increment s (because we already processed the first character)
+        while(*s != '\0'){              //insert rest of the id and then the delimiter
+            symTable[ptr] = *s;     
+            ptr++;
             s++;
-            //insert word and then delimiter
-            while(*s != '\0'){
+            tail++;
+        }
+        symTable[ptr] = '*';
+        tail++;
+        t_index++;
+        return t_index-1;
+    }
+    s++;
+    while (1) {                     //loop to search and insert in the trie table
+        if (symTable[ptr] == -1){       //empty position found, insert rest of string
+            while(*s != '\0'){          
                 symTable[ptr] = *s;
                 ptr++;
                 s++;
                 tail++;
             }
-            symTable[ptr] = '@';
+            symTable[ptr] = '*';
             tail++;
-            return;
+            t_index++;
+            return t_index-1;
         }
-		
-        //ptr now points to first search position in array
-        s++;
-        while (1) {
-            if (symTable[ptr] == -1){
-                //empty position, insert rest of word
-                while(*s != '\0'){
-                    symTable[ptr] = *s;
-                    ptr++;
-                    s++;
-                    tail++;
-                }
-                //add delimiter
-                symTable[ptr] = '@';
-                tail++;
-                return;
+        else if (symTable[ptr] == *s){      //letter matched, move on through string and array
+            s++;
+            ptr++;
+        }
+        else if (*s == '\0' && symTable[ptr] == '*'){    //id already in table, do nothing
+            return t_index;
+        }            
+        else if (symTable[ptr] != *s){                  //mismatch, check for next possible position
+            if(nextTable[ptr] != -1){       //if next has a value, move to it
+                ptr = nextTable[ptr];
             }
-            else if (symTable[ptr] == *s){
-                //letter matched, move on through string and array
-                s++;
-                ptr++;
+            else{
+                nextTable[ptr] = tail;      //if next has no value, move to tail
+                ptr = nextTable[ptr];
             }
-           else if (*s == '\0' && symTable[ptr] == '@'){
-                //id already here, do nothing
-                return;
-            }            
-            else if (symTable[ptr] != *s){
-                //mismatch, check for next possible position
-                if(nextTable[ptr] != -1){
-                    ptr = nextTable[ptr];
-                }
-                else{
-                    nextTable[ptr] = tail;
-                    ptr = nextTable[ptr];
-                }
-            }
- 
+        }
 
-        }
 
     }
+    return t_index-1;
 
-    void triePrint(){
-    	//print Top letters from A to T
+}
+
+void triePrint(){
+	
+	//print Top letters from A to T
 	printf("           ");
 	for(int i=65; i < 85; i++){
-	    printf("%c    ", i);
+		printf("%c    ", i);
 	}
 	//printing switch from A to T
 	printf("\nswitch:");
-        for(int i=0; i<20; i++){
-            printf("%5i", firstLetter[i]);
-        }
+	for(int i=0; i<20; i++){
+		printf("%5i", firstLetter[i]);
+	}
+	printf("\n");
 	//print top letters from U to Z
-        printf("\n           ");
-        for(int i = 85; i < 91; i++)
-	    printf("%c    ", i);
+	printf("\n           ");
+	for(int i = 85; i < 91; i++)
+		printf("%c    ", i);
 	//print a to n
 	for(int i = 97; i < 111;i++)
-	    printf("%c    ", i);
+		printf("%c    ", i);
 	//print switch from U to n
 	printf("\nswitch:");
 	for(int i = 20; i < 40; i++)
-	    printf("%5i", firstLetter[i]);
+		printf("%5i", firstLetter[i]);
+	printf("\n");
 	//print top letters o to z
 	printf("\n           ");
 	for(int i = 111; i < 123; i ++)
-            printf("%c    ", i);
-        //print switch from o to z
+		printf("%c    ", i);
+	//print switch from o to z
 	printf("\nswitch:");
-        for(int i = 40; i < 60; i++)
-            printf("%5i", firstLetter[i]);
-	
-	printf("\n");
-	
-	for(int i=0; i<50; i++){
-            printf("%c,", symTable[i]);
-        }
-        printf("\n");
-        for(int i=0; i<50; i++){
-            printf("%i,", nextTable[i]);
-        }
-        printf("\n");
-    }
-    
-    int insert(char *s) {
-        int i=0;
-        while (i< t_index) {
-            if (strcmp(s, table[i].name)==0) return i;
-            i++;
-        }
-        strcpy(table[t_index].name, s);
-        table[t_index].type = t_flag;
-        t_index++;
-        trieInsert(s);
-        triePrint();
+	for(int i = 40; i < 52; i++)
+		printf("%5i", firstLetter[i]);
 
-        return t_index-1;
-    }
+	printf("\n\n");
+//need debugging below	
+	int rows = MAXTRANSITIONS/20+1;
+	int rowGroupCounter = 1;
+	int symbolTableCounter = 0;
+	int j;
+	int endFlag = 0;
+	
+	for(int i = 1; i < rows*3+1; i++){
+		//only used when last row has less than 20 elements
+		if(MAXTRANSITIONS-symbolTableCounter < 20){
+			if(rowGroupCounter==1){
+				printf("       ");
+			for(j = symbolTableCounter; j < MAXTRANSITIONS; j++)
+				printf("%5i",j);
+				rowGroupCounter++;
+			}else if(rowGroupCounter==2){
+				printf("\nsymbol:");
+				for(j = symbolTableCounter; j < MAXTRANSITIONS; j++){
+				    if(symTable[j] == -1){
+				        endFlag = 1;
+					break;
+				    }
+				    else printf("%5c",symTable[j]);
+				}
+				rowGroupCounter++;
+			}else if(rowGroupCounter==3){
+				printf("\nnext:  ");
+				for(j = symbolTableCounter; j < MAXTRANSITIONS; j++)
+					if(nextTable[j] == -1) 
+						printf("%5s", "");
+					else
+						printf("%5i",nextTable[j]);
+				printf("\n\n");
+			}	
+		}else if(rowGroupCounter==1){
+			printf("       ");
+			for(j = symbolTableCounter; j < symbolTableCounter+20; j++)
+				printf("%5i",j);
+			rowGroupCounter++;
+		}else if(rowGroupCounter==2){
+			printf("\nsymbol:");
+			for(j = symbolTableCounter; j < symbolTableCounter+20; j++){
+				if(symTable[j] == -1){
+				    endFlag = 1;
+				    break;
+				}
+				else printf("%5c",symTable[j]);
+			    }
+			rowGroupCounter++;
+		}else if(rowGroupCounter==3){
+			printf("\nnext:  ");
+			for(j = symbolTableCounter; j < symbolTableCounter+20; j++){
+				if(nextTable[j] == -1)
+					printf("%5s","");
+				else
+					printf("%5i",nextTable[j]);
+			}
+			printf("\n\n");
+			rowGroupCounter = 1;
+			symbolTableCounter+=20;
+			if(endFlag == 1){
+			    return;
+			}
+		}
+   }
+   printf("\n");
+}
+
 int main () {
     initFirstLetter();
     initSymAndNext();
     while (yylex()) {}
+    triePrint();
 }
-
 

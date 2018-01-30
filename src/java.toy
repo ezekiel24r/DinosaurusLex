@@ -1,3 +1,4 @@
+//java.toy; personal test file
 //class for testing extends, implements and interface
 class test() extends Object implements interface Comparable{ 
 	//get function tests newarray
