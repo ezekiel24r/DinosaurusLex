@@ -1,4 +1,25 @@
 %{
+/* CS 411: Compilers and Interpreters
+   Project 1
+   Team Members: Eric Rensel, Anthony Vu, Awais Ibrahim
+
+   How to compile and run program (if your computer does not have Lex intalled):
+   	1. Connect to the cal poly pomona campus server using an ssh shell (such as putty)
+		@ login.cpp.edu.
+	2. Use an ssh file transfer program (such as winscp) to transfer all files from the src
+		folder into a folder in the ssh shell.
+   	3. Make sure dino.l, test.toy, and java.toy are in the same folder.
+	4. Type "lex dino.l" to change the lex file into c code. This should create "lex.yy.c"
+	5. Type "cc lex.yy.c -lfl" to compile the c code file.
+	6. Type "./a.out" to test the lexical analyzer with your own input. At any point you can
+		press ctrl+d to print the trie table and exit out of the program.
+	7. Type "./a.out < test.toy" to use the input file given in the project specifications.
+	8. Type "./a.out < java.toy" to use our test file that we created to account for all 
+		possible inputs for the lexical analyzer.
+    If your computer has lex installed, steps 1 and 2 can be skipped and the src files can be put 
+    	into your own working directory.
+
+*/
 #define MAXTRANSITIONS 1000
 #define INT 1
 #define FLOAT 2
@@ -31,7 +52,6 @@ number {digit}+
 doubleconstant {number}"."{digit}*((e|E)("+"|"-")?{number})?
 hex (0x|0X)[a-fA-F0-9]+
 stringconstant \"[^"\n]*\"
-booleanconstant (true|false)
 multilinecomment ("/*")([^*]*"*"+[^*/])*([^*]*)("*"+)"/"
 comment ("//".*)|{multilinecomment}
 intconstant {hex}|{number}
@@ -80,6 +100,10 @@ if {printf("if ", yytext); yylval=trieInsert(yytext);
     return (t_IF);}
 newarray {printf("newarray ", yytext); yylval=trieInsert(yytext);
     return (t_NEWARRAY);}
+true {printf("boolconstant ", yytext); yylval=trieInsert(yytext); 
+    return (t_BOOLEANCONSTANT);}
+false {printf("boolconstant ", yytext); yylval=trieInsert(yytext); 
+    return (t_BOOLEANCONSTANT);}
 
 "*" {printf("multiplication ", yytext); return (t_MULTIPLICATION);}
 "<=" {printf("lessequal ", yytext); return (t_LESSEQUAL);}
@@ -108,7 +132,6 @@ newarray {printf("newarray ", yytext); yylval=trieInsert(yytext);
 
 
 {intconstant} {printf("intconstant ", yytext); return (t_INTCONSTANT);}
-{booleanconstant} {printf("boolconstant ", yytext); return (t_BOOLEANCONSTANT);}
 {doubleconstant} {printf("doubleconstant ", yytext); return (t_DOUBLECONSTANT);}
 {stringconstant} {printf("stringconstant ", yytext); return (t_STRINGCONSTANT);}
 {comment} {printf(" ");}
@@ -397,6 +420,7 @@ void triePrint(){
 	int rowGroupCounter = 1;
 	int symbolTableCounter = 0;
 	int j;
+	int endFlag = 0;
 	
 	for(int i = 1; i < rows*3+1; i++){
 		//only used when last row has less than 20 elements
@@ -408,8 +432,13 @@ void triePrint(){
 				rowGroupCounter++;
 			}else if(rowGroupCounter==2){
 				printf("\nsymbol:");
-				for(j = symbolTableCounter; j < MAXTRANSITIONS; j++)
-					printf("%5c",symTable[j]);
+				for(j = symbolTableCounter; j < MAXTRANSITIONS; j++){
+				    if(symTable[j] == -1){
+				        endFlag = 1;
+					break;
+				    }
+				    else printf("%5c",symTable[j]);
+				}
 				rowGroupCounter++;
 			}else if(rowGroupCounter==3){
 				printf("\nnext:  ");
@@ -427,8 +456,13 @@ void triePrint(){
 			rowGroupCounter++;
 		}else if(rowGroupCounter==2){
 			printf("\nsymbol:");
-			for(j = symbolTableCounter; j < symbolTableCounter+20; j++)
-				printf("%5c",symTable[j]);
+			for(j = symbolTableCounter; j < symbolTableCounter+20; j++){
+				if(symTable[j] == -1){
+				    endFlag = 1;
+				    break;
+				}
+				else printf("%5c",symTable[j]);
+			    }
 			rowGroupCounter++;
 		}else if(rowGroupCounter==3){
 			printf("\nnext:  ");
@@ -441,6 +475,9 @@ void triePrint(){
 			printf("\n\n");
 			rowGroupCounter = 1;
 			symbolTableCounter+=20;
+			if(endFlag == 1){
+			    return;
+			}
 		}
    }
    printf("\n");
