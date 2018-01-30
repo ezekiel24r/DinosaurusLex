@@ -94,7 +94,7 @@ newarray {printf("newarray ", yytext); yylval=trieInsert(yytext);
 "{" {printf("leftbrace ", yytext); return (t_LEFTBRACE);}
 "+" {printf("plus ", yytext); return (t_PLUS);}
 "%" {printf("mod ", yytext); return (t_MOD);}
-">=" {printf("greatereaqual ", yytext); return (t_GREATEREQUAL);}
+">=" {printf("greaterequal ", yytext); return (t_GREATEREQUAL);}
 "||" {printf("or ", yytext); return (t_OR);}
 "," {printf("comma ", yytext); return (t_COMMA);}
 "[" {printf("leftbracket ", yytext); return (t_LEFTBRACKET);}
@@ -143,160 +143,160 @@ int trieInsert(char *s){
 
     //check what the first letter of input is and set the pointer to the respective array position
     switch (*s){
-        case 'a':
+        case 'A':
             ptr = 0;
             break;
-        case 'b':
+        case 'B':
             ptr = 1;
             break;
-        case 'c':
+        case 'C':
             ptr = 2;
             break;
-        case 'd':
+        case 'D':
             ptr = 3;
             break;
-        case 'e':
+        case 'E':
             ptr = 4;
             break;
-        case 'f':
+        case 'F':
             ptr = 5;
             break;
-        case 'g':
+        case 'G':
             ptr = 6;
             break;
-        case 'h':
+        case 'H':
             ptr = 7;
             break;
-        case 'i':
+        case 'I':
             ptr = 8;
             break;
-        case 'j':
+        case 'J':
             ptr = 9;
             break;
-        case 'k':
+        case 'K':
             ptr = 10;
             break;
-        case 'l':
+        case 'L':
             ptr = 11;
             break;
-        case 'm':
+        case 'M':
             ptr = 12;
             break;
-        case 'n':
+        case 'N':
             ptr = 13;
             break;
-        case 'o':
+        case 'O':
             ptr = 14;
             break;
-        case 'p':
+        case 'P':
             ptr = 15;
             break;
-        case 'q':
+        case 'Q':
             ptr = 16;
             break;
-        case 'r':
+        case 'R':
             ptr = 17;
             break;
-        case 's':
+        case 'S':
             ptr = 18;
             break;
-        case 't':
+        case 'T':
             ptr = 19;
             break;
-        case 'u':
+        case 'U':
             ptr = 20;
             break;
-        case 'v':
+        case 'V':
             ptr = 21;
             break;
-        case 'w':
+        case 'W':
             ptr = 22;
             break;
-        case 'y':
+        case 'Y':
             ptr = 23;
             break;
-        case 'x':
+        case 'X':
             ptr = 24;
             break;
-        case 'z':
+        case 'Z':
             ptr = 25;
             break;
-        case 'A':
+        case 'a':
             ptr = 26;
             break;
-        case 'B':
+        case 'b':
             ptr = 27;
             break;
-        case 'C':
+        case 'c':
             ptr = 28;
             break;
-        case 'D':
+        case 'd':
             ptr = 29;
             break;
-        case 'E':
+        case 'e':
             ptr = 30;
             break;
-        case 'F':
+        case 'f':
             ptr = 31;
             break;
-        case 'G':
+        case 'g':
             ptr = 32;
             break;
-        case 'H':
+        case 'h':
             ptr = 33;
             break;
-        case 'I':
+        case 'i':
             ptr = 34;
             break;
-        case 'J':
+        case 'j':
             ptr = 35;
             break;
-        case 'K':
+        case 'k':
             ptr = 36;
             break;
-        case 'L':
+        case 'l':
             ptr = 37;
             break;
-        case 'M':
+        case 'm':
             ptr = 38;
             break;
-        case 'N':
+        case 'n':
             ptr = 39;
             break;
-        case 'O':
+        case 'o':
             ptr = 40;
             break;
-        case 'P':
+        case 'p':
             ptr = 41;
             break;
-        case 'Q':
+        case 'q':
             ptr = 42;
             break;
-        case 'R':
+        case 'r':
             ptr = 43;
             break;
-        case 'S':
+        case 's':
             ptr = 44;
             break;
-        case 'T':
+        case 't':
             ptr = 45;
             break;
-        case 'U':
+        case 'u':
             ptr = 46;
             break;
-        case 'V':
+        case 'v':
             ptr = 47;
             break;
-        case 'W':
+        case 'w':
             ptr = 48;
             break;
-        case 'Y':
+        case 'y':
             ptr = 49;
             break;
-        case 'X':
+        case 'x':
             ptr = 50;
             break;
-        case 'Z':
+        case 'z':
             ptr = 51;
             break;
         default:
