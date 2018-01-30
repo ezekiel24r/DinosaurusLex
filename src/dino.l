@@ -331,6 +331,8 @@ newarray {printf("newarray ", yytext); return (t_NEWARRAY);}
         }
         
 	int symTableLength = symTable[MAXTRANSITIONS*timesResized-1];
+	printf("sym table before EXECUTED: %i", symTableLength);
+	
 	//resize array
 	if(tail+20 > symTableLength){
             printf("EXECUTED RESIZE");
