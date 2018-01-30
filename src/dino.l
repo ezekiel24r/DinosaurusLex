@@ -5,6 +5,10 @@
 #define DOUBLE 3
 #define BOOLEAN 4
 #define STRING 5
+#define INITSIZE 10
+#define ELEMENTS 60
+
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include "y.tab.h"
@@ -12,15 +16,23 @@
 int t_index=0;
 int t_flag=0;
 
+int capacity = INITSIZE;
+
 int firstLetter[52];
-char symTable[MAXTRANSITIONS];
-int nextTable[MAXTRANSITIONS];
+char * symTable;
+int * nextTable;
+int size = MAXTRANSITIONS;
 int tail = 0;
 
 void initFirstLetter();
 void initSymAndNext();
 int trieInsert(char * s);
 void triePrint();
+int * add(int*,int);
+void initArr();
+void resizeArr();
+void copyArr(int * a, int * b, int sizeA);
+void printArr(int *, int);
 
 %}
 
@@ -109,19 +121,89 @@ void initFirstLetter(){
     }
 }
 
-//initializes the symbolTable and the nextTable arrays
+/*initializes the symbolTable and the nextTable arrays
 void initSymAndNext(){
     for(int i = 0; i < MAXTRANSITIONS; i++){
         symTable[i] = -1;
         nextTable[i] = -1;
     }
+}*/
+
+//Start Eric dynamic array
+
+//New init array
+void initArr(int size){
+    symTable = malloc(size*(sizeof(char)));
+	nextTable = malloc(size*(sizeof(int)));
+    for(int i=0; i<size; i++){
+        symTable[i] = -1;
+		nextTable[i] = -1;
+    }
 }
+
+/*
+void add(int * a, int in, int pos){
+    if (pos > (capacity/2)){
+        printf("resize!\n");
+        a = resizeArr();
+    }
+   // a[pos] = in;
+    //return a;
+} */
+
+void resizeArr(int * a){
+	char * oldSymTable = symTable;
+	char * oldNextTable = nextTable;
+    int sizeA = capacity; 
+    capacity = capacity * 2;
+    int sizeB = capacity;
+    initArr(sizeB);
+    copyArrChar(symTable,b,sizeA);
+	copyArrInt(a,b,sizeA);
+ //printArr(b, sizeB);
+    //return b;
+}
+
+void copyArr(int * a, int * b, int sizeA){
+    for(int i=0; i < sizeA; i++){
+        int temp = a[i];
+        b[i] = a[i];
+        printf("%i<-%i\n", b[i], temp);
+    }
+    free(a);
+
+    //return b;
+}
+
+void copyArr(int * a, int * b, int sizeA){
+    for(int i=0; i < sizeA; i++){
+        int temp = a[i];
+        b[i] = a[i];
+        printf("%i<-%i\n", b[i], temp);
+    }
+    free(a);
+
+    //return b;
+}
+
+/*void printArr(int * a, int size){
+    for(int i = 0; i < size; i++){
+        printf("%i, ", a[i]);
+    }
+    printf("\n");
+}*/
 
 //trieInsert adds id's to the trie Table (firstLetter, symTable, and nextTable)
 //char s is a pointer to the string of input to be processed
 int trieInsert(char *s){
     //create pointer to navigate the trie table
     int ptr = -1;
+	
+	//checks if  int array needs to be resized
+	if (pos > (capacity/2)){
+        printf("resize!\n");
+        resizeArr();	
+	}
 
     //check what the first letter of input is and set the pointer to the respective array position
     switch (*s){
@@ -326,6 +408,7 @@ int trieInsert(char *s){
         else if (symTable[ptr] != *s){                  //mismatch, check for next possible position
             if(nextTable[ptr] != -1){       //if next has a value, move to it
                 ptr = nextTable[ptr];
+				
             }
             else{
                 nextTable[ptr] = tail;      //if next has no value, move to tail
@@ -335,9 +418,16 @@ int trieInsert(char *s){
 
 
     }
+	//if tail > size/2 then resize
+	if(tail > size/2) {
+		resize(symTable)
+		resize(nextTable);
+	}
+	
     return t_index-1;
 
 }
+
 
 void triePrint(){
     printf("\n");
@@ -384,7 +474,7 @@ void triePrint(){
 
 int main () {
     initFirstLetter();
-    initSymAndNext();
+    initArr(MAXTRANSITIONS);
     while (yylex()) {}
 }
 
