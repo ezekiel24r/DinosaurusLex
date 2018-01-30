@@ -856,110 +856,110 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 46 "dino.l"
-{t_flag=BOOLEAN; printf("boolean ", yytext);yylval=trieInsert(yytext);
- return (t_BOOLEAN);}
+{t_flag=BOOLEAN; printf("boolean ", yytext); yylval=trieInsert(yytext); 
+    return (t_BOOLEAN);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 48 "dino.l"
 {t_flag=INT; printf("int ", yytext); yylval=trieInsert(yytext);
-return (t_INT);}
+    return (t_INT);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 50 "dino.l"
 {t_flag=DOUBLE; printf("double ", yytext); yylval=trieInsert(yytext);
-return (t_DOUBLE);}
+    return (t_DOUBLE);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 52 "dino.l"
 {t_flag=STRING; printf("string ", yytext); yylval=trieInsert(yytext);
-return (t_STRING);}
+    return (t_STRING);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 55 "dino.l"
 {printf("break ", yytext); yylval=trieInsert(yytext);
-return (t_BREAK);}
+    return (t_BREAK);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 57 "dino.l"
 {printf("extends ", yytext); yylval=trieInsert(yytext);
-return (t_EXTENDS);}
+    return (t_EXTENDS);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 59 "dino.l"
 {printf("readln ", yytext); yylval=trieInsert(yytext);
-return (t_READLN);}
+    return (t_READLN);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 61 "dino.l"
 {printf("while ", yytext); yylval=trieInsert(yytext);
-return (t_WHILE);}
+    return (t_WHILE);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 63 "dino.l"
 {printf("else ", yytext); yylval=trieInsert(yytext);
-return (t_ELSE);}
+    return (t_ELSE);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 65 "dino.l"
 {printf("implements ", yytext); yylval=trieInsert(yytext);
-return (t_IMPLEMENTS);}
+    return (t_IMPLEMENTS);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 67 "dino.l"
 {printf("println ", yytext); yylval=trieInsert(yytext);
-return (t_PRINTLN);}
+    return (t_PRINTLN);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 69 "dino.l"
 {printf("void ", yytext); yylval=trieInsert(yytext);
-return (t_VOID);}
+    return (t_VOID);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 71 "dino.l"
 {printf("class ", yytext); yylval=trieInsert(yytext);
-return (t_CLASS);} 
+    return (t_CLASS);} 
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 73 "dino.l"
 {printf("for ", yytext); yylval=trieInsert(yytext);
-return (t_FOR);} 
+    return (t_FOR);} 
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 75 "dino.l"
 {printf("interface ", yytext); yylval=trieInsert(yytext);
-return (t_INTERFACE);}
+    return (t_INTERFACE);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 77 "dino.l"
 {printf("return ", yytext); yylval=trieInsert(yytext);
-return (t_RETURN);}
+    return (t_RETURN);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 79 "dino.l"
 {printf("if ", yytext); yylval=trieInsert(yytext);
-return (t_IF);}
+    return (t_IF);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 81 "dino.l"
 {printf("newarray ", yytext); yylval=trieInsert(yytext);
-return (t_NEWARRAY);}
+    return (t_NEWARRAY);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
@@ -1117,7 +1117,7 @@ case 50:
 YY_RULE_SETUP
 #line 118 "dino.l"
 {yytext[yyleng]='\0'; yylval=trieInsert(yytext);
-        printf("id ", yytext); triePrint(); return(t_ID);}
+        printf("id ", yytext);/* triePrint();*/ return(t_ID);}
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
@@ -2331,7 +2331,7 @@ int trieInsert(char *s){
             s++;
             tail++;
         }
-        symTable[ptr] = '@';
+        symTable[ptr] = '*';
         tail++;
         t_index++;
         return t_index-1;
@@ -2345,7 +2345,7 @@ int trieInsert(char *s){
                 s++;
                 tail++;
             }
-            symTable[ptr] = '@';
+            symTable[ptr] = '*';
             tail++;
             t_index++;
             return t_index-1;
@@ -2354,7 +2354,7 @@ int trieInsert(char *s){
             s++;
             ptr++;
         }
-        else if (*s == '\0' && symTable[ptr] == '@'){    //id already in table, do nothing
+        else if (*s == '\0' && symTable[ptr] == '*'){    //id already in table, do nothing
             return t_index;
         }            
         else if (symTable[ptr] != *s){                  //mismatch, check for next possible position
@@ -2374,52 +2374,99 @@ int trieInsert(char *s){
 }
 
 void triePrint(){
-    printf("\n");
-    for(int i=0; i<52; i++){
-        if(firstLetter[i] == (char)(-1)){
-            printf(" ~ |", firstLetter[i]);
-        }
-        else if(firstLetter[i] > 99){
-            printf("%i|", firstLetter[i]);
-        }
-        else if(firstLetter[i] > 9){
-            printf(" %i|", firstLetter[i]);
-        }
-        else{
-            printf("% i |", firstLetter[i]);
-        }
-    }
-    printf("\n");
-    for(int i=0; i<50; i++){
-        if(symTable[i] == (char)(-1)){
-            printf(" ~ |", symTable[i]);
-        }
-        else{
-            printf(" %c |", symTable[i]);
-        }
-    }
-    printf("\n");
-    for(int i=0; i<50; i++){
-        if(nextTable[i] == (char)(-1)){
-            printf(" ~ |", nextTable[i]);
-        }
-        else if(nextTable[i] > 99){
-            printf("%i|", nextTable[i]);
-        }
-        else if(nextTable[i] > 9){
-            printf(" %i|", nextTable[i]);
-        }
-        else{
-            printf("% i |", nextTable[i]);
-        }
-    }
-    printf("\n");
+	
+	//print Top letters from A to T
+	printf("           ");
+	for(int i=65; i < 85; i++){
+		printf("%c    ", i);
+	}
+	//printing switch from A to T
+	printf("\nswitch:");
+	for(int i=0; i<20; i++){
+		printf("%5i", firstLetter[i]);
+	}
+	printf("\n");
+	//print top letters from U to Z
+	printf("\n           ");
+	for(int i = 85; i < 91; i++)
+		printf("%c    ", i);
+	//print a to n
+	for(int i = 97; i < 111;i++)
+		printf("%c    ", i);
+	//print switch from U to n
+	printf("\nswitch:");
+	for(int i = 20; i < 40; i++)
+		printf("%5i", firstLetter[i]);
+	printf("\n");
+	//print top letters o to z
+	printf("\n           ");
+	for(int i = 111; i < 123; i ++)
+		printf("%c    ", i);
+	//print switch from o to z
+	printf("\nswitch:");
+	for(int i = 40; i < 52; i++)
+		printf("%5i", firstLetter[i]);
+
+	printf("\n\n");
+//need debugging below	
+	int rows = MAXTRANSITIONS/20+1;
+	int rowGroupCounter = 1;
+	int symbolTableCounter = 0;
+	int j;
+	
+	for(int i = 1; i < rows*3+1; i++){
+		//only used when last row has less than 20 elements
+		if(MAXTRANSITIONS-symbolTableCounter < 20){
+			if(rowGroupCounter==1){
+				printf("       ");
+			for(j = symbolTableCounter; j < MAXTRANSITIONS; j++)
+				printf("%5i",j);
+				rowGroupCounter++;
+			}else if(rowGroupCounter==2){
+				printf("\nsymbol:");
+				for(j = symbolTableCounter; j < MAXTRANSITIONS; j++)
+					printf("%5c",symTable[j]);
+				rowGroupCounter++;
+			}else if(rowGroupCounter==3){
+				printf("\nnext:  ");
+				for(j = symbolTableCounter; j < MAXTRANSITIONS; j++)
+					if(nextTable[j] == -1) 
+						printf("%5s", "");
+					else
+						printf("%5i",nextTable[j]);
+				printf("\n\n");
+			}	
+		}else if(rowGroupCounter==1){
+			printf("       ");
+			for(j = symbolTableCounter; j < symbolTableCounter+20; j++)
+				printf("%5i",j);
+			rowGroupCounter++;
+		}else if(rowGroupCounter==2){
+			printf("\nsymbol:");
+			for(j = symbolTableCounter; j < symbolTableCounter+20; j++)
+				printf("%5c",symTable[j]);
+			rowGroupCounter++;
+		}else if(rowGroupCounter==3){
+			printf("\nnext:  ");
+			for(j = symbolTableCounter; j < symbolTableCounter+20; j++){
+				if(nextTable[j] == -1)
+					printf("%5s","");
+				else
+					printf("%5i",nextTable[j]);
+			}
+			printf("\n\n");
+			rowGroupCounter = 1;
+			symbolTableCounter+=20;
+		}
+   }
+   printf("\n");
 }
 
 int main () {
     initFirstLetter();
     initSymAndNext();
     while (yylex()) {}
+    triePrint();
 }
 
 

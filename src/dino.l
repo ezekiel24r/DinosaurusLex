@@ -116,7 +116,7 @@ newarray {printf("newarray ", yytext); yylval=trieInsert(yytext);
 
 
 {id}    {yytext[yyleng]='\0'; yylval=trieInsert(yytext);
-        printf("id ", yytext); triePrint(); return(t_ID);}
+        printf("id ", yytext);/* triePrint();*/ return(t_ID);}
 .   {printf("error!\n"); return (0);}
     
 %%
@@ -315,7 +315,7 @@ int trieInsert(char *s){
             s++;
             tail++;
         }
-        symTable[ptr] = '@';
+        symTable[ptr] = '*';
         tail++;
         t_index++;
         return t_index-1;
@@ -329,7 +329,7 @@ int trieInsert(char *s){
                 s++;
                 tail++;
             }
-            symTable[ptr] = '@';
+            symTable[ptr] = '*';
             tail++;
             t_index++;
             return t_index-1;
@@ -338,7 +338,7 @@ int trieInsert(char *s){
             s++;
             ptr++;
         }
-        else if (*s == '\0' && symTable[ptr] == '@'){    //id already in table, do nothing
+        else if (*s == '\0' && symTable[ptr] == '*'){    //id already in table, do nothing
             return t_index;
         }            
         else if (symTable[ptr] != *s){                  //mismatch, check for next possible position
@@ -358,51 +358,98 @@ int trieInsert(char *s){
 }
 
 void triePrint(){
-    printf("\n");
-    for(int i=0; i<52; i++){
-        if(firstLetter[i] == (char)(-1)){
-            printf(" ~ |", firstLetter[i]);
-        }
-        else if(firstLetter[i] > 99){
-            printf("%i|", firstLetter[i]);
-        }
-        else if(firstLetter[i] > 9){
-            printf(" %i|", firstLetter[i]);
-        }
-        else{
-            printf("% i |", firstLetter[i]);
-        }
-    }
-    printf("\n");
-    for(int i=0; i<50; i++){
-        if(symTable[i] == (char)(-1)){
-            printf(" ~ |", symTable[i]);
-        }
-        else{
-            printf(" %c |", symTable[i]);
-        }
-    }
-    printf("\n");
-    for(int i=0; i<50; i++){
-        if(nextTable[i] == (char)(-1)){
-            printf(" ~ |", nextTable[i]);
-        }
-        else if(nextTable[i] > 99){
-            printf("%i|", nextTable[i]);
-        }
-        else if(nextTable[i] > 9){
-            printf(" %i|", nextTable[i]);
-        }
-        else{
-            printf("% i |", nextTable[i]);
-        }
-    }
-    printf("\n");
+	
+	//print Top letters from A to T
+	printf("           ");
+	for(int i=65; i < 85; i++){
+		printf("%c    ", i);
+	}
+	//printing switch from A to T
+	printf("\nswitch:");
+	for(int i=0; i<20; i++){
+		printf("%5i", firstLetter[i]);
+	}
+	printf("\n");
+	//print top letters from U to Z
+	printf("\n           ");
+	for(int i = 85; i < 91; i++)
+		printf("%c    ", i);
+	//print a to n
+	for(int i = 97; i < 111;i++)
+		printf("%c    ", i);
+	//print switch from U to n
+	printf("\nswitch:");
+	for(int i = 20; i < 40; i++)
+		printf("%5i", firstLetter[i]);
+	printf("\n");
+	//print top letters o to z
+	printf("\n           ");
+	for(int i = 111; i < 123; i ++)
+		printf("%c    ", i);
+	//print switch from o to z
+	printf("\nswitch:");
+	for(int i = 40; i < 52; i++)
+		printf("%5i", firstLetter[i]);
+
+	printf("\n\n");
+//need debugging below	
+	int rows = MAXTRANSITIONS/20+1;
+	int rowGroupCounter = 1;
+	int symbolTableCounter = 0;
+	int j;
+	
+	for(int i = 1; i < rows*3+1; i++){
+		//only used when last row has less than 20 elements
+		if(MAXTRANSITIONS-symbolTableCounter < 20){
+			if(rowGroupCounter==1){
+				printf("       ");
+			for(j = symbolTableCounter; j < MAXTRANSITIONS; j++)
+				printf("%5i",j);
+				rowGroupCounter++;
+			}else if(rowGroupCounter==2){
+				printf("\nsymbol:");
+				for(j = symbolTableCounter; j < MAXTRANSITIONS; j++)
+					printf("%5c",symTable[j]);
+				rowGroupCounter++;
+			}else if(rowGroupCounter==3){
+				printf("\nnext:  ");
+				for(j = symbolTableCounter; j < MAXTRANSITIONS; j++)
+					if(nextTable[j] == -1) 
+						printf("%5s", "");
+					else
+						printf("%5i",nextTable[j]);
+				printf("\n\n");
+			}	
+		}else if(rowGroupCounter==1){
+			printf("       ");
+			for(j = symbolTableCounter; j < symbolTableCounter+20; j++)
+				printf("%5i",j);
+			rowGroupCounter++;
+		}else if(rowGroupCounter==2){
+			printf("\nsymbol:");
+			for(j = symbolTableCounter; j < symbolTableCounter+20; j++)
+				printf("%5c",symTable[j]);
+			rowGroupCounter++;
+		}else if(rowGroupCounter==3){
+			printf("\nnext:  ");
+			for(j = symbolTableCounter; j < symbolTableCounter+20; j++){
+				if(nextTable[j] == -1)
+					printf("%5s","");
+				else
+					printf("%5i",nextTable[j]);
+			}
+			printf("\n\n");
+			rowGroupCounter = 1;
+			symbolTableCounter+=20;
+		}
+   }
+   printf("\n");
 }
 
 int main () {
     initFirstLetter();
     initSymAndNext();
     while (yylex()) {}
+    triePrint();
 }
 
