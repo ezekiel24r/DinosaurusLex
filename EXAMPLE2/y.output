@@ -1,0 +1,180 @@
+Grammar
+
+    0 $accept: statement $end
+
+    1 statement: expression '\n'
+
+    2 expression: expression '+' expression
+    3           | expression '-' expression
+    4           | expression '*' expression
+    5           | expression '/' expression
+    6           | t_NUM
+    7           | t_VAL
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'\n' (10) 1
+'*' (42) 4
+'+' (43) 2
+'-' (45) 3
+'/' (47) 5
+error (256)
+t_NUM (258) 6
+t_VAL (259) 7
+
+
+Nonterminals, with rules where they appear
+
+$accept (10)
+    on left: 0
+statement (11)
+    on left: 1, on right: 0
+expression (12)
+    on left: 2 3 4 5 6 7, on right: 1 2 3 4 5
+
+
+State 0
+
+    0 $accept: . statement $end
+
+    t_NUM  shift, and go to state 1
+    t_VAL  shift, and go to state 2
+
+    statement   go to state 3
+    expression  go to state 4
+
+
+State 1
+
+    6 expression: t_NUM .
+
+    $default  reduce using rule 6 (expression)
+
+
+State 2
+
+    7 expression: t_VAL .
+
+    $default  reduce using rule 7 (expression)
+
+
+State 3
+
+    0 $accept: statement . $end
+
+    $end  shift, and go to state 5
+
+
+State 4
+
+    1 statement: expression . '\n'
+    2 expression: expression . '+' expression
+    3           | expression . '-' expression
+    4           | expression . '*' expression
+    5           | expression . '/' expression
+
+    '+'   shift, and go to state 6
+    '-'   shift, and go to state 7
+    '*'   shift, and go to state 8
+    '/'   shift, and go to state 9
+    '\n'  shift, and go to state 10
+
+
+State 5
+
+    0 $accept: statement $end .
+
+    $default  accept
+
+
+State 6
+
+    2 expression: expression '+' . expression
+
+    t_NUM  shift, and go to state 1
+    t_VAL  shift, and go to state 2
+
+    expression  go to state 11
+
+
+State 7
+
+    3 expression: expression '-' . expression
+
+    t_NUM  shift, and go to state 1
+    t_VAL  shift, and go to state 2
+
+    expression  go to state 12
+
+
+State 8
+
+    4 expression: expression '*' . expression
+
+    t_NUM  shift, and go to state 1
+    t_VAL  shift, and go to state 2
+
+    expression  go to state 13
+
+
+State 9
+
+    5 expression: expression '/' . expression
+
+    t_NUM  shift, and go to state 1
+    t_VAL  shift, and go to state 2
+
+    expression  go to state 14
+
+
+State 10
+
+    1 statement: expression '\n' .
+
+    $default  reduce using rule 1 (statement)
+
+
+State 11
+
+    2 expression: expression . '+' expression
+    2           | expression '+' expression .
+    3           | expression . '-' expression
+    4           | expression . '*' expression
+    5           | expression . '/' expression
+
+    $default  reduce using rule 2 (expression)
+
+
+State 12
+
+    2 expression: expression . '+' expression
+    3           | expression . '-' expression
+    3           | expression '-' expression .
+    4           | expression . '*' expression
+    5           | expression . '/' expression
+
+    $default  reduce using rule 3 (expression)
+
+
+State 13
+
+    2 expression: expression . '+' expression
+    3           | expression . '-' expression
+    4           | expression . '*' expression
+    4           | expression '*' expression .
+    5           | expression . '/' expression
+
+    $default  reduce using rule 4 (expression)
+
+
+State 14
+
+    2 expression: expression . '+' expression
+    3           | expression . '-' expression
+    4           | expression . '*' expression
+    5           | expression . '/' expression
+    5           | expression '/' expression .
+
+    $default  reduce using rule 5 (expression)
