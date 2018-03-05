@@ -18,6 +18,28 @@ expression : expression '+' expression {$$=$1+$3;}
  else $$=$1/$3;}
  | t_NUM {$$=$1;}
  ;
+
+Lvalue : id
+| Lvalue _LeftBrac Expr _RightBrac
+| Lvalue _period id
+;
+
+Call : id_LeftParen Actuals _RightParen
+| id_period id _LeftParen Actuals _RightParen
+;
+
+Actuals : Expr R
+| epsilon
+;
+R : _comma Expr R
+| epsilon
+;
+
+Constant : intconstant
+| doubleconstant
+| stringconstant
+| booleanconstant
+;
 %%
 
 
