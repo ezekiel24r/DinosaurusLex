@@ -30,6 +30,8 @@
 #include <string.h>
 #include "y.tab.h"
 
+extern int yylval;
+    
 int t_index=0;
 int t_flag=0;
 
@@ -55,7 +57,7 @@ stringconstant \"[^"\n]*\"
 multilinecomment ("/*")([^*]*"*"+[^*/])*([^*]*)("*"+)"/"
 comment ("//".*)|{multilinecomment}
 intconstant {hex}|{number}
-newline \n
+newline [\n]
 ws [ \t\r]
 
 
@@ -482,9 +484,9 @@ void triePrint(){
    printf("\n");
 }
 
-int main () {
+/*int main () {
     initFirstLetter();
     initSymAndNext();
     while (yylex()) {}
     triePrint();
-}
+}*/

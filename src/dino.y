@@ -4,21 +4,26 @@
 
 %}
 
-%token t_BOOLEAN t_ELSE t_IMPLEMENTS t_PRINTLN t_VOID t_MULTIPLICATION t_LESSEQUAL t_NOTEQUAL t_ASSIGNOP t_LEFTPAREN t_LEFTBRACE t_STRINGCONSTANT t_BREAK t_EXTENDS t_INT t_READLN t_WHILE t_DIVISION t_GREATER t_AND t_SEMICOLON t_RIGHTPAREN t_RIGHTBRACE t_BOOLEANCONSTANT t_CLASS t_FOR t_INTERFACE t_RETURN t_PLUS t_MOD t_GREATEREQUAL t_OR t_COMMA t_LEFTBRACKET t_INTCONSTANT t_ID t_DOUBLE t_IF t_NEWARRAY t_STRING t_MINUS t_LESS t_EQUAL t_NOT t_PERIOD t_RIGHTBRACKET t_DOUBLECONSTANT
+%token t_BOOLEAN t_ELSE t_IMPLEMENTS t_PRINTLN t_VOID t_LEFTPAREN t_LEFTBRACE t_STRINGCONSTANT t_BREAK t_EXTENDS t_INT t_READLN t_WHILE t_SEMICOLON t_RIGHTPAREN t_RIGHTBRACE t_BOOLEANCONSTANT t_CLASS t_FOR t_INTERFACE t_RETURN t_COMMA t_INTCONSTANT t_ID t_DOUBLE t_IF t_NEWARRAY t_STRING t_RIGHTBRACKET t_DOUBLECONSTANT
+
+%right t_ASSIGNOP
+%left t_OR
+%left t_AND
+%right t_EQUAL t_NOTEQUAL
+%left t_LESS t_GREATER t_GREATEREQUAL t_LESSEQUAL
+%left t_PLUS t_MINUS
+%left t_MULTIPLICATION t_DIVISION t_MOD
+%right t_NOT
+%right t_LEFTBRACKET t_PERIOD
 
 
 %%
-statement : expression '\n' {printf("=%d\n",$1); exit(0);}
- ;
-expression : expression '+' expression {$$=$1+$3;}
- | expression '-' expression {$$=$1-$3;}
- | expression '*' expression {$$=$1*$3;}
- | expression '/' expression {
- if ($3==0) {yyerror("divide by 0"); exit(0);}
- else $$=$1/$3;}
- | t_NUM {$$=$1;}
- ;
 
+Start : Program '\n' {exit(0);};
+
+Program : Decl Program
+ | Decl
+;
 
 Decl : VariableDecl
  | FunctionDecl
@@ -26,43 +31,43 @@ Decl : VariableDecl
  | InterfaceDecl
 ;
 
-VariableDecl : Variable _semicolon
+VariableDecl : Variable t_SEMICOLON
 ;
 
-Variable :  Type id
+Variable :  Type t_ID
 ;
 
-Type : int
- | double
- | booleanType
- | string
- | Type _leftBrace _rightBrace
- | id
+Type : t_INT
+ | t_DOUBLE
+ | t_BOOLEAN
+ | t_STRING
+ | Type t_LEFTBRACKET t_RIGHTBRACKET
+ | t_ID
 ;
 
-FunctionDecl :  Type id _leftParen Formals _rightParen StmtBlock
- |  void id _leftParen Formals _rightParen StmtBlock 
+FunctionDecl :  Type t_ID t_LEFTPAREN Formals t_RIGHTPAREN StmtBlock
+ |  t_VOID t_ID t_LEFTPAREN Formals t_RIGHTPAREN StmtBlock 
 ;
 
 Formals : Variable D
  | epsilon
 ;
 
-D : _comma Variable D
+D : t_COMMA Variable D
  | epsilon
 ;
 
-ClassDecl :  class id A B _leftBrace P _rightBrace
+ClassDecl : t_CLASS t_ID A B t_LEFTBRACE P t_RIGHTBRACE
 ;
 
-A :  extends id
+A :  t_EXTENDS t_ID
  | epsilon
 ;
 
-B : implements id C
+B : t_IMPLEMENTS t_ID C
 ;
 
-C : _comma id C
+C : t_COMMA t_ID C
  | epsilon
 ;
 
@@ -74,18 +79,18 @@ Field : VariableDecl
  | FunctionDecl 
 ;
 
-InterfaceDecl : interface id _leftBrace E _rightBrace
+InterfaceDecl : t_INTERFACE t_ID t_LEFTBRACE E t_RIGHTBRACE
 ;
 
 E : Prototype E
  | epsilon
 ;
 
-Prototype : Type id _leftParen Formals _rightParen _semicolon
- | void id _leftParen Formals _rightParen _semicolon
+Prototype : Type t_ID t_LEFTPAREN Formals t_RIGHTPAREN t_SEMICOLON
+ | t_VOID t_ID t_LEFTPAREN Formals t_RIGHTPAREN t_SEMICOLON
 ;
 
-StmtBlock : _leftBrace K L _rightBrace
+StmtBlock : t_LEFTBRACE K L t_RIGHTBRACE
 ;
 
 K : VariableDecl K
@@ -106,94 +111,94 @@ Stmt : M
  | StmtBlock
 ;
 
-M : Expr _semicolon
+M : Expr t_SEMICOLON
  | epsilon
 ;
 
-IfStmt : if _leftParen Expr _rightParen Stmt N
+IfStmt : t_IF t_LEFTPAREN Expr t_RIGHTPAREN Stmt N
 ;
 
-N : else Stmt
+N : t_ELSE Stmt
  | epsilon
 ;
 
-WhieStmt : while _leftParen Expr _rightParen Stmt
+WhileStmt : t_WHILE t_LEFTPAREN Expr t_RIGHTPAREN Stmt
 ;
 
-ForStmt : for _leftParen H _semicolon Expr _semicolon H _rightParen Stmt
+ForStmt : t_FOR t_LEFTPAREN H t_SEMICOLON Expr t_SEMICOLON H t_RIGHTPAREN Stmt
 ;
 
 H :  Expr
  | epsilon
 ;
 
-BreakStmt : break _semicolon
+BreakStmt : t_BREAK t_SEMICOLON
 ;
 
-ReturnStmt : return O _semicolon
+ReturnStmt : t_RETURN O t_SEMICOLON
 ;
 
 O :  Expr
  | epsilon
 ;
 
-PrintStmt :  println _leftParen  F _rightParen _semicolon 
+PrintStmt :  t_PRINTLN t_LEFTPAREN  F t_RIGHTPAREN t_SEMICOLON 
 ;
 
 F : Expr G
 ;
 
-G :  _comma Expr G
+G :  t_COMMA Expr G
  | epsilon
 ;
 
-Expr : Lvalue _equal Expr 
+Expr : Lvalue t_ASSIGNOP Expr 
  | Constant 
  | Lvalue 
  | Call 
- | _LeftParen Expr _RightParen 
- | Expr _plus Expr 
- | Expr _minus Expr 
- | Expr _multiple Exprcd..
- | Expr _divide Expr 
- | Expr _modulus Expr
- | _negative Expr
- | Expr _lessThan Expr 
- | Expr _lessThanEqualTo Expr
- | Expr _greaterThan Expr 
- | Expr _greaterThanEqual Expr
- | Expr _equalEqual Expr 
- | Expr _notEqualTo Expr
- | Expr _AND Expr
- | Expr _OR Expr 
- | _NOT Expr
- | readln _leftParen _rightParen 
- | newarray _leftParen intconstant _comma Type _rightParen
+ | t_LEFTPAREN Expr t_RIGHTPAREN 
+ | Expr t_PLUS Expr 
+ | Expr t_MINUS Expr 
+ | Expr t_MULTIPLICATION Expr
+ | Expr t_DIVISION Expr 
+ | Expr t_MOD Expr
+ | t_MINUS Expr
+ | Expr t_LESS Expr 
+ | Expr t_LESSEQUAL Expr
+ | Expr t_GREATER Expr 
+ | Expr t_GREATEREQUAL Expr
+ | Expr t_EQUAL Expr 
+ | Expr t_NOTEQUAL Expr
+ | Expr t_AND Expr
+ | Expr t_OR Expr 
+ | t_NOT Expr
+ | t_READLN t_LEFTPAREN t_RIGHTPAREN 
+ | t_NEWARRAY t_LEFTPAREN t_INTCONSTANT t_COMMA Type t_RIGHTPAREN
 ;
 
-Lvalue : id
-| Lvalue _LeftBrac Expr _RightBrac
-| Lvalue _period id
+Lvalue : t_ID
+| Lvalue t_LEFTBRACKET Expr t_RIGHTBRACKET
+| Lvalue t_PERIOD t_ID
 ;
 
-Call : id_LeftParen Actuals _RightParen
-| id_period id _LeftParen Actuals _RightParen
+Call : t_ID t_LEFTPAREN Actuals t_RIGHTPAREN
+| t_ID t_PERIOD t_ID t_LEFTPAREN Actuals t_RIGHTPAREN
 ;
 
 Actuals : Expr R
 | epsilon
 ;
-R : _comma Expr R
+R : t_COMMA Expr R
 | epsilon
 ;
 
-Constant : intconstant
-| doubleconstant
-| stringconstant
-| booleanconstant
+Constant : t_INTCONSTANT 
+| t_DOUBLECONSTANT
+| t_STRINGCONSTANT
+| t_BOOLEANCONSTANT
 ;
 
-
+epsilon : ;
 
 
 
@@ -205,6 +210,10 @@ void yyerror(char *s) {
  fprintf(stderr, "%s\n", s);
 }
 int main() {
- yyparse();
+    #ifdef YYDEBUG
+    extern int yydebug;
+    #endif
+    yydebug = 1;
+    yyparse();
 }
 
