@@ -1,3 +1,9 @@
+State 10 conflicts: 4 shift/reduce
+State 11 conflicts: 4 shift/reduce
+State 12 conflicts: 4 shift/reduce
+State 13 conflicts: 4 shift/reduce
+
+
 Grammar
 
     0 $accept: statement $end
@@ -9,7 +15,6 @@ Grammar
     4           | expression '*' expression
     5           | expression '/' expression
     6           | t_NUM
-    7           | t_VAL
 
 
 Terminals, with rules where they appear
@@ -22,17 +27,16 @@ $end (0) 0
 '/' (47) 5
 error (256)
 t_NUM (258) 6
-t_VAL (259) 7
 
 
 Nonterminals, with rules where they appear
 
-$accept (10)
+$accept (9)
     on left: 0
-statement (11)
+statement (10)
     on left: 1, on right: 0
-expression (12)
-    on left: 2 3 4 5 6 7, on right: 1 2 3 4 5
+expression (11)
+    on left: 2 3 4 5 6, on right: 1 2 3 4 5
 
 
 State 0
@@ -40,10 +44,9 @@ State 0
     0 $accept: . statement $end
 
     t_NUM  shift, and go to state 1
-    t_VAL  shift, and go to state 2
 
-    statement   go to state 3
-    expression  go to state 4
+    statement   go to state 2
+    expression  go to state 3
 
 
 State 1
@@ -55,19 +58,12 @@ State 1
 
 State 2
 
-    7 expression: t_VAL .
+    0 $accept: statement . $end
 
-    $default  reduce using rule 7 (expression)
+    $end  shift, and go to state 4
 
 
 State 3
-
-    0 $accept: statement . $end
-
-    $end  shift, and go to state 5
-
-
-State 4
 
     1 statement: expression . '\n'
     2 expression: expression . '+' expression
@@ -75,68 +71,64 @@ State 4
     4           | expression . '*' expression
     5           | expression . '/' expression
 
-    '+'   shift, and go to state 6
-    '-'   shift, and go to state 7
-    '*'   shift, and go to state 8
-    '/'   shift, and go to state 9
-    '\n'  shift, and go to state 10
+    '+'   shift, and go to state 5
+    '-'   shift, and go to state 6
+    '*'   shift, and go to state 7
+    '/'   shift, and go to state 8
+    '\n'  shift, and go to state 9
 
 
-State 5
+State 4
 
     0 $accept: statement $end .
 
     $default  accept
 
 
-State 6
+State 5
 
     2 expression: expression '+' . expression
 
     t_NUM  shift, and go to state 1
-    t_VAL  shift, and go to state 2
+
+    expression  go to state 10
+
+
+State 6
+
+    3 expression: expression '-' . expression
+
+    t_NUM  shift, and go to state 1
 
     expression  go to state 11
 
 
 State 7
 
-    3 expression: expression '-' . expression
+    4 expression: expression '*' . expression
 
     t_NUM  shift, and go to state 1
-    t_VAL  shift, and go to state 2
 
     expression  go to state 12
 
 
 State 8
 
-    4 expression: expression '*' . expression
+    5 expression: expression '/' . expression
 
     t_NUM  shift, and go to state 1
-    t_VAL  shift, and go to state 2
 
     expression  go to state 13
 
 
 State 9
 
-    5 expression: expression '/' . expression
-
-    t_NUM  shift, and go to state 1
-    t_VAL  shift, and go to state 2
-
-    expression  go to state 14
-
-
-State 10
-
     1 statement: expression '\n' .
 
     $default  reduce using rule 1 (statement)
 
 
-State 11
+State 10
 
     2 expression: expression . '+' expression
     2           | expression '+' expression .
@@ -144,10 +136,19 @@ State 11
     4           | expression . '*' expression
     5           | expression . '/' expression
 
+    '+'  shift, and go to state 5
+    '-'  shift, and go to state 6
+    '*'  shift, and go to state 7
+    '/'  shift, and go to state 8
+
+    '+'       [reduce using rule 2 (expression)]
+    '-'       [reduce using rule 2 (expression)]
+    '*'       [reduce using rule 2 (expression)]
+    '/'       [reduce using rule 2 (expression)]
     $default  reduce using rule 2 (expression)
 
 
-State 12
+State 11
 
     2 expression: expression . '+' expression
     3           | expression . '-' expression
@@ -155,10 +156,19 @@ State 12
     4           | expression . '*' expression
     5           | expression . '/' expression
 
+    '+'  shift, and go to state 5
+    '-'  shift, and go to state 6
+    '*'  shift, and go to state 7
+    '/'  shift, and go to state 8
+
+    '+'       [reduce using rule 3 (expression)]
+    '-'       [reduce using rule 3 (expression)]
+    '*'       [reduce using rule 3 (expression)]
+    '/'       [reduce using rule 3 (expression)]
     $default  reduce using rule 3 (expression)
 
 
-State 13
+State 12
 
     2 expression: expression . '+' expression
     3           | expression . '-' expression
@@ -166,10 +176,19 @@ State 13
     4           | expression '*' expression .
     5           | expression . '/' expression
 
+    '+'  shift, and go to state 5
+    '-'  shift, and go to state 6
+    '*'  shift, and go to state 7
+    '/'  shift, and go to state 8
+
+    '+'       [reduce using rule 4 (expression)]
+    '-'       [reduce using rule 4 (expression)]
+    '*'       [reduce using rule 4 (expression)]
+    '/'       [reduce using rule 4 (expression)]
     $default  reduce using rule 4 (expression)
 
 
-State 14
+State 13
 
     2 expression: expression . '+' expression
     3           | expression . '-' expression
@@ -177,4 +196,13 @@ State 14
     5           | expression . '/' expression
     5           | expression '/' expression .
 
+    '+'  shift, and go to state 5
+    '-'  shift, and go to state 6
+    '*'  shift, and go to state 7
+    '/'  shift, and go to state 8
+
+    '+'       [reduce using rule 5 (expression)]
+    '-'       [reduce using rule 5 (expression)]
+    '*'       [reduce using rule 5 (expression)]
+    '/'       [reduce using rule 5 (expression)]
     $default  reduce using rule 5 (expression)
