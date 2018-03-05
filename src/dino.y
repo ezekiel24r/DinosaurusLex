@@ -1,6 +1,11 @@
 %{
 
-#include <stdio.h>
+    #include <stdio.h>
+    #ifdef YYDEBUG
+    extern int yydebug;
+    #endif
+
+
 
 %}
 
@@ -19,13 +24,13 @@
 
 %%
 
-Start : Program '\n' {exit(0);};
+Start : Program {printf("hello there\n");};
 
 Program : Decl Program
  | Decl
 ;
 
-Decl : VariableDecl
+Decl : VariableDecl {printf("variable declared!\n");}
  | FunctionDecl
  |  ClassDecl
  | InterfaceDecl
@@ -205,14 +210,10 @@ epsilon : ;
 %%
 
 
-
 void yyerror(char *s) {
  fprintf(stderr, "%s\n", s);
 }
 int main() {
-    #ifdef YYDEBUG
-    extern int yydebug;
-    #endif
     yydebug = 1;
     yyparse();
 }
