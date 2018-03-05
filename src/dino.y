@@ -54,29 +54,29 @@ FunctionDecl :  Type t_ID t_LEFTPAREN Formals t_RIGHTPAREN StmtBlock
  |  t_VOID t_ID t_LEFTPAREN Formals t_RIGHTPAREN StmtBlock 
 ;
 
-Formals : Variable D
+Formals : Variable MoreVariables
  | epsilon
 ;
 
-D : t_COMMA Variable D
+MoreVariables : t_COMMA Variable MoreVariables
  | epsilon
 ;
 
-ClassDecl : t_CLASS t_ID A B t_LEFTBRACE P t_RIGHTBRACE
+ClassDecl : t_CLASS t_ID OptExtends OptImplements t_LEFTBRACE OptFields t_RIGHTBRACE
 ;
 
-A :  t_EXTENDS t_ID
+OptExtends :  t_EXTENDS t_ID
  | epsilon
 ;
 
-B : t_IMPLEMENTS t_ID C
+OptImplements : t_IMPLEMENTS t_ID MoreIDs
 ;
 
-C : t_COMMA t_ID C
+MoreIDs : t_COMMA t_ID MoreIDs
  | epsilon
 ;
 
-P : Field P
+OptFields : Field OptFields
  | epsilon
 ;
 
@@ -84,10 +84,10 @@ Field : VariableDecl
  | FunctionDecl 
 ;
 
-InterfaceDecl : t_INTERFACE t_ID t_LEFTBRACE E t_RIGHTBRACE
+InterfaceDecl : t_INTERFACE t_ID t_LEFTBRACE OptPrototypes t_RIGHTBRACE
 ;
 
-E : Prototype E
+OptPrototypes : Prototype OptPrototypes
  | epsilon
 ;
 
@@ -95,18 +95,18 @@ Prototype : Type t_ID t_LEFTPAREN Formals t_RIGHTPAREN t_SEMICOLON
  | t_VOID t_ID t_LEFTPAREN Formals t_RIGHTPAREN t_SEMICOLON
 ;
 
-StmtBlock : t_LEFTBRACE K L t_RIGHTBRACE
+StmtBlock : t_LEFTBRACE OptVariableDecl OptStmt t_RIGHTBRACE
 ;
 
-K : VariableDecl K
+OptVariableDecl : VariableDecl OptVariableDecl
  |  epsilon
 ;
 
-L : Stmt L
+OptStmt : Stmt OptStmt
  | epsilon
 ;
 
-Stmt : M
+Stmt : ExprStmt
  | IfStmt
  | WhileStmt
  | ForStmt
@@ -116,44 +116,40 @@ Stmt : M
  | StmtBlock
 ;
 
-M : Expr t_SEMICOLON
- | epsilon
+ExprStmt : Expr t_SEMICOLON
+ | t_SEMICOLON
 ;
 
-IfStmt : t_IF t_LEFTPAREN Expr t_RIGHTPAREN Stmt N
+IfStmt : t_IF t_LEFTPAREN Expr t_RIGHTPAREN Stmt OptElseStmt
 ;
 
-N : t_ELSE Stmt
+OptElseStmt : t_ELSE Stmt
  | epsilon
 ;
 
 WhileStmt : t_WHILE t_LEFTPAREN Expr t_RIGHTPAREN Stmt
 ;
 
-ForStmt : t_FOR t_LEFTPAREN H t_SEMICOLON Expr t_SEMICOLON H t_RIGHTPAREN Stmt
+ForStmt : t_FOR t_LEFTPAREN OptExpr t_SEMICOLON Expr t_SEMICOLON OptExpr t_RIGHTPAREN Stmt
 ;
 
-H :  Expr
+OptExpr :  Expr
  | epsilon
 ;
 
 BreakStmt : t_BREAK t_SEMICOLON
 ;
 
-ReturnStmt : t_RETURN O t_SEMICOLON
+ReturnStmt : t_RETURN OptExpr t_SEMICOLON
 ;
 
-O :  Expr
- | epsilon
+PrintStmt :  t_PRINTLN t_LEFTPAREN  OptExprs t_RIGHTPAREN t_SEMICOLON 
 ;
 
-PrintStmt :  t_PRINTLN t_LEFTPAREN  F t_RIGHTPAREN t_SEMICOLON 
+OptExprs : Expr MoreExprs
 ;
 
-F : Expr G
-;
-
-G :  t_COMMA Expr G
+MoreExprs :  t_COMMA Expr MoreExprs
  | epsilon
 ;
 
@@ -190,10 +186,7 @@ Call : t_ID t_LEFTPAREN Actuals t_RIGHTPAREN
 | t_ID t_PERIOD t_ID t_LEFTPAREN Actuals t_RIGHTPAREN
 ;
 
-Actuals : Expr R
-| epsilon
-;
-R : t_COMMA Expr R
+Actuals : Expr MoreExprs
 | epsilon
 ;
 
@@ -214,7 +207,7 @@ epsilon : ;
 
 
 void yyerror(char *s) {
- fprintf(stderr, "%s\n", s);
+ //fprintf(stderr, "%s\n", s);
 }
 int main() {
     initFirstLetter();
