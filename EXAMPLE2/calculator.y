@@ -3,8 +3,7 @@
 
 %}
 
-%token t_NUM
-%left '+' '-' '*' '/'
+%token t_NUM '+' '-' '*' '/'
 
 %%
 

@@ -366,7 +366,7 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  4
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   10
+#define YYLAST   14
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  9
@@ -421,7 +421,7 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    11,    11,    14,    15,    16,    17,    20
+       0,    10,    10,    13,    14,    15,    16,    19
 };
 #endif
 
@@ -458,8 +458,8 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-       6,    -5,    10,    -4,    -5,     6,     6,     6,     6,    -5,
-      -5,    -5,    -5,    -5
+      10,    -5,    14,    -4,    -5,    10,    10,    10,    10,    -5,
+       1,     1,     1,     1
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -474,7 +474,7 @@ static const yytype_uint8 yydefact[] =
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -5,    -5,     0
+      -5,    -5,     4
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
@@ -488,14 +488,14 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-       5,     6,     7,     8,     9,    10,    11,    12,    13,     1,
-       4
+       5,     6,     7,     8,     9,     5,     6,     7,     8,    10,
+      11,    12,    13,     1,     4
 };
 
 static const yytype_uint8 yycheck[] =
 {
-       4,     5,     6,     7,     8,     5,     6,     7,     8,     3,
-       0
+       4,     5,     6,     7,     8,     4,     5,     6,     7,     5,
+       6,     7,     8,     3,     0
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -1192,31 +1192,31 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 11 "calculator.y" /* yacc.c:1646  */
+#line 10 "calculator.y" /* yacc.c:1646  */
     {/*TRACE $$ = $1;*/ printf("=%d\n",(yyvsp[-1])); exit(0);}
 #line 1198 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 14 "calculator.y" /* yacc.c:1646  */
+#line 13 "calculator.y" /* yacc.c:1646  */
     {(yyval)=(yyvsp[-2])+(yyvsp[0]);}
 #line 1204 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 15 "calculator.y" /* yacc.c:1646  */
+#line 14 "calculator.y" /* yacc.c:1646  */
     {(yyval)=(yyvsp[-2])-(yyvsp[0]);}
 #line 1210 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 16 "calculator.y" /* yacc.c:1646  */
+#line 15 "calculator.y" /* yacc.c:1646  */
     {(yyval)=(yyvsp[-2])*(yyvsp[0]);}
 #line 1216 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 17 "calculator.y" /* yacc.c:1646  */
+#line 16 "calculator.y" /* yacc.c:1646  */
     {
  if ((yyvsp[0])==0) {yyerror("divide by 0"); exit(0);}
  else (yyval)=(yyvsp[-2])/(yyvsp[0]);}
@@ -1224,7 +1224,7 @@ yyreduce:
     break;
 
   case 7:
-#line 20 "calculator.y" /* yacc.c:1646  */
+#line 19 "calculator.y" /* yacc.c:1646  */
     {(yyval)=(yyvsp[0]);}
 #line 1230 "y.tab.c" /* yacc.c:1646  */
     break;
@@ -1458,7 +1458,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 23 "calculator.y" /* yacc.c:1906  */
+#line 22 "calculator.y" /* yacc.c:1906  */
 
 
 void yyerror(char *s) {

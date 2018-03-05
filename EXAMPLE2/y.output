@@ -1,3 +1,9 @@
+State 10 conflicts: 4 shift/reduce
+State 11 conflicts: 4 shift/reduce
+State 12 conflicts: 4 shift/reduce
+State 13 conflicts: 4 shift/reduce
+
+
 Grammar
 
     0 $accept: statement $end
@@ -130,6 +136,15 @@ State 10
     4           | expression . '*' expression
     5           | expression . '/' expression
 
+    '+'  shift, and go to state 5
+    '-'  shift, and go to state 6
+    '*'  shift, and go to state 7
+    '/'  shift, and go to state 8
+
+    '+'       [reduce using rule 2 (expression)]
+    '-'       [reduce using rule 2 (expression)]
+    '*'       [reduce using rule 2 (expression)]
+    '/'       [reduce using rule 2 (expression)]
     $default  reduce using rule 2 (expression)
 
 
@@ -141,6 +156,15 @@ State 11
     4           | expression . '*' expression
     5           | expression . '/' expression
 
+    '+'  shift, and go to state 5
+    '-'  shift, and go to state 6
+    '*'  shift, and go to state 7
+    '/'  shift, and go to state 8
+
+    '+'       [reduce using rule 3 (expression)]
+    '-'       [reduce using rule 3 (expression)]
+    '*'       [reduce using rule 3 (expression)]
+    '/'       [reduce using rule 3 (expression)]
     $default  reduce using rule 3 (expression)
 
 
@@ -152,6 +176,15 @@ State 12
     4           | expression '*' expression .
     5           | expression . '/' expression
 
+    '+'  shift, and go to state 5
+    '-'  shift, and go to state 6
+    '*'  shift, and go to state 7
+    '/'  shift, and go to state 8
+
+    '+'       [reduce using rule 4 (expression)]
+    '-'       [reduce using rule 4 (expression)]
+    '*'       [reduce using rule 4 (expression)]
+    '/'       [reduce using rule 4 (expression)]
     $default  reduce using rule 4 (expression)
 
 
@@ -163,4 +196,13 @@ State 13
     5           | expression . '/' expression
     5           | expression '/' expression .
 
+    '+'  shift, and go to state 5
+    '-'  shift, and go to state 6
+    '*'  shift, and go to state 7
+    '/'  shift, and go to state 8
+
+    '+'       [reduce using rule 5 (expression)]
+    '-'       [reduce using rule 5 (expression)]
+    '*'       [reduce using rule 5 (expression)]
+    '/'       [reduce using rule 5 (expression)]
     $default  reduce using rule 5 (expression)
