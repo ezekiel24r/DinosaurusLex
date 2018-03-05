@@ -45,6 +45,7 @@ void initSymAndNext();
 int trieInsert(char * s);
 void triePrint();
 
+
 %}
 
 letter [a-zA-Z]
@@ -104,7 +105,7 @@ newarray {printf("newarray ", yytext); yylval=trieInsert(yytext);
     return (t_NEWARRAY);}
 true {printf("boolconstant ", yytext); yylval=trieInsert(yytext); 
     return (t_BOOLEANCONSTANT);}
-false {printf("boolconstant ", yytext); yylval=trieInsert(yytext); 
+false {printf("boolconstant ", yytext); /*yylval=trieInsert(yytext)*/; 
     return (t_BOOLEANCONSTANT);}
 
 "*" {printf("multiplication ", yytext); return (t_MULTIPLICATION);}
@@ -140,9 +141,9 @@ false {printf("boolconstant ", yytext); yylval=trieInsert(yytext);
 {newline} {printf("\n");}
 
 
-{id}    {yytext[yyleng]='\0'; yylval=trieInsert(yytext);
+{id}    {yytext[yyleng]='\0'; /*yylval=trieInsert(yytext);*/
         printf("id ", yytext);/* triePrint();*/ return(t_ID);}
-.   {printf("error!\n"); return (0);}
+.   {printf("error!\n"); return yytext[0];}
     
 %%
 //intializes the firstLetter array

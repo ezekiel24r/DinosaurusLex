@@ -210,10 +210,15 @@ epsilon : ;
 %%
 
 
+
+
+
 void yyerror(char *s) {
  fprintf(stderr, "%s\n", s);
 }
 int main() {
+    initFirstLetter();
+    initSymAndNext();
     yydebug = 1;
     yyparse();
 }
