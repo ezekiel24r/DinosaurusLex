@@ -24,25 +24,25 @@
 
 %%
 
-Start : Program {printf("hello there\n");};
+Start : Program {printf("reduce by rule 1\n");};
 
-Program : Decl Program
- | Decl
+Program : Decl Program {printf("reduce by rule 2\n");}
+ | Decl {printf("reduce by rule 3\n");}
 ;
 
-Decl : VariableDecl {printf("variable declared!\n");}
- | FunctionDecl
- |  ClassDecl
- | InterfaceDecl
+Decl : VariableDecl {printf("reduce by rule 4\n");}
+ | FunctionDecl {printf("reduce by rule 5\n");}
+ |  ClassDecl {printf("reduce by rule 6\n");}
+ | InterfaceDecl {printf("reduce by rule 7\n");}
 ;
 
-VariableDecl : Variable t_SEMICOLON
+VariableDecl : Variable t_SEMICOLON {printf("reduce by rule 8\n");};
 ;
 
-Variable :  Type t_ID
+Variable :  Type t_ID {printf("reduce by rule 9\n");}
 ;
 
-Type : t_INT
+Type : t_INT {printf("reduce by rule 10\n");}
  | t_DOUBLE
  | t_BOOLEAN
  | t_STRING
@@ -212,7 +212,7 @@ void yyerror(char *s) {
 int main() {
     initFirstLetter();
     initSymAndNext();
-    yydebug = 1;
+    //yydebug = 1;
     yyparse();
 }
 
