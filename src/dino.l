@@ -66,83 +66,83 @@ ws [ \t\r]
 
 {ws}    ;
 
-boolean {t_flag=BOOLEAN; printf("boolean ", yytext); yylval=trieInsert(yytext); 
+boolean {t_flag=BOOLEAN; printf("boolean [shift]\n", yytext); yylval=trieInsert(yytext); 
     return (t_BOOLEAN);}
-int {t_flag=INT; printf("int ", yytext); yylval=trieInsert(yytext);
+int {t_flag=INT; printf("int [shift]\n", yytext); yylval=trieInsert(yytext);
     return (t_INT);}
-double {t_flag=DOUBLE; printf("double ", yytext); yylval=trieInsert(yytext);
+double {t_flag=DOUBLE; printf("double [shift]\n", yytext); yylval=trieInsert(yytext);
     return (t_DOUBLE);}
-string {t_flag=STRING; printf("string ", yytext); yylval=trieInsert(yytext);
+string {t_flag=STRING; printf("string [shift]\n", yytext); yylval=trieInsert(yytext);
     return (t_STRING);}
 
-break {printf("break ", yytext); yylval=trieInsert(yytext);
+break {printf("break [shift]\n", yytext); yylval=trieInsert(yytext);
     return (t_BREAK);}
-extends {printf("extends ", yytext); yylval=trieInsert(yytext);
+extends {printf("extends [shift]\n", yytext); yylval=trieInsert(yytext);
     return (t_EXTENDS);}
-readln {printf("readln ", yytext); yylval=trieInsert(yytext);
+readln {printf("readln [shift]\n", yytext); yylval=trieInsert(yytext);
     return (t_READLN);}
-while {printf("while ", yytext); yylval=trieInsert(yytext);
+while {printf("while [shift]\n", yytext); yylval=trieInsert(yytext);
     return (t_WHILE);}
-else {printf("else ", yytext); yylval=trieInsert(yytext);
+else {printf("else [shift]\n", yytext); yylval=trieInsert(yytext);
     return (t_ELSE);}
-implements {printf("implements ", yytext); yylval=trieInsert(yytext);
+implements {printf("implements [shift]\n", yytext); yylval=trieInsert(yytext);
     return (t_IMPLEMENTS);}
-println {printf("println ", yytext); yylval=trieInsert(yytext);
+println {printf("println [shift]\n", yytext); yylval=trieInsert(yytext);
     return (t_PRINTLN);}
-void {printf("void ", yytext); yylval=trieInsert(yytext);
+void {printf("void [shift]\n", yytext); yylval=trieInsert(yytext);
     return (t_VOID);}
-class {printf("class ", yytext); yylval=trieInsert(yytext);
+class {printf("class [shift]\n", yytext); yylval=trieInsert(yytext);
     return (t_CLASS);} 
-for {printf("for ", yytext); yylval=trieInsert(yytext);
+for {printf("for [shift]\n", yytext); yylval=trieInsert(yytext);
     return (t_FOR);} 
-interface {printf("interface ", yytext); yylval=trieInsert(yytext);
+interface {printf("interface [shift]\n", yytext); yylval=trieInsert(yytext);
     return (t_INTERFACE);}
-return {printf("return ", yytext); yylval=trieInsert(yytext);
+return {printf("return [shift]\n", yytext); yylval=trieInsert(yytext);
     return (t_RETURN);}
-if {printf("if ", yytext); yylval=trieInsert(yytext);
+if {printf("if [shift]\n", yytext); yylval=trieInsert(yytext);
     return (t_IF);}
-newarray {printf("newarray ", yytext); yylval=trieInsert(yytext);
+newarray {printf("newarray [shift]\n", yytext); yylval=trieInsert(yytext);
     return (t_NEWARRAY);}
-true {printf("boolconstant ", yytext); yylval=trieInsert(yytext); 
+true {printf("boolconstant [shift]\n", yytext); yylval=trieInsert(yytext); 
     return (t_BOOLEANCONSTANT);}
-false {printf("boolconstant ", yytext); /*yylval=trieInsert(yytext)*/; 
+false {printf("boolconstant [shift]\n", yytext); /*yylval=trieInsert(yytext)*/; 
     return (t_BOOLEANCONSTANT);}
 
-"*" {printf("multiplication ", yytext); return (t_MULTIPLICATION);}
-"<=" {printf("lessequal ", yytext); return (t_LESSEQUAL);}
-"!=" {printf("notequal ", yytext); return (t_NOTEQUAL);}
-"(" {printf("leftparen ", yytext); return (t_LEFTPAREN);}
-"/" {printf("division ", yytext); return (t_DIVISION);}
-">" {printf("greater ", yytext); return (t_GREATER);}
-"&&" {printf("and ", yytext); return (t_AND);}
-";" {printf("semicolon ", yytext); return (t_SEMICOLON);}
-")" {printf("rightparen ", yytext); return (t_RIGHTPAREN);}
-"}" {printf("rightbrace ", yytext); return (t_RIGHTBRACE);}
-"{" {printf("leftbrace ", yytext); return (t_LEFTBRACE);}
-"+" {printf("plus ", yytext); return (t_PLUS);}
-"%" {printf("mod ", yytext); return (t_MOD);}
-">=" {printf("greaterequal ", yytext); return (t_GREATEREQUAL);}
-"||" {printf("or ", yytext); return (t_OR);}
-"," {printf("comma ", yytext); return (t_COMMA);}
-"[" {printf("leftbracket ", yytext); return (t_LEFTBRACKET);}
-"-" {printf("minus ", yytext); return (t_MINUS);}
-"<" {printf("less ", yytext); return (t_LESS);}
-"=" {printf("assignop ", yytext); return (t_ASSIGNOP);}
-"==" {printf("equal ", yytext); return (t_EQUAL);}
-"!" {printf("not ", yytext); return (t_NOT);}
-"." {printf("period ", yytext); return (t_PERIOD);}
-"]" {printf("rightbracket ", yytext); return (t_RIGHTBRACKET);}
+"*" {printf("multiplication [shift]\n", yytext); return (t_MULTIPLICATION);}
+"<=" {printf("lessequal [shift]\n", yytext); return (t_LESSEQUAL);}
+"!=" {printf("notequal [shift]\n", yytext); return (t_NOTEQUAL);}
+"(" {printf("leftparen [shift]\n", yytext); return (t_LEFTPAREN);}
+"/" {printf("division [shift]\n", yytext); return (t_DIVISION);}
+">" {printf("greater [shift]\n", yytext); return (t_GREATER);}
+"&&" {printf("and [shift]\n", yytext); return (t_AND);}
+";" {printf("semicolon [shift]\n", yytext); return (t_SEMICOLON);}
+")" {printf("rightparen [shift]\n", yytext); return (t_RIGHTPAREN);}
+"}" {printf("rightbrace [shift]\n", yytext); return (t_RIGHTBRACE);}
+"{" {printf("leftbrace [shift]\n", yytext); return (t_LEFTBRACE);}
+"+" {printf("plus [shift]\n", yytext); return (t_PLUS);}
+"%" {printf("mod [shift]\n", yytext); return (t_MOD);}
+">=" {printf("greaterequal [shift]\n", yytext); return (t_GREATEREQUAL);}
+"||" {printf("or [shift]\n", yytext); return (t_OR);}
+"," {printf("comma [shift]\n", yytext); return (t_COMMA);}
+"[" {printf("leftbracket [shift]\n", yytext); return (t_LEFTBRACKET);}
+"-" {printf("minus [shift]\n", yytext); return (t_MINUS);}
+"<" {printf("less [shift]\n", yytext); return (t_LESS);}
+"=" {printf("assignop [shift]\n", yytext); return (t_ASSIGNOP);}
+"==" {printf("equal [shift]\n", yytext); return (t_EQUAL);}
+"!" {printf("not [shift]\n", yytext); return (t_NOT);}
+"." {printf("period [shift]\n", yytext); return (t_PERIOD);}
+"]" {printf("rightbracket [shift]\n", yytext); return (t_RIGHTBRACKET);}
 
 
-{intconstant} {printf("intconstant ", yytext); return (t_INTCONSTANT);}
-{doubleconstant} {printf("doubleconstant ", yytext); return (t_DOUBLECONSTANT);}
-{stringconstant} {printf("stringconstant ", yytext); return (t_STRINGCONSTANT);}
-{comment} {printf(" ");}
-{newline} {printf("\n");}
+{intconstant} {printf("intconstant [shift]\n", yytext); return (t_INTCONSTANT);}
+{doubleconstant} {printf("doubleconstant [shift]\n", yytext); return (t_DOUBLECONSTANT);}
+{stringconstant} {printf("stringconstant [shift]\n", yytext); return (t_STRINGCONSTANT);}
+{comment} {printf("");}
+{newline} {printf("");}
 
 
 {id}    {yytext[yyleng]='\0'; /*yylval=trieInsert(yytext);*/
-        printf("id ", yytext);/* triePrint();*/ return(t_ID);}
+        printf("id [shift]\n", yytext);/* triePrint();*/ return(t_ID);}
 .   {printf("error!\n"); return yytext[0];}
     
 %%
