@@ -1,4 +1,8 @@
 %{
+/*
+    comments go here
+
+*/
 
     #include <stdio.h>
     #ifdef YYDEBUG
@@ -212,7 +216,7 @@ epsilon : {printf("[reduce 96]");}
 
 
 void yyerror(char *s) {
- fprintf(stderr, "%s\n", s);
+    fprintf(stderr, "%s\n", s);
 }
 int main() {
     initFirstLetter();
