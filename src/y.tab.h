@@ -75,23 +75,24 @@ extern int yydebug;
     t_STRING = 285,
     t_RIGHTBRACKET = 286,
     t_DOUBLECONSTANT = 287,
-    t_ASSIGNOP = 288,
-    t_OR = 289,
-    t_AND = 290,
-    t_EQUAL = 291,
-    t_NOTEQUAL = 292,
-    t_LESS = 293,
-    t_GREATER = 294,
-    t_GREATEREQUAL = 295,
-    t_LESSEQUAL = 296,
-    t_PLUS = 297,
-    t_MINUS = 298,
-    t_MULTIPLICATION = 299,
-    t_DIVISION = 300,
-    t_MOD = 301,
-    t_NOT = 302,
-    t_LEFTBRACKET = 303,
-    t_PERIOD = 304
+    t_ASSIGNOP = 289,
+    t_OR = 290,
+    t_AND = 291,
+    t_EQUAL = 292,
+    t_NOTEQUAL = 293,
+    t_LESS = 294,
+    t_GREATER = 295,
+    t_GREATEREQUAL = 296,
+    t_LESSEQUAL = 297,
+    t_PLUS = 298,
+    t_MINUS = 299,
+    t_MULTIPLICATION = 300,
+    t_DIVISION = 301,
+    t_MOD = 302,
+    t_NOT = 303,
+    t_UNARYMINUS = 304,
+    t_LEFTBRACKET = 305,
+    t_PERIOD = 306
   };
 #endif
 /* Tokens.  */
@@ -125,23 +126,24 @@ extern int yydebug;
 #define t_STRING 285
 #define t_RIGHTBRACKET 286
 #define t_DOUBLECONSTANT 287
-#define t_ASSIGNOP 288
-#define t_OR 289
-#define t_AND 290
-#define t_EQUAL 291
-#define t_NOTEQUAL 292
-#define t_LESS 293
-#define t_GREATER 294
-#define t_GREATEREQUAL 295
-#define t_LESSEQUAL 296
-#define t_PLUS 297
-#define t_MINUS 298
-#define t_MULTIPLICATION 299
-#define t_DIVISION 300
-#define t_MOD 301
-#define t_NOT 302
-#define t_LEFTBRACKET 303
-#define t_PERIOD 304
+#define t_ASSIGNOP 289
+#define t_OR 290
+#define t_AND 291
+#define t_EQUAL 292
+#define t_NOTEQUAL 293
+#define t_LESS 294
+#define t_GREATER 295
+#define t_GREATEREQUAL 296
+#define t_LESSEQUAL 297
+#define t_PLUS 298
+#define t_MINUS 299
+#define t_MULTIPLICATION 300
+#define t_DIVISION 301
+#define t_MOD 302
+#define t_NOT 303
+#define t_UNARYMINUS 304
+#define t_LEFTBRACKET 305
+#define t_PERIOD 306
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

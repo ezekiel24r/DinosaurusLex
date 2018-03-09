@@ -52,7 +52,7 @@ letter [a-zA-Z]
 digit [0-9]
 id {letter}({letter}|{digit}|_)*
 number {digit}+
-doubleconstant {number}"."{digit}*((e|E)("+"|"-")?{number})?
+doubleconstant ({number}"."{digit}*((e|E)("+"|"-")?{number})?)|({number}((e|E)("+"|"-")?{number}))
 hex (0x|0X)[a-fA-F0-9]+
 stringconstant \"[^"\n]*\"
 multilinecomment ("/*")([^*]*"*"+[^*/])*([^*]*)("*"+)"/"

@@ -5,32 +5,37 @@
     extern int yydebug;
     #endif
 
-
+    int dflag;
 
 %}
 
 %token t_BOOLEAN t_ELSE t_IMPLEMENTS t_PRINTLN t_VOID t_LEFTPAREN t_LEFTBRACE t_STRINGCONSTANT t_BREAK t_EXTENDS t_INT t_READLN t_WHILE t_SEMICOLON t_RIGHTPAREN t_RIGHTBRACE t_BOOLEANCONSTANT t_CLASS t_FOR t_INTERFACE t_RETURN t_COMMA t_INTCONSTANT t_ID t_DOUBLE t_IF t_NEWARRAY t_STRING t_RIGHTBRACKET t_DOUBLECONSTANT
 
+
+%nonassoc "noelse"
+%nonassoc t_ELSE
 %nonassoc t_ASSIGNOP
+%nonassoc t_ID
 %left t_OR
 %left t_AND
 %nonassoc t_EQUAL t_NOTEQUAL
 %nonassoc t_LESS t_GREATER t_GREATEREQUAL t_LESSEQUAL
 %left t_PLUS t_MINUS
 %left t_MULTIPLICATION t_DIVISION t_MOD
-%right t_NOT
+%right t_NOT t_UNARYMINUS
 %right t_LEFTBRACKET t_PERIOD
-
+%nonassoc "lvalue"
 
 %%
 
-Start : Program {printf("hello there\n");};
+Start : Program 
+;
 
 Program : Decl Program
  | Decl
 ;
 
-Decl : VariableDecl {printf("variable declared!\n");}
+Decl : VariableDecl
  | FunctionDecl
  |  ClassDecl
  | InterfaceDecl
@@ -42,13 +47,14 @@ VariableDecl : Variable t_SEMICOLON
 Variable :  Type t_ID
 ;
 
+
 Type : t_INT
  | t_DOUBLE
  | t_BOOLEAN
  | t_STRING
  | Type t_LEFTBRACKET t_RIGHTBRACKET
  | t_ID
-;
+ ;
 
 FunctionDecl :  Type t_ID t_LEFTPAREN Formals t_RIGHTPAREN StmtBlock
  |  t_VOID t_ID t_LEFTPAREN Formals t_RIGHTPAREN StmtBlock 
@@ -70,6 +76,7 @@ OptExtends :  t_EXTENDS t_ID
 ;
 
 OptImplements : t_IMPLEMENTS t_ID MoreIDs
+| epsilon
 ;
 
 MoreIDs : t_COMMA t_ID MoreIDs
@@ -95,18 +102,22 @@ Prototype : Type t_ID t_LEFTPAREN Formals t_RIGHTPAREN t_SEMICOLON
  | t_VOID t_ID t_LEFTPAREN Formals t_RIGHTPAREN t_SEMICOLON
 ;
 
-StmtBlock : t_LEFTBRACE OptVariableDecl OptStmt t_RIGHTBRACE
+StmtBlock : t_LEFTBRACE OptStmtBlock t_RIGHTBRACE
+;
+
+OptStmtBlock : OptVariableDecl
+ | OptStmt
 ;
 
 OptVariableDecl : VariableDecl OptVariableDecl
- |  epsilon
+ | OptStmt
 ;
 
 OptStmt : Stmt OptStmt
  | epsilon
 ;
 
-Stmt : ExprStmt
+Stmt : OptExpr t_SEMICOLON
  | IfStmt
  | WhileStmt
  | ForStmt
@@ -116,15 +127,8 @@ Stmt : ExprStmt
  | StmtBlock
 ;
 
-ExprStmt : Expr t_SEMICOLON
- | t_SEMICOLON
-;
-
-IfStmt : t_IF t_LEFTPAREN Expr t_RIGHTPAREN Stmt OptElseStmt
-;
-
-OptElseStmt : t_ELSE Stmt
- | epsilon
+IfStmt : t_IF t_LEFTPAREN Expr t_RIGHTPAREN Stmt        %prec "noelse"
+ | t_IF t_LEFTPAREN Expr t_RIGHTPAREN Stmt t_ELSE Stmt
 ;
 
 WhileStmt : t_WHILE t_LEFTPAREN Expr t_RIGHTPAREN Stmt
@@ -153,17 +157,18 @@ MoreExprs :  t_COMMA Expr MoreExprs
  | epsilon
 ;
 
-Expr : Lvalue t_ASSIGNOP Expr 
+Expr : Lvalue t_ASSIGNOP Expr
  | Constant 
- | Lvalue 
- | Call 
+ | LvalueNotID
+ | t_ID
+ | Call
  | t_LEFTPAREN Expr t_RIGHTPAREN 
  | Expr t_PLUS Expr 
  | Expr t_MINUS Expr 
  | Expr t_MULTIPLICATION Expr
  | Expr t_DIVISION Expr 
  | Expr t_MOD Expr
- | t_MINUS Expr
+ | t_MINUS Expr   %prec t_UNARYMINUS
  | Expr t_LESS Expr 
  | Expr t_LESSEQUAL Expr
  | Expr t_GREATER Expr 
@@ -178,9 +183,12 @@ Expr : Lvalue t_ASSIGNOP Expr
 ;
 
 Lvalue : t_ID
-| Lvalue t_LEFTBRACKET Expr t_RIGHTBRACKET
-| Lvalue t_PERIOD t_ID
+ | LvalueNotID
 ;
+
+LvalueNotID : LvalueNotID t_LEFTBRACKET Expr t_RIGHTBRACKET
+ | Lvalue t_PERIOD t_ID
+ | t_ID t_LEFTBRACKET Expr t_RIGHTBRACKET
 
 Call : t_ID t_LEFTPAREN Actuals t_RIGHTPAREN
 | t_ID t_PERIOD t_ID t_LEFTPAREN Actuals t_RIGHTPAREN
@@ -207,12 +215,12 @@ epsilon : ;
 
 
 void yyerror(char *s) {
- //fprintf(stderr, "%s\n", s);
+ fprintf(stderr, "%s\n", s);
 }
 int main() {
     initFirstLetter();
     initSymAndNext();
     yydebug = 1;
-    yyparse();
+    return(yyparse());
 }
 
