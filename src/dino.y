@@ -28,7 +28,7 @@
 
 %%
 
-Start : Program {printf("[reduce 0]");}
+Start : Program {printf("[reduce 0]\n[accept]\n");}
 ;
 
 Program : Decl Program {printf("[reduce 1]");}

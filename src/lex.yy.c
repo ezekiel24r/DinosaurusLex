@@ -884,257 +884,257 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 69 "dino.l"
-{t_flag=BOOLEAN; printf("boolean [shift]\n", yytext); yylval=trieInsert(yytext); 
+{t_flag=BOOLEAN; printf("\nboolean [shift]", yytext); yylval=trieInsert(yytext); 
     return (t_BOOLEAN);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 71 "dino.l"
-{t_flag=INT; printf("int [shift]\n", yytext); yylval=trieInsert(yytext);
+{t_flag=INT; printf("\nint [shift]", yytext); yylval=trieInsert(yytext);
     return (t_INT);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 73 "dino.l"
-{t_flag=DOUBLE; printf("double [shift]\n", yytext); yylval=trieInsert(yytext);
+{t_flag=DOUBLE; printf("\ndouble [shift]", yytext); yylval=trieInsert(yytext);
     return (t_DOUBLE);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 75 "dino.l"
-{t_flag=STRING; printf("string [shift]\n", yytext); yylval=trieInsert(yytext);
+{t_flag=STRING; printf("\nstring [shift]", yytext); yylval=trieInsert(yytext);
     return (t_STRING);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 78 "dino.l"
-{printf("break [shift]\n", yytext); yylval=trieInsert(yytext);
+{printf("\nbreak [shift]", yytext); yylval=trieInsert(yytext);
     return (t_BREAK);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 80 "dino.l"
-{printf("extends [shift]\n", yytext); yylval=trieInsert(yytext);
+{printf("\nextends [shift]", yytext); yylval=trieInsert(yytext);
     return (t_EXTENDS);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 82 "dino.l"
-{printf("readln [shift]\n", yytext); yylval=trieInsert(yytext);
+{printf("\nreadln [shift]", yytext); yylval=trieInsert(yytext);
     return (t_READLN);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 84 "dino.l"
-{printf("while [shift]\n", yytext); yylval=trieInsert(yytext);
+{printf("\nwhile [shift]", yytext); yylval=trieInsert(yytext);
     return (t_WHILE);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 86 "dino.l"
-{printf("else [shift]\n", yytext); yylval=trieInsert(yytext);
+{printf("\nelse [shift]", yytext); yylval=trieInsert(yytext);
     return (t_ELSE);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 88 "dino.l"
-{printf("implements [shift]\n", yytext); yylval=trieInsert(yytext);
+{printf("\nimplements [shift]", yytext); yylval=trieInsert(yytext);
     return (t_IMPLEMENTS);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 90 "dino.l"
-{printf("println [shift]\n", yytext); yylval=trieInsert(yytext);
+{printf("\nprintln [shift]", yytext); yylval=trieInsert(yytext);
     return (t_PRINTLN);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 92 "dino.l"
-{printf("void [shift]\n", yytext); yylval=trieInsert(yytext);
+{printf("\nvoid [shift]", yytext); yylval=trieInsert(yytext);
     return (t_VOID);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 94 "dino.l"
-{printf("class [shift]\n", yytext); yylval=trieInsert(yytext);
+{printf("\nclass [shift]", yytext); yylval=trieInsert(yytext);
     return (t_CLASS);} 
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 96 "dino.l"
-{printf("for [shift]\n", yytext); yylval=trieInsert(yytext);
+{printf("\nfor [shift]", yytext); yylval=trieInsert(yytext);
     return (t_FOR);} 
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 98 "dino.l"
-{printf("interface [shift]\n", yytext); yylval=trieInsert(yytext);
+{printf("\ninterface [shift]", yytext); yylval=trieInsert(yytext);
     return (t_INTERFACE);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 100 "dino.l"
-{printf("return [shift]\n", yytext); yylval=trieInsert(yytext);
+{printf("\nreturn [shift]", yytext); yylval=trieInsert(yytext);
     return (t_RETURN);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 102 "dino.l"
-{printf("if [shift]\n", yytext); yylval=trieInsert(yytext);
+{printf("\nif [shift]", yytext); yylval=trieInsert(yytext);
     return (t_IF);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 104 "dino.l"
-{printf("newarray [shift]\n", yytext); yylval=trieInsert(yytext);
+{printf("\nnewarray [shift]", yytext); yylval=trieInsert(yytext);
     return (t_NEWARRAY);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 106 "dino.l"
-{printf("boolconstant [shift]\n", yytext); yylval=trieInsert(yytext); 
+{printf("\nboolconstant [shift]", yytext); yylval=trieInsert(yytext); 
     return (t_BOOLEANCONSTANT);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 108 "dino.l"
-{printf("boolconstant [shift]\n", yytext); /*yylval=trieInsert(yytext)*/; 
+{printf("\nboolconstant [shift]", yytext); /*yylval=trieInsert(yytext)*/; 
     return (t_BOOLEANCONSTANT);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 111 "dino.l"
-{printf("multiplication [shift]\n", yytext); return (t_MULTIPLICATION);}
+{printf("\nmultiplication [shift]", yytext); return (t_MULTIPLICATION);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 112 "dino.l"
-{printf("lessequal [shift]\n", yytext); return (t_LESSEQUAL);}
+{printf("\nlessequal [shift]", yytext); return (t_LESSEQUAL);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 113 "dino.l"
-{printf("notequal [shift]\n", yytext); return (t_NOTEQUAL);}
+{printf("\nnotequal [shift]", yytext); return (t_NOTEQUAL);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
 #line 114 "dino.l"
-{printf("leftparen [shift]\n", yytext); return (t_LEFTPAREN);}
+{printf("\nleftparen [shift]", yytext); return (t_LEFTPAREN);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 115 "dino.l"
-{printf("division [shift]\n", yytext); return (t_DIVISION);}
+{printf("\ndivision [shift]", yytext); return (t_DIVISION);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
 #line 116 "dino.l"
-{printf("greater [shift]\n", yytext); return (t_GREATER);}
+{printf("\ngreater [shift]", yytext); return (t_GREATER);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
 #line 117 "dino.l"
-{printf("and [shift]\n", yytext); return (t_AND);}
+{printf("\nand [shift]", yytext); return (t_AND);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 #line 118 "dino.l"
-{printf("semicolon [shift]\n", yytext); return (t_SEMICOLON);}
+{printf("\nsemicolon [shift]", yytext); return (t_SEMICOLON);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
 #line 119 "dino.l"
-{printf("rightparen [shift]\n", yytext); return (t_RIGHTPAREN);}
+{printf("\nrightparen [shift]", yytext); return (t_RIGHTPAREN);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
 #line 120 "dino.l"
-{printf("rightbrace [shift]\n", yytext); return (t_RIGHTBRACE);}
+{printf("\nrightbrace [shift]", yytext); return (t_RIGHTBRACE);}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 #line 121 "dino.l"
-{printf("leftbrace [shift]\n", yytext); return (t_LEFTBRACE);}
+{printf("\nleftbrace [shift]", yytext); return (t_LEFTBRACE);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
 #line 122 "dino.l"
-{printf("plus [shift]\n", yytext); return (t_PLUS);}
+{printf("\nplus [shift]", yytext); return (t_PLUS);}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
 #line 123 "dino.l"
-{printf("mod [shift]\n", yytext); return (t_MOD);}
+{printf("\nmod [shift]", yytext); return (t_MOD);}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
 #line 124 "dino.l"
-{printf("greaterequal [shift]\n", yytext); return (t_GREATEREQUAL);}
+{printf("\ngreaterequal [shift]", yytext); return (t_GREATEREQUAL);}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
 #line 125 "dino.l"
-{printf("or [shift]\n", yytext); return (t_OR);}
+{printf("\nor [shift]", yytext); return (t_OR);}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
 #line 126 "dino.l"
-{printf("comma [shift]\n", yytext); return (t_COMMA);}
+{printf("\ncomma [shift]", yytext); return (t_COMMA);}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
 #line 127 "dino.l"
-{printf("leftbracket [shift]\n", yytext); return (t_LEFTBRACKET);}
+{printf("\nleftbracket [shift]", yytext); return (t_LEFTBRACKET);}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
 #line 128 "dino.l"
-{printf("minus [shift]\n", yytext); return (t_MINUS);}
+{printf("\nminus [shift]", yytext); return (t_MINUS);}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
 #line 129 "dino.l"
-{printf("less [shift]\n", yytext); return (t_LESS);}
+{printf("\nless [shift]", yytext); return (t_LESS);}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
 #line 130 "dino.l"
-{printf("assignop [shift]\n", yytext); return (t_ASSIGNOP);}
+{printf("\nassignop [shift]", yytext); return (t_ASSIGNOP);}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
 #line 131 "dino.l"
-{printf("equal [shift]\n", yytext); return (t_EQUAL);}
+{printf("\nequal [shift]", yytext); return (t_EQUAL);}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
 #line 132 "dino.l"
-{printf("not [shift]\n", yytext); return (t_NOT);}
+{printf("\nnot [shift]", yytext); return (t_NOT);}
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
 #line 133 "dino.l"
-{printf("period [shift]\n", yytext); return (t_PERIOD);}
+{printf("\nperiod [shift]", yytext); return (t_PERIOD);}
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
 #line 134 "dino.l"
-{printf("rightbracket [shift]\n", yytext); return (t_RIGHTBRACKET);}
+{printf("\nrightbracket [shift]", yytext); return (t_RIGHTBRACKET);}
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
 #line 137 "dino.l"
-{printf("intconstant [shift]\n", yytext); return (t_INTCONSTANT);}
+{printf("\nintconstant [shift]", yytext); return (t_INTCONSTANT);}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
 #line 138 "dino.l"
-{printf("doubleconstant [shift]\n", yytext); return (t_DOUBLECONSTANT);}
+{printf("\ndoubleconstant [shift]", yytext); return (t_DOUBLECONSTANT);}
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
 #line 139 "dino.l"
-{printf("stringconstant [shift]\n", yytext); return (t_STRINGCONSTANT);}
+{printf("\nstringconstant [shift]", yytext); return (t_STRINGCONSTANT);}
 	YY_BREAK
 case 49:
 /* rule 49 can match eol */
@@ -1152,12 +1152,12 @@ case 51:
 YY_RULE_SETUP
 #line 144 "dino.l"
 {yytext[yyleng]='\0'; /*yylval=trieInsert(yytext);*/
-        printf("id [shift]\n", yytext);/* triePrint();*/ return(t_ID);}
+        printf("\nid [shift]", yytext);/* triePrint();*/ return(t_ID);}
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
 #line 146 "dino.l"
-{printf("error!\n"); return yytext[0];}
+{printf("\nerror!\n"); return yytext[0];}
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
