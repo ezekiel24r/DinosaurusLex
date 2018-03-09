@@ -24,7 +24,7 @@
 
 %%
 
-Start : Program {printf("reduce 1\n");};
+Start : Program {printf("%sreduce 1\n",$$);};
 
 Program : Decl Program {printf("reduce 2\n");}
  | Decl {printf("reduce 3\n");}
@@ -207,7 +207,7 @@ epsilon : {printf("reduce 98\n");};
 
 
 void yyerror(char *s) {
- //fprintf(stderr, "%s\n", s);
+    fprintf(stderr, "%s\nthis is going to work", s);
 }
 int main() {
     initFirstLetter();
