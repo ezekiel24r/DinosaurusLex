@@ -1,0 +1,3216 @@
+State 59 conflicts: 1 shift/reduce
+State 73 conflicts: 1 shift/reduce
+State 93 conflicts: 1 shift/reduce
+State 199 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: Start $end
+
+    1 Start: Program
+
+    2 Program: Decl Program
+    3        | Decl
+
+    4 Decl: VariableDecl
+    5     | FunctionDecl
+    6     | ClassDecl
+    7     | InterfaceDecl
+
+    8 VariableDecl: Variable t_SEMICOLON
+
+    9 Variable: Type t_ID
+
+   10 Type: t_INT
+   11     | t_DOUBLE
+   12     | t_BOOLEAN
+   13     | t_STRING
+   14     | Type t_LEFTBRACKET t_RIGHTBRACKET
+   15     | t_ID
+
+   16 FunctionDecl: Type t_ID t_LEFTPAREN Formals t_RIGHTPAREN StmtBlock
+   17             | t_VOID t_ID t_LEFTPAREN Formals t_RIGHTPAREN StmtBlock
+
+   18 Formals: Variable MoreVariables
+   19        | epsilon
+
+   20 MoreVariables: t_COMMA Variable MoreVariables
+   21              | epsilon
+
+   22 ClassDecl: t_CLASS t_ID OptExtends OptImplements t_LEFTBRACE OptFields t_RIGHTBRACE
+
+   23 OptExtends: t_EXTENDS t_ID
+   24           | epsilon
+
+   25 OptImplements: t_IMPLEMENTS t_ID MoreIDs
+
+   26 MoreIDs: t_COMMA t_ID MoreIDs
+   27        | epsilon
+
+   28 OptFields: Field OptFields
+   29          | epsilon
+
+   30 Field: VariableDecl
+   31      | FunctionDecl
+
+   32 InterfaceDecl: t_INTERFACE t_ID t_LEFTBRACE OptPrototypes t_RIGHTBRACE
+
+   33 OptPrototypes: Prototype OptPrototypes
+   34              | epsilon
+
+   35 Prototype: Type t_ID t_LEFTPAREN Formals t_RIGHTPAREN t_SEMICOLON
+   36          | t_VOID t_ID t_LEFTPAREN Formals t_RIGHTPAREN t_SEMICOLON
+
+   37 StmtBlock: t_LEFTBRACE OptVariableDecl OptStmt t_RIGHTBRACE
+
+   38 OptVariableDecl: VariableDecl OptVariableDecl
+   39                | epsilon
+
+   40 OptStmt: Stmt OptStmt
+   41        | epsilon
+
+   42 Stmt: ExprStmt
+   43     | IfStmt
+   44     | WhileStmt
+   45     | ForStmt
+   46     | BreakStmt
+   47     | ReturnStmt
+   48     | PrintStmt
+   49     | StmtBlock
+
+   50 ExprStmt: Expr t_SEMICOLON
+   51         | t_SEMICOLON
+
+   52 IfStmt: t_IF t_LEFTPAREN Expr t_RIGHTPAREN Stmt OptElseStmt
+
+   53 OptElseStmt: t_ELSE Stmt
+   54            | epsilon
+
+   55 WhileStmt: t_WHILE t_LEFTPAREN Expr t_RIGHTPAREN Stmt
+
+   56 ForStmt: t_FOR t_LEFTPAREN OptExpr t_SEMICOLON Expr t_SEMICOLON OptExpr t_RIGHTPAREN Stmt
+
+   57 OptExpr: Expr
+   58        | epsilon
+
+   59 BreakStmt: t_BREAK t_SEMICOLON
+
+   60 ReturnStmt: t_RETURN OptExpr t_SEMICOLON
+
+   61 PrintStmt: t_PRINTLN t_LEFTPAREN OptExprs t_RIGHTPAREN t_SEMICOLON
+
+   62 OptExprs: Expr MoreExprs
+
+   63 MoreExprs: t_COMMA Expr MoreExprs
+   64          | epsilon
+
+   65 Expr: Lvalue t_ASSIGNOP Expr
+   66     | Constant
+   67     | Lvalue
+   68     | Call
+   69     | t_LEFTPAREN Expr t_RIGHTPAREN
+   70     | Expr t_PLUS Expr
+   71     | Expr t_MINUS Expr
+   72     | Expr t_MULTIPLICATION Expr
+   73     | Expr t_DIVISION Expr
+   74     | Expr t_MOD Expr
+   75     | t_MINUS Expr
+   76     | Expr t_LESS Expr
+   77     | Expr t_LESSEQUAL Expr
+   78     | Expr t_GREATER Expr
+   79     | Expr t_GREATEREQUAL Expr
+   80     | Expr t_EQUAL Expr
+   81     | Expr t_NOTEQUAL Expr
+   82     | Expr t_AND Expr
+   83     | Expr t_OR Expr
+   84     | t_NOT Expr
+   85     | t_READLN t_LEFTPAREN t_RIGHTPAREN
+   86     | t_NEWARRAY t_LEFTPAREN t_INTCONSTANT t_COMMA Type t_RIGHTPAREN
+
+   87 Lvalue: t_ID
+   88       | Lvalue t_LEFTBRACKET Expr t_RIGHTBRACKET
+   89       | Lvalue t_PERIOD t_ID
+
+   90 Call: t_ID t_LEFTPAREN Actuals t_RIGHTPAREN
+   91     | t_ID t_PERIOD t_ID t_LEFTPAREN Actuals t_RIGHTPAREN
+
+   92 Actuals: Expr MoreExprs
+   93        | epsilon
+
+   94 Constant: t_INTCONSTANT
+   95         | t_DOUBLECONSTANT
+   96         | t_STRINGCONSTANT
+   97         | t_BOOLEANCONSTANT
+
+   98 epsilon: %empty
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+t_BOOLEAN (258) 12
+t_ELSE (259) 53
+t_IMPLEMENTS (260) 25
+t_PRINTLN (261) 61
+t_VOID (262) 17 36
+t_LEFTPAREN (263) 16 17 35 36 52 55 56 61 69 85 86 90 91
+t_LEFTBRACE (264) 22 32 37
+t_STRINGCONSTANT (265) 96
+t_BREAK (266) 59
+t_EXTENDS (267) 23
+t_INT (268) 10
+t_READLN (269) 85
+t_WHILE (270) 55
+t_SEMICOLON (271) 8 35 36 50 51 56 59 60 61
+t_RIGHTPAREN (272) 16 17 35 36 52 55 56 61 69 85 86 90 91
+t_RIGHTBRACE (273) 22 32 37
+t_BOOLEANCONSTANT (274) 97
+t_CLASS (275) 22
+t_FOR (276) 56
+t_INTERFACE (277) 32
+t_RETURN (278) 60
+t_COMMA (279) 20 26 63 86
+t_INTCONSTANT (280) 86 94
+t_ID (281) 9 15 16 17 22 23 25 26 32 35 36 87 89 90 91
+t_DOUBLE (282) 11
+t_IF (283) 52
+t_NEWARRAY (284) 86
+t_STRING (285) 13
+t_RIGHTBRACKET (286) 14 88
+t_DOUBLECONSTANT (287) 95
+t_ASSIGNOP (288) 65
+t_OR (289) 83
+t_AND (290) 82
+t_EQUAL (291) 80
+t_NOTEQUAL (292) 81
+t_LESS (293) 76
+t_GREATER (294) 78
+t_GREATEREQUAL (295) 79
+t_LESSEQUAL (296) 77
+t_PLUS (297) 70
+t_MINUS (298) 71 75
+t_MULTIPLICATION (299) 72
+t_DIVISION (300) 73
+t_MOD (301) 74
+t_NOT (302) 84
+t_LEFTBRACKET (303) 14 88
+t_PERIOD (304) 89 91
+
+
+Nonterminals, with rules where they appear
+
+$accept (50)
+    on left: 0
+Start (51)
+    on left: 1, on right: 0
+Program (52)
+    on left: 2 3, on right: 1 2
+Decl (53)
+    on left: 4 5 6 7, on right: 2 3
+VariableDecl (54)
+    on left: 8, on right: 4 30 38
+Variable (55)
+    on left: 9, on right: 8 18 20
+Type (56)
+    on left: 10 11 12 13 14 15, on right: 9 14 16 35 86
+FunctionDecl (57)
+    on left: 16 17, on right: 5 31
+Formals (58)
+    on left: 18 19, on right: 16 17 35 36
+MoreVariables (59)
+    on left: 20 21, on right: 18 20
+ClassDecl (60)
+    on left: 22, on right: 6
+OptExtends (61)
+    on left: 23 24, on right: 22
+OptImplements (62)
+    on left: 25, on right: 22
+MoreIDs (63)
+    on left: 26 27, on right: 25 26
+OptFields (64)
+    on left: 28 29, on right: 22 28
+Field (65)
+    on left: 30 31, on right: 28
+InterfaceDecl (66)
+    on left: 32, on right: 7
+OptPrototypes (67)
+    on left: 33 34, on right: 32 33
+Prototype (68)
+    on left: 35 36, on right: 33
+StmtBlock (69)
+    on left: 37, on right: 16 17 49
+OptVariableDecl (70)
+    on left: 38 39, on right: 37 38
+OptStmt (71)
+    on left: 40 41, on right: 37 40
+Stmt (72)
+    on left: 42 43 44 45 46 47 48 49, on right: 40 52 53 55 56
+ExprStmt (73)
+    on left: 50 51, on right: 42
+IfStmt (74)
+    on left: 52, on right: 43
+OptElseStmt (75)
+    on left: 53 54, on right: 52
+WhileStmt (76)
+    on left: 55, on right: 44
+ForStmt (77)
+    on left: 56, on right: 45
+OptExpr (78)
+    on left: 57 58, on right: 56 60
+BreakStmt (79)
+    on left: 59, on right: 46
+ReturnStmt (80)
+    on left: 60, on right: 47
+PrintStmt (81)
+    on left: 61, on right: 48
+OptExprs (82)
+    on left: 62, on right: 61
+MoreExprs (83)
+    on left: 63 64, on right: 62 63 92
+Expr (84)
+    on left: 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82
+    83 84 85 86, on right: 50 52 55 56 57 62 63 65 69 70 71 72 73 74
+    75 76 77 78 79 80 81 82 83 84 88 92
+Lvalue (85)
+    on left: 87 88 89, on right: 65 67 88 89
+Call (86)
+    on left: 90 91, on right: 68
+Actuals (87)
+    on left: 92 93, on right: 90 91
+Constant (88)
+    on left: 94 95 96 97, on right: 66
+epsilon (89)
+    on left: 98, on right: 19 21 24 27 29 34 39 41 54 58 64 93
+
+
+State 0
+
+    0 $accept: . Start $end
+
+    t_BOOLEAN    shift, and go to state 1
+    t_VOID       shift, and go to state 2
+    t_INT        shift, and go to state 3
+    t_CLASS      shift, and go to state 4
+    t_INTERFACE  shift, and go to state 5
+    t_ID         shift, and go to state 6
+    t_DOUBLE     shift, and go to state 7
+    t_STRING     shift, and go to state 8
+
+    Start          go to state 9
+    Program        go to state 10
+    Decl           go to state 11
+    VariableDecl   go to state 12
+    Variable       go to state 13
+    Type           go to state 14
+    FunctionDecl   go to state 15
+    ClassDecl      go to state 16
+    InterfaceDecl  go to state 17
+
+
+State 1
+
+   12 Type: t_BOOLEAN .
+
+    $default  reduce using rule 12 (Type)
+
+
+State 2
+
+   17 FunctionDecl: t_VOID . t_ID t_LEFTPAREN Formals t_RIGHTPAREN StmtBlock
+
+    t_ID  shift, and go to state 18
+
+
+State 3
+
+   10 Type: t_INT .
+
+    $default  reduce using rule 10 (Type)
+
+
+State 4
+
+   22 ClassDecl: t_CLASS . t_ID OptExtends OptImplements t_LEFTBRACE OptFields t_RIGHTBRACE
+
+    t_ID  shift, and go to state 19
+
+
+State 5
+
+   32 InterfaceDecl: t_INTERFACE . t_ID t_LEFTBRACE OptPrototypes t_RIGHTBRACE
+
+    t_ID  shift, and go to state 20
+
+
+State 6
+
+   15 Type: t_ID .
+
+    $default  reduce using rule 15 (Type)
+
+
+State 7
+
+   11 Type: t_DOUBLE .
+
+    $default  reduce using rule 11 (Type)
+
+
+State 8
+
+   13 Type: t_STRING .
+
+    $default  reduce using rule 13 (Type)
+
+
+State 9
+
+    0 $accept: Start . $end
+
+    $end  shift, and go to state 21
+
+
+State 10
+
+    1 Start: Program .
+
+    $default  reduce using rule 1 (Start)
+
+
+State 11
+
+    2 Program: Decl . Program
+    3        | Decl .
+
+    t_BOOLEAN    shift, and go to state 1
+    t_VOID       shift, and go to state 2
+    t_INT        shift, and go to state 3
+    t_CLASS      shift, and go to state 4
+    t_INTERFACE  shift, and go to state 5
+    t_ID         shift, and go to state 6
+    t_DOUBLE     shift, and go to state 7
+    t_STRING     shift, and go to state 8
+
+    $default  reduce using rule 3 (Program)
+
+    Program        go to state 22
+    Decl           go to state 11
+    VariableDecl   go to state 12
+    Variable       go to state 13
+    Type           go to state 14
+    FunctionDecl   go to state 15
+    ClassDecl      go to state 16
+    InterfaceDecl  go to state 17
+
+
+State 12
+
+    4 Decl: VariableDecl .
+
+    $default  reduce using rule 4 (Decl)
+
+
+State 13
+
+    8 VariableDecl: Variable . t_SEMICOLON
+
+    t_SEMICOLON  shift, and go to state 23
+
+
+State 14
+
+    9 Variable: Type . t_ID
+   14 Type: Type . t_LEFTBRACKET t_RIGHTBRACKET
+   16 FunctionDecl: Type . t_ID t_LEFTPAREN Formals t_RIGHTPAREN StmtBlock
+
+    t_ID           shift, and go to state 24
+    t_LEFTBRACKET  shift, and go to state 25
+
+
+State 15
+
+    5 Decl: FunctionDecl .
+
+    $default  reduce using rule 5 (Decl)
+
+
+State 16
+
+    6 Decl: ClassDecl .
+
+    $default  reduce using rule 6 (Decl)
+
+
+State 17
+
+    7 Decl: InterfaceDecl .
+
+    $default  reduce using rule 7 (Decl)
+
+
+State 18
+
+   17 FunctionDecl: t_VOID t_ID . t_LEFTPAREN Formals t_RIGHTPAREN StmtBlock
+
+    t_LEFTPAREN  shift, and go to state 26
+
+
+State 19
+
+   22 ClassDecl: t_CLASS t_ID . OptExtends OptImplements t_LEFTBRACE OptFields t_RIGHTBRACE
+
+    t_EXTENDS  shift, and go to state 27
+
+    $default  reduce using rule 98 (epsilon)
+
+    OptExtends  go to state 28
+    epsilon     go to state 29
+
+
+State 20
+
+   32 InterfaceDecl: t_INTERFACE t_ID . t_LEFTBRACE OptPrototypes t_RIGHTBRACE
+
+    t_LEFTBRACE  shift, and go to state 30
+
+
+State 21
+
+    0 $accept: Start $end .
+
+    $default  accept
+
+
+State 22
+
+    2 Program: Decl Program .
+
+    $default  reduce using rule 2 (Program)
+
+
+State 23
+
+    8 VariableDecl: Variable t_SEMICOLON .
+
+    $default  reduce using rule 8 (VariableDecl)
+
+
+State 24
+
+    9 Variable: Type t_ID .
+   16 FunctionDecl: Type t_ID . t_LEFTPAREN Formals t_RIGHTPAREN StmtBlock
+
+    t_LEFTPAREN  shift, and go to state 31
+
+    $default  reduce using rule 9 (Variable)
+
+
+State 25
+
+   14 Type: Type t_LEFTBRACKET . t_RIGHTBRACKET
+
+    t_RIGHTBRACKET  shift, and go to state 32
+
+
+State 26
+
+   17 FunctionDecl: t_VOID t_ID t_LEFTPAREN . Formals t_RIGHTPAREN StmtBlock
+
+    t_BOOLEAN  shift, and go to state 1
+    t_INT      shift, and go to state 3
+    t_ID       shift, and go to state 6
+    t_DOUBLE   shift, and go to state 7
+    t_STRING   shift, and go to state 8
+
+    $default  reduce using rule 98 (epsilon)
+
+    Variable  go to state 33
+    Type      go to state 34
+    Formals   go to state 35
+    epsilon   go to state 36
+
+
+State 27
+
+   23 OptExtends: t_EXTENDS . t_ID
+
+    t_ID  shift, and go to state 37
+
+
+State 28
+
+   22 ClassDecl: t_CLASS t_ID OptExtends . OptImplements t_LEFTBRACE OptFields t_RIGHTBRACE
+
+    t_IMPLEMENTS  shift, and go to state 38
+
+    OptImplements  go to state 39
+
+
+State 29
+
+   24 OptExtends: epsilon .
+
+    $default  reduce using rule 24 (OptExtends)
+
+
+State 30
+
+   32 InterfaceDecl: t_INTERFACE t_ID t_LEFTBRACE . OptPrototypes t_RIGHTBRACE
+
+    t_BOOLEAN  shift, and go to state 1
+    t_VOID     shift, and go to state 40
+    t_INT      shift, and go to state 3
+    t_ID       shift, and go to state 6
+    t_DOUBLE   shift, and go to state 7
+    t_STRING   shift, and go to state 8
+
+    $default  reduce using rule 98 (epsilon)
+
+    Type           go to state 41
+    OptPrototypes  go to state 42
+    Prototype      go to state 43
+    epsilon        go to state 44
+
+
+State 31
+
+   16 FunctionDecl: Type t_ID t_LEFTPAREN . Formals t_RIGHTPAREN StmtBlock
+
+    t_BOOLEAN  shift, and go to state 1
+    t_INT      shift, and go to state 3
+    t_ID       shift, and go to state 6
+    t_DOUBLE   shift, and go to state 7
+    t_STRING   shift, and go to state 8
+
+    $default  reduce using rule 98 (epsilon)
+
+    Variable  go to state 33
+    Type      go to state 34
+    Formals   go to state 45
+    epsilon   go to state 36
+
+
+State 32
+
+   14 Type: Type t_LEFTBRACKET t_RIGHTBRACKET .
+
+    $default  reduce using rule 14 (Type)
+
+
+State 33
+
+   18 Formals: Variable . MoreVariables
+
+    t_COMMA  shift, and go to state 46
+
+    $default  reduce using rule 98 (epsilon)
+
+    MoreVariables  go to state 47
+    epsilon        go to state 48
+
+
+State 34
+
+    9 Variable: Type . t_ID
+   14 Type: Type . t_LEFTBRACKET t_RIGHTBRACKET
+
+    t_ID           shift, and go to state 49
+    t_LEFTBRACKET  shift, and go to state 25
+
+
+State 35
+
+   17 FunctionDecl: t_VOID t_ID t_LEFTPAREN Formals . t_RIGHTPAREN StmtBlock
+
+    t_RIGHTPAREN  shift, and go to state 50
+
+
+State 36
+
+   19 Formals: epsilon .
+
+    $default  reduce using rule 19 (Formals)
+
+
+State 37
+
+   23 OptExtends: t_EXTENDS t_ID .
+
+    $default  reduce using rule 23 (OptExtends)
+
+
+State 38
+
+   25 OptImplements: t_IMPLEMENTS . t_ID MoreIDs
+
+    t_ID  shift, and go to state 51
+
+
+State 39
+
+   22 ClassDecl: t_CLASS t_ID OptExtends OptImplements . t_LEFTBRACE OptFields t_RIGHTBRACE
+
+    t_LEFTBRACE  shift, and go to state 52
+
+
+State 40
+
+   36 Prototype: t_VOID . t_ID t_LEFTPAREN Formals t_RIGHTPAREN t_SEMICOLON
+
+    t_ID  shift, and go to state 53
+
+
+State 41
+
+   14 Type: Type . t_LEFTBRACKET t_RIGHTBRACKET
+   35 Prototype: Type . t_ID t_LEFTPAREN Formals t_RIGHTPAREN t_SEMICOLON
+
+    t_ID           shift, and go to state 54
+    t_LEFTBRACKET  shift, and go to state 25
+
+
+State 42
+
+   32 InterfaceDecl: t_INTERFACE t_ID t_LEFTBRACE OptPrototypes . t_RIGHTBRACE
+
+    t_RIGHTBRACE  shift, and go to state 55
+
+
+State 43
+
+   33 OptPrototypes: Prototype . OptPrototypes
+
+    t_BOOLEAN  shift, and go to state 1
+    t_VOID     shift, and go to state 40
+    t_INT      shift, and go to state 3
+    t_ID       shift, and go to state 6
+    t_DOUBLE   shift, and go to state 7
+    t_STRING   shift, and go to state 8
+
+    $default  reduce using rule 98 (epsilon)
+
+    Type           go to state 41
+    OptPrototypes  go to state 56
+    Prototype      go to state 43
+    epsilon        go to state 44
+
+
+State 44
+
+   34 OptPrototypes: epsilon .
+
+    $default  reduce using rule 34 (OptPrototypes)
+
+
+State 45
+
+   16 FunctionDecl: Type t_ID t_LEFTPAREN Formals . t_RIGHTPAREN StmtBlock
+
+    t_RIGHTPAREN  shift, and go to state 57
+
+
+State 46
+
+   20 MoreVariables: t_COMMA . Variable MoreVariables
+
+    t_BOOLEAN  shift, and go to state 1
+    t_INT      shift, and go to state 3
+    t_ID       shift, and go to state 6
+    t_DOUBLE   shift, and go to state 7
+    t_STRING   shift, and go to state 8
+
+    Variable  go to state 58
+    Type      go to state 34
+
+
+State 47
+
+   18 Formals: Variable MoreVariables .
+
+    $default  reduce using rule 18 (Formals)
+
+
+State 48
+
+   21 MoreVariables: epsilon .
+
+    $default  reduce using rule 21 (MoreVariables)
+
+
+State 49
+
+    9 Variable: Type t_ID .
+
+    $default  reduce using rule 9 (Variable)
+
+
+State 50
+
+   17 FunctionDecl: t_VOID t_ID t_LEFTPAREN Formals t_RIGHTPAREN . StmtBlock
+
+    t_LEFTBRACE  shift, and go to state 59
+
+    StmtBlock  go to state 60
+
+
+State 51
+
+   25 OptImplements: t_IMPLEMENTS t_ID . MoreIDs
+
+    t_COMMA  shift, and go to state 61
+
+    $default  reduce using rule 98 (epsilon)
+
+    MoreIDs  go to state 62
+    epsilon  go to state 63
+
+
+State 52
+
+   22 ClassDecl: t_CLASS t_ID OptExtends OptImplements t_LEFTBRACE . OptFields t_RIGHTBRACE
+
+    t_BOOLEAN  shift, and go to state 1
+    t_VOID     shift, and go to state 2
+    t_INT      shift, and go to state 3
+    t_ID       shift, and go to state 6
+    t_DOUBLE   shift, and go to state 7
+    t_STRING   shift, and go to state 8
+
+    $default  reduce using rule 98 (epsilon)
+
+    VariableDecl  go to state 64
+    Variable      go to state 13
+    Type          go to state 14
+    FunctionDecl  go to state 65
+    OptFields     go to state 66
+    Field         go to state 67
+    epsilon       go to state 68
+
+
+State 53
+
+   36 Prototype: t_VOID t_ID . t_LEFTPAREN Formals t_RIGHTPAREN t_SEMICOLON
+
+    t_LEFTPAREN  shift, and go to state 69
+
+
+State 54
+
+   35 Prototype: Type t_ID . t_LEFTPAREN Formals t_RIGHTPAREN t_SEMICOLON
+
+    t_LEFTPAREN  shift, and go to state 70
+
+
+State 55
+
+   32 InterfaceDecl: t_INTERFACE t_ID t_LEFTBRACE OptPrototypes t_RIGHTBRACE .
+
+    $default  reduce using rule 32 (InterfaceDecl)
+
+
+State 56
+
+   33 OptPrototypes: Prototype OptPrototypes .
+
+    $default  reduce using rule 33 (OptPrototypes)
+
+
+State 57
+
+   16 FunctionDecl: Type t_ID t_LEFTPAREN Formals t_RIGHTPAREN . StmtBlock
+
+    t_LEFTBRACE  shift, and go to state 59
+
+    StmtBlock  go to state 71
+
+
+State 58
+
+   20 MoreVariables: t_COMMA Variable . MoreVariables
+
+    t_COMMA  shift, and go to state 46
+
+    $default  reduce using rule 98 (epsilon)
+
+    MoreVariables  go to state 72
+    epsilon        go to state 48
+
+
+State 59
+
+   37 StmtBlock: t_LEFTBRACE . OptVariableDecl OptStmt t_RIGHTBRACE
+
+    t_BOOLEAN  shift, and go to state 1
+    t_INT      shift, and go to state 3
+    t_ID       shift, and go to state 6
+    t_DOUBLE   shift, and go to state 7
+    t_STRING   shift, and go to state 8
+
+    t_ID      [reduce using rule 98 (epsilon)]
+    $default  reduce using rule 98 (epsilon)
+
+    VariableDecl     go to state 73
+    Variable         go to state 13
+    Type             go to state 34
+    OptVariableDecl  go to state 74
+    epsilon          go to state 75
+
+
+State 60
+
+   17 FunctionDecl: t_VOID t_ID t_LEFTPAREN Formals t_RIGHTPAREN StmtBlock .
+
+    $default  reduce using rule 17 (FunctionDecl)
+
+
+State 61
+
+   26 MoreIDs: t_COMMA . t_ID MoreIDs
+
+    t_ID  shift, and go to state 76
+
+
+State 62
+
+   25 OptImplements: t_IMPLEMENTS t_ID MoreIDs .
+
+    $default  reduce using rule 25 (OptImplements)
+
+
+State 63
+
+   27 MoreIDs: epsilon .
+
+    $default  reduce using rule 27 (MoreIDs)
+
+
+State 64
+
+   30 Field: VariableDecl .
+
+    $default  reduce using rule 30 (Field)
+
+
+State 65
+
+   31 Field: FunctionDecl .
+
+    $default  reduce using rule 31 (Field)
+
+
+State 66
+
+   22 ClassDecl: t_CLASS t_ID OptExtends OptImplements t_LEFTBRACE OptFields . t_RIGHTBRACE
+
+    t_RIGHTBRACE  shift, and go to state 77
+
+
+State 67
+
+   28 OptFields: Field . OptFields
+
+    t_BOOLEAN  shift, and go to state 1
+    t_VOID     shift, and go to state 2
+    t_INT      shift, and go to state 3
+    t_ID       shift, and go to state 6
+    t_DOUBLE   shift, and go to state 7
+    t_STRING   shift, and go to state 8
+
+    $default  reduce using rule 98 (epsilon)
+
+    VariableDecl  go to state 64
+    Variable      go to state 13
+    Type          go to state 14
+    FunctionDecl  go to state 65
+    OptFields     go to state 78
+    Field         go to state 67
+    epsilon       go to state 68
+
+
+State 68
+
+   29 OptFields: epsilon .
+
+    $default  reduce using rule 29 (OptFields)
+
+
+State 69
+
+   36 Prototype: t_VOID t_ID t_LEFTPAREN . Formals t_RIGHTPAREN t_SEMICOLON
+
+    t_BOOLEAN  shift, and go to state 1
+    t_INT      shift, and go to state 3
+    t_ID       shift, and go to state 6
+    t_DOUBLE   shift, and go to state 7
+    t_STRING   shift, and go to state 8
+
+    $default  reduce using rule 98 (epsilon)
+
+    Variable  go to state 33
+    Type      go to state 34
+    Formals   go to state 79
+    epsilon   go to state 36
+
+
+State 70
+
+   35 Prototype: Type t_ID t_LEFTPAREN . Formals t_RIGHTPAREN t_SEMICOLON
+
+    t_BOOLEAN  shift, and go to state 1
+    t_INT      shift, and go to state 3
+    t_ID       shift, and go to state 6
+    t_DOUBLE   shift, and go to state 7
+    t_STRING   shift, and go to state 8
+
+    $default  reduce using rule 98 (epsilon)
+
+    Variable  go to state 33
+    Type      go to state 34
+    Formals   go to state 80
+    epsilon   go to state 36
+
+
+State 71
+
+   16 FunctionDecl: Type t_ID t_LEFTPAREN Formals t_RIGHTPAREN StmtBlock .
+
+    $default  reduce using rule 16 (FunctionDecl)
+
+
+State 72
+
+   20 MoreVariables: t_COMMA Variable MoreVariables .
+
+    $default  reduce using rule 20 (MoreVariables)
+
+
+State 73
+
+   38 OptVariableDecl: VariableDecl . OptVariableDecl
+
+    t_BOOLEAN  shift, and go to state 1
+    t_INT      shift, and go to state 3
+    t_ID       shift, and go to state 6
+    t_DOUBLE   shift, and go to state 7
+    t_STRING   shift, and go to state 8
+
+    t_ID      [reduce using rule 98 (epsilon)]
+    $default  reduce using rule 98 (epsilon)
+
+    VariableDecl     go to state 73
+    Variable         go to state 13
+    Type             go to state 34
+    OptVariableDecl  go to state 81
+    epsilon          go to state 75
+
+
+State 74
+
+   37 StmtBlock: t_LEFTBRACE OptVariableDecl . OptStmt t_RIGHTBRACE
+
+    t_PRINTLN          shift, and go to state 82
+    t_LEFTPAREN        shift, and go to state 83
+    t_LEFTBRACE        shift, and go to state 59
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_BREAK            shift, and go to state 85
+    t_READLN           shift, and go to state 86
+    t_WHILE            shift, and go to state 87
+    t_SEMICOLON        shift, and go to state 88
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_FOR              shift, and go to state 90
+    t_RETURN           shift, and go to state 91
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_IF               shift, and go to state 94
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    $default  reduce using rule 98 (epsilon)
+
+    StmtBlock   go to state 99
+    OptStmt     go to state 100
+    Stmt        go to state 101
+    ExprStmt    go to state 102
+    IfStmt      go to state 103
+    WhileStmt   go to state 104
+    ForStmt     go to state 105
+    BreakStmt   go to state 106
+    ReturnStmt  go to state 107
+    PrintStmt   go to state 108
+    Expr        go to state 109
+    Lvalue      go to state 110
+    Call        go to state 111
+    Constant    go to state 112
+    epsilon     go to state 113
+
+
+State 75
+
+   39 OptVariableDecl: epsilon .
+
+    $default  reduce using rule 39 (OptVariableDecl)
+
+
+State 76
+
+   26 MoreIDs: t_COMMA t_ID . MoreIDs
+
+    t_COMMA  shift, and go to state 61
+
+    $default  reduce using rule 98 (epsilon)
+
+    MoreIDs  go to state 114
+    epsilon  go to state 63
+
+
+State 77
+
+   22 ClassDecl: t_CLASS t_ID OptExtends OptImplements t_LEFTBRACE OptFields t_RIGHTBRACE .
+
+    $default  reduce using rule 22 (ClassDecl)
+
+
+State 78
+
+   28 OptFields: Field OptFields .
+
+    $default  reduce using rule 28 (OptFields)
+
+
+State 79
+
+   36 Prototype: t_VOID t_ID t_LEFTPAREN Formals . t_RIGHTPAREN t_SEMICOLON
+
+    t_RIGHTPAREN  shift, and go to state 115
+
+
+State 80
+
+   35 Prototype: Type t_ID t_LEFTPAREN Formals . t_RIGHTPAREN t_SEMICOLON
+
+    t_RIGHTPAREN  shift, and go to state 116
+
+
+State 81
+
+   38 OptVariableDecl: VariableDecl OptVariableDecl .
+
+    $default  reduce using rule 38 (OptVariableDecl)
+
+
+State 82
+
+   61 PrintStmt: t_PRINTLN . t_LEFTPAREN OptExprs t_RIGHTPAREN t_SEMICOLON
+
+    t_LEFTPAREN  shift, and go to state 117
+
+
+State 83
+
+   69 Expr: t_LEFTPAREN . Expr t_RIGHTPAREN
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 118
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 84
+
+   96 Constant: t_STRINGCONSTANT .
+
+    $default  reduce using rule 96 (Constant)
+
+
+State 85
+
+   59 BreakStmt: t_BREAK . t_SEMICOLON
+
+    t_SEMICOLON  shift, and go to state 119
+
+
+State 86
+
+   85 Expr: t_READLN . t_LEFTPAREN t_RIGHTPAREN
+
+    t_LEFTPAREN  shift, and go to state 120
+
+
+State 87
+
+   55 WhileStmt: t_WHILE . t_LEFTPAREN Expr t_RIGHTPAREN Stmt
+
+    t_LEFTPAREN  shift, and go to state 121
+
+
+State 88
+
+   51 ExprStmt: t_SEMICOLON .
+
+    $default  reduce using rule 51 (ExprStmt)
+
+
+State 89
+
+   97 Constant: t_BOOLEANCONSTANT .
+
+    $default  reduce using rule 97 (Constant)
+
+
+State 90
+
+   56 ForStmt: t_FOR . t_LEFTPAREN OptExpr t_SEMICOLON Expr t_SEMICOLON OptExpr t_RIGHTPAREN Stmt
+
+    t_LEFTPAREN  shift, and go to state 122
+
+
+State 91
+
+   60 ReturnStmt: t_RETURN . OptExpr t_SEMICOLON
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    $default  reduce using rule 98 (epsilon)
+
+    OptExpr   go to state 123
+    Expr      go to state 124
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+    epsilon   go to state 125
+
+
+State 92
+
+   94 Constant: t_INTCONSTANT .
+
+    $default  reduce using rule 94 (Constant)
+
+
+State 93
+
+   87 Lvalue: t_ID .
+   90 Call: t_ID . t_LEFTPAREN Actuals t_RIGHTPAREN
+   91     | t_ID . t_PERIOD t_ID t_LEFTPAREN Actuals t_RIGHTPAREN
+
+    t_LEFTPAREN  shift, and go to state 126
+    t_PERIOD     shift, and go to state 127
+
+    t_PERIOD  [reduce using rule 87 (Lvalue)]
+    $default  reduce using rule 87 (Lvalue)
+
+
+State 94
+
+   52 IfStmt: t_IF . t_LEFTPAREN Expr t_RIGHTPAREN Stmt OptElseStmt
+
+    t_LEFTPAREN  shift, and go to state 128
+
+
+State 95
+
+   86 Expr: t_NEWARRAY . t_LEFTPAREN t_INTCONSTANT t_COMMA Type t_RIGHTPAREN
+
+    t_LEFTPAREN  shift, and go to state 129
+
+
+State 96
+
+   95 Constant: t_DOUBLECONSTANT .
+
+    $default  reduce using rule 95 (Constant)
+
+
+State 97
+
+   75 Expr: t_MINUS . Expr
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 130
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 98
+
+   84 Expr: t_NOT . Expr
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 131
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 99
+
+   49 Stmt: StmtBlock .
+
+    $default  reduce using rule 49 (Stmt)
+
+
+State 100
+
+   37 StmtBlock: t_LEFTBRACE OptVariableDecl OptStmt . t_RIGHTBRACE
+
+    t_RIGHTBRACE  shift, and go to state 132
+
+
+State 101
+
+   40 OptStmt: Stmt . OptStmt
+
+    t_PRINTLN          shift, and go to state 82
+    t_LEFTPAREN        shift, and go to state 83
+    t_LEFTBRACE        shift, and go to state 59
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_BREAK            shift, and go to state 85
+    t_READLN           shift, and go to state 86
+    t_WHILE            shift, and go to state 87
+    t_SEMICOLON        shift, and go to state 88
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_FOR              shift, and go to state 90
+    t_RETURN           shift, and go to state 91
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_IF               shift, and go to state 94
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    $default  reduce using rule 98 (epsilon)
+
+    StmtBlock   go to state 99
+    OptStmt     go to state 133
+    Stmt        go to state 101
+    ExprStmt    go to state 102
+    IfStmt      go to state 103
+    WhileStmt   go to state 104
+    ForStmt     go to state 105
+    BreakStmt   go to state 106
+    ReturnStmt  go to state 107
+    PrintStmt   go to state 108
+    Expr        go to state 109
+    Lvalue      go to state 110
+    Call        go to state 111
+    Constant    go to state 112
+    epsilon     go to state 113
+
+
+State 102
+
+   42 Stmt: ExprStmt .
+
+    $default  reduce using rule 42 (Stmt)
+
+
+State 103
+
+   43 Stmt: IfStmt .
+
+    $default  reduce using rule 43 (Stmt)
+
+
+State 104
+
+   44 Stmt: WhileStmt .
+
+    $default  reduce using rule 44 (Stmt)
+
+
+State 105
+
+   45 Stmt: ForStmt .
+
+    $default  reduce using rule 45 (Stmt)
+
+
+State 106
+
+   46 Stmt: BreakStmt .
+
+    $default  reduce using rule 46 (Stmt)
+
+
+State 107
+
+   47 Stmt: ReturnStmt .
+
+    $default  reduce using rule 47 (Stmt)
+
+
+State 108
+
+   48 Stmt: PrintStmt .
+
+    $default  reduce using rule 48 (Stmt)
+
+
+State 109
+
+   50 ExprStmt: Expr . t_SEMICOLON
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    t_SEMICOLON       shift, and go to state 134
+    t_OR              shift, and go to state 135
+    t_AND             shift, and go to state 136
+    t_EQUAL           shift, and go to state 137
+    t_NOTEQUAL        shift, and go to state 138
+    t_LESS            shift, and go to state 139
+    t_GREATER         shift, and go to state 140
+    t_GREATEREQUAL    shift, and go to state 141
+    t_LESSEQUAL       shift, and go to state 142
+    t_PLUS            shift, and go to state 143
+    t_MINUS           shift, and go to state 144
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+
+State 110
+
+   65 Expr: Lvalue . t_ASSIGNOP Expr
+   67     | Lvalue .
+   88 Lvalue: Lvalue . t_LEFTBRACKET Expr t_RIGHTBRACKET
+   89       | Lvalue . t_PERIOD t_ID
+
+    t_ASSIGNOP     shift, and go to state 148
+    t_LEFTBRACKET  shift, and go to state 149
+    t_PERIOD       shift, and go to state 150
+
+    $default  reduce using rule 67 (Expr)
+
+
+State 111
+
+   68 Expr: Call .
+
+    $default  reduce using rule 68 (Expr)
+
+
+State 112
+
+   66 Expr: Constant .
+
+    $default  reduce using rule 66 (Expr)
+
+
+State 113
+
+   41 OptStmt: epsilon .
+
+    $default  reduce using rule 41 (OptStmt)
+
+
+State 114
+
+   26 MoreIDs: t_COMMA t_ID MoreIDs .
+
+    $default  reduce using rule 26 (MoreIDs)
+
+
+State 115
+
+   36 Prototype: t_VOID t_ID t_LEFTPAREN Formals t_RIGHTPAREN . t_SEMICOLON
+
+    t_SEMICOLON  shift, and go to state 151
+
+
+State 116
+
+   35 Prototype: Type t_ID t_LEFTPAREN Formals t_RIGHTPAREN . t_SEMICOLON
+
+    t_SEMICOLON  shift, and go to state 152
+
+
+State 117
+
+   61 PrintStmt: t_PRINTLN t_LEFTPAREN . OptExprs t_RIGHTPAREN t_SEMICOLON
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    OptExprs  go to state 153
+    Expr      go to state 154
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 118
+
+   69 Expr: t_LEFTPAREN Expr . t_RIGHTPAREN
+   70     | Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    t_RIGHTPAREN      shift, and go to state 155
+    t_OR              shift, and go to state 135
+    t_AND             shift, and go to state 136
+    t_EQUAL           shift, and go to state 137
+    t_NOTEQUAL        shift, and go to state 138
+    t_LESS            shift, and go to state 139
+    t_GREATER         shift, and go to state 140
+    t_GREATEREQUAL    shift, and go to state 141
+    t_LESSEQUAL       shift, and go to state 142
+    t_PLUS            shift, and go to state 143
+    t_MINUS           shift, and go to state 144
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+
+State 119
+
+   59 BreakStmt: t_BREAK t_SEMICOLON .
+
+    $default  reduce using rule 59 (BreakStmt)
+
+
+State 120
+
+   85 Expr: t_READLN t_LEFTPAREN . t_RIGHTPAREN
+
+    t_RIGHTPAREN  shift, and go to state 156
+
+
+State 121
+
+   55 WhileStmt: t_WHILE t_LEFTPAREN . Expr t_RIGHTPAREN Stmt
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 157
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 122
+
+   56 ForStmt: t_FOR t_LEFTPAREN . OptExpr t_SEMICOLON Expr t_SEMICOLON OptExpr t_RIGHTPAREN Stmt
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    $default  reduce using rule 98 (epsilon)
+
+    OptExpr   go to state 158
+    Expr      go to state 124
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+    epsilon   go to state 125
+
+
+State 123
+
+   60 ReturnStmt: t_RETURN OptExpr . t_SEMICOLON
+
+    t_SEMICOLON  shift, and go to state 159
+
+
+State 124
+
+   57 OptExpr: Expr .
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    t_OR              shift, and go to state 135
+    t_AND             shift, and go to state 136
+    t_EQUAL           shift, and go to state 137
+    t_NOTEQUAL        shift, and go to state 138
+    t_LESS            shift, and go to state 139
+    t_GREATER         shift, and go to state 140
+    t_GREATEREQUAL    shift, and go to state 141
+    t_LESSEQUAL       shift, and go to state 142
+    t_PLUS            shift, and go to state 143
+    t_MINUS           shift, and go to state 144
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+    $default  reduce using rule 57 (OptExpr)
+
+
+State 125
+
+   58 OptExpr: epsilon .
+
+    $default  reduce using rule 58 (OptExpr)
+
+
+State 126
+
+   90 Call: t_ID t_LEFTPAREN . Actuals t_RIGHTPAREN
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    $default  reduce using rule 98 (epsilon)
+
+    Expr      go to state 160
+    Lvalue    go to state 110
+    Call      go to state 111
+    Actuals   go to state 161
+    Constant  go to state 112
+    epsilon   go to state 162
+
+
+State 127
+
+   91 Call: t_ID t_PERIOD . t_ID t_LEFTPAREN Actuals t_RIGHTPAREN
+
+    t_ID  shift, and go to state 163
+
+
+State 128
+
+   52 IfStmt: t_IF t_LEFTPAREN . Expr t_RIGHTPAREN Stmt OptElseStmt
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 164
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 129
+
+   86 Expr: t_NEWARRAY t_LEFTPAREN . t_INTCONSTANT t_COMMA Type t_RIGHTPAREN
+
+    t_INTCONSTANT  shift, and go to state 165
+
+
+State 130
+
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   75     | t_MINUS Expr .
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+    $default  reduce using rule 75 (Expr)
+
+
+State 131
+
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+   84     | t_NOT Expr .
+
+    $default  reduce using rule 84 (Expr)
+
+
+State 132
+
+   37 StmtBlock: t_LEFTBRACE OptVariableDecl OptStmt t_RIGHTBRACE .
+
+    $default  reduce using rule 37 (StmtBlock)
+
+
+State 133
+
+   40 OptStmt: Stmt OptStmt .
+
+    $default  reduce using rule 40 (OptStmt)
+
+
+State 134
+
+   50 ExprStmt: Expr t_SEMICOLON .
+
+    $default  reduce using rule 50 (ExprStmt)
+
+
+State 135
+
+   83 Expr: Expr t_OR . Expr
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 166
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 136
+
+   82 Expr: Expr t_AND . Expr
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 167
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 137
+
+   80 Expr: Expr t_EQUAL . Expr
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 168
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 138
+
+   81 Expr: Expr t_NOTEQUAL . Expr
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 169
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 139
+
+   76 Expr: Expr t_LESS . Expr
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 170
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 140
+
+   78 Expr: Expr t_GREATER . Expr
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 171
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 141
+
+   79 Expr: Expr t_GREATEREQUAL . Expr
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 172
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 142
+
+   77 Expr: Expr t_LESSEQUAL . Expr
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 173
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 143
+
+   70 Expr: Expr t_PLUS . Expr
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 174
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 144
+
+   71 Expr: Expr t_MINUS . Expr
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 175
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 145
+
+   72 Expr: Expr t_MULTIPLICATION . Expr
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 176
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 146
+
+   73 Expr: Expr t_DIVISION . Expr
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 177
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 147
+
+   74 Expr: Expr t_MOD . Expr
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 178
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 148
+
+   65 Expr: Lvalue t_ASSIGNOP . Expr
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 179
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 149
+
+   88 Lvalue: Lvalue t_LEFTBRACKET . Expr t_RIGHTBRACKET
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 180
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 150
+
+   89 Lvalue: Lvalue t_PERIOD . t_ID
+
+    t_ID  shift, and go to state 181
+
+
+State 151
+
+   36 Prototype: t_VOID t_ID t_LEFTPAREN Formals t_RIGHTPAREN t_SEMICOLON .
+
+    $default  reduce using rule 36 (Prototype)
+
+
+State 152
+
+   35 Prototype: Type t_ID t_LEFTPAREN Formals t_RIGHTPAREN t_SEMICOLON .
+
+    $default  reduce using rule 35 (Prototype)
+
+
+State 153
+
+   61 PrintStmt: t_PRINTLN t_LEFTPAREN OptExprs . t_RIGHTPAREN t_SEMICOLON
+
+    t_RIGHTPAREN  shift, and go to state 182
+
+
+State 154
+
+   62 OptExprs: Expr . MoreExprs
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    t_COMMA           shift, and go to state 183
+    t_OR              shift, and go to state 135
+    t_AND             shift, and go to state 136
+    t_EQUAL           shift, and go to state 137
+    t_NOTEQUAL        shift, and go to state 138
+    t_LESS            shift, and go to state 139
+    t_GREATER         shift, and go to state 140
+    t_GREATEREQUAL    shift, and go to state 141
+    t_LESSEQUAL       shift, and go to state 142
+    t_PLUS            shift, and go to state 143
+    t_MINUS           shift, and go to state 144
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+    $default  reduce using rule 98 (epsilon)
+
+    MoreExprs  go to state 184
+    epsilon    go to state 185
+
+
+State 155
+
+   69 Expr: t_LEFTPAREN Expr t_RIGHTPAREN .
+
+    $default  reduce using rule 69 (Expr)
+
+
+State 156
+
+   85 Expr: t_READLN t_LEFTPAREN t_RIGHTPAREN .
+
+    $default  reduce using rule 85 (Expr)
+
+
+State 157
+
+   55 WhileStmt: t_WHILE t_LEFTPAREN Expr . t_RIGHTPAREN Stmt
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    t_RIGHTPAREN      shift, and go to state 186
+    t_OR              shift, and go to state 135
+    t_AND             shift, and go to state 136
+    t_EQUAL           shift, and go to state 137
+    t_NOTEQUAL        shift, and go to state 138
+    t_LESS            shift, and go to state 139
+    t_GREATER         shift, and go to state 140
+    t_GREATEREQUAL    shift, and go to state 141
+    t_LESSEQUAL       shift, and go to state 142
+    t_PLUS            shift, and go to state 143
+    t_MINUS           shift, and go to state 144
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+
+State 158
+
+   56 ForStmt: t_FOR t_LEFTPAREN OptExpr . t_SEMICOLON Expr t_SEMICOLON OptExpr t_RIGHTPAREN Stmt
+
+    t_SEMICOLON  shift, and go to state 187
+
+
+State 159
+
+   60 ReturnStmt: t_RETURN OptExpr t_SEMICOLON .
+
+    $default  reduce using rule 60 (ReturnStmt)
+
+
+State 160
+
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+   92 Actuals: Expr . MoreExprs
+
+    t_COMMA           shift, and go to state 183
+    t_OR              shift, and go to state 135
+    t_AND             shift, and go to state 136
+    t_EQUAL           shift, and go to state 137
+    t_NOTEQUAL        shift, and go to state 138
+    t_LESS            shift, and go to state 139
+    t_GREATER         shift, and go to state 140
+    t_GREATEREQUAL    shift, and go to state 141
+    t_LESSEQUAL       shift, and go to state 142
+    t_PLUS            shift, and go to state 143
+    t_MINUS           shift, and go to state 144
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+    $default  reduce using rule 98 (epsilon)
+
+    MoreExprs  go to state 188
+    epsilon    go to state 185
+
+
+State 161
+
+   90 Call: t_ID t_LEFTPAREN Actuals . t_RIGHTPAREN
+
+    t_RIGHTPAREN  shift, and go to state 189
+
+
+State 162
+
+   93 Actuals: epsilon .
+
+    $default  reduce using rule 93 (Actuals)
+
+
+State 163
+
+   91 Call: t_ID t_PERIOD t_ID . t_LEFTPAREN Actuals t_RIGHTPAREN
+
+    t_LEFTPAREN  shift, and go to state 190
+
+
+State 164
+
+   52 IfStmt: t_IF t_LEFTPAREN Expr . t_RIGHTPAREN Stmt OptElseStmt
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    t_RIGHTPAREN      shift, and go to state 191
+    t_OR              shift, and go to state 135
+    t_AND             shift, and go to state 136
+    t_EQUAL           shift, and go to state 137
+    t_NOTEQUAL        shift, and go to state 138
+    t_LESS            shift, and go to state 139
+    t_GREATER         shift, and go to state 140
+    t_GREATEREQUAL    shift, and go to state 141
+    t_LESSEQUAL       shift, and go to state 142
+    t_PLUS            shift, and go to state 143
+    t_MINUS           shift, and go to state 144
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+
+State 165
+
+   86 Expr: t_NEWARRAY t_LEFTPAREN t_INTCONSTANT . t_COMMA Type t_RIGHTPAREN
+
+    t_COMMA  shift, and go to state 192
+
+
+State 166
+
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+   83     | Expr t_OR Expr .
+
+    t_AND             shift, and go to state 136
+    t_EQUAL           shift, and go to state 137
+    t_NOTEQUAL        shift, and go to state 138
+    t_LESS            shift, and go to state 139
+    t_GREATER         shift, and go to state 140
+    t_GREATEREQUAL    shift, and go to state 141
+    t_LESSEQUAL       shift, and go to state 142
+    t_PLUS            shift, and go to state 143
+    t_MINUS           shift, and go to state 144
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+    $default  reduce using rule 83 (Expr)
+
+
+State 167
+
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   82     | Expr t_AND Expr .
+   83     | Expr . t_OR Expr
+
+    t_EQUAL           shift, and go to state 137
+    t_NOTEQUAL        shift, and go to state 138
+    t_LESS            shift, and go to state 139
+    t_GREATER         shift, and go to state 140
+    t_GREATEREQUAL    shift, and go to state 141
+    t_LESSEQUAL       shift, and go to state 142
+    t_PLUS            shift, and go to state 143
+    t_MINUS           shift, and go to state 144
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+    $default  reduce using rule 82 (Expr)
+
+
+State 168
+
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   80     | Expr t_EQUAL Expr .
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    t_LESS            shift, and go to state 139
+    t_GREATER         shift, and go to state 140
+    t_GREATEREQUAL    shift, and go to state 141
+    t_LESSEQUAL       shift, and go to state 142
+    t_PLUS            shift, and go to state 143
+    t_MINUS           shift, and go to state 144
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+    t_EQUAL     error (nonassociative)
+    t_NOTEQUAL  error (nonassociative)
+
+    $default  reduce using rule 80 (Expr)
+
+
+State 169
+
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   81     | Expr t_NOTEQUAL Expr .
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    t_LESS            shift, and go to state 139
+    t_GREATER         shift, and go to state 140
+    t_GREATEREQUAL    shift, and go to state 141
+    t_LESSEQUAL       shift, and go to state 142
+    t_PLUS            shift, and go to state 143
+    t_MINUS           shift, and go to state 144
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+    t_EQUAL     error (nonassociative)
+    t_NOTEQUAL  error (nonassociative)
+
+    $default  reduce using rule 81 (Expr)
+
+
+State 170
+
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   76     | Expr t_LESS Expr .
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    t_PLUS            shift, and go to state 143
+    t_MINUS           shift, and go to state 144
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+    t_LESS          error (nonassociative)
+    t_GREATER       error (nonassociative)
+    t_GREATEREQUAL  error (nonassociative)
+    t_LESSEQUAL     error (nonassociative)
+
+    $default  reduce using rule 76 (Expr)
+
+
+State 171
+
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   78     | Expr t_GREATER Expr .
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    t_PLUS            shift, and go to state 143
+    t_MINUS           shift, and go to state 144
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+    t_LESS          error (nonassociative)
+    t_GREATER       error (nonassociative)
+    t_GREATEREQUAL  error (nonassociative)
+    t_LESSEQUAL     error (nonassociative)
+
+    $default  reduce using rule 78 (Expr)
+
+
+State 172
+
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   79     | Expr t_GREATEREQUAL Expr .
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    t_PLUS            shift, and go to state 143
+    t_MINUS           shift, and go to state 144
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+    t_LESS          error (nonassociative)
+    t_GREATER       error (nonassociative)
+    t_GREATEREQUAL  error (nonassociative)
+    t_LESSEQUAL     error (nonassociative)
+
+    $default  reduce using rule 79 (Expr)
+
+
+State 173
+
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   77     | Expr t_LESSEQUAL Expr .
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    t_PLUS            shift, and go to state 143
+    t_MINUS           shift, and go to state 144
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+    t_LESS          error (nonassociative)
+    t_GREATER       error (nonassociative)
+    t_GREATEREQUAL  error (nonassociative)
+    t_LESSEQUAL     error (nonassociative)
+
+    $default  reduce using rule 77 (Expr)
+
+
+State 174
+
+   70 Expr: Expr . t_PLUS Expr
+   70     | Expr t_PLUS Expr .
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+    $default  reduce using rule 70 (Expr)
+
+
+State 175
+
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   71     | Expr t_MINUS Expr .
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+    $default  reduce using rule 71 (Expr)
+
+
+State 176
+
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   72     | Expr t_MULTIPLICATION Expr .
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    $default  reduce using rule 72 (Expr)
+
+
+State 177
+
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   73     | Expr t_DIVISION Expr .
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    $default  reduce using rule 73 (Expr)
+
+
+State 178
+
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   74     | Expr t_MOD Expr .
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    $default  reduce using rule 74 (Expr)
+
+
+State 179
+
+   65 Expr: Lvalue t_ASSIGNOP Expr .
+   70     | Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    t_OR              shift, and go to state 135
+    t_AND             shift, and go to state 136
+    t_EQUAL           shift, and go to state 137
+    t_NOTEQUAL        shift, and go to state 138
+    t_LESS            shift, and go to state 139
+    t_GREATER         shift, and go to state 140
+    t_GREATEREQUAL    shift, and go to state 141
+    t_LESSEQUAL       shift, and go to state 142
+    t_PLUS            shift, and go to state 143
+    t_MINUS           shift, and go to state 144
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+    $default  reduce using rule 65 (Expr)
+
+
+State 180
+
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+   88 Lvalue: Lvalue t_LEFTBRACKET Expr . t_RIGHTBRACKET
+
+    t_RIGHTBRACKET    shift, and go to state 193
+    t_OR              shift, and go to state 135
+    t_AND             shift, and go to state 136
+    t_EQUAL           shift, and go to state 137
+    t_NOTEQUAL        shift, and go to state 138
+    t_LESS            shift, and go to state 139
+    t_GREATER         shift, and go to state 140
+    t_GREATEREQUAL    shift, and go to state 141
+    t_LESSEQUAL       shift, and go to state 142
+    t_PLUS            shift, and go to state 143
+    t_MINUS           shift, and go to state 144
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+
+State 181
+
+   89 Lvalue: Lvalue t_PERIOD t_ID .
+
+    $default  reduce using rule 89 (Lvalue)
+
+
+State 182
+
+   61 PrintStmt: t_PRINTLN t_LEFTPAREN OptExprs t_RIGHTPAREN . t_SEMICOLON
+
+    t_SEMICOLON  shift, and go to state 194
+
+
+State 183
+
+   63 MoreExprs: t_COMMA . Expr MoreExprs
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 195
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 184
+
+   62 OptExprs: Expr MoreExprs .
+
+    $default  reduce using rule 62 (OptExprs)
+
+
+State 185
+
+   64 MoreExprs: epsilon .
+
+    $default  reduce using rule 64 (MoreExprs)
+
+
+State 186
+
+   55 WhileStmt: t_WHILE t_LEFTPAREN Expr t_RIGHTPAREN . Stmt
+
+    t_PRINTLN          shift, and go to state 82
+    t_LEFTPAREN        shift, and go to state 83
+    t_LEFTBRACE        shift, and go to state 59
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_BREAK            shift, and go to state 85
+    t_READLN           shift, and go to state 86
+    t_WHILE            shift, and go to state 87
+    t_SEMICOLON        shift, and go to state 88
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_FOR              shift, and go to state 90
+    t_RETURN           shift, and go to state 91
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_IF               shift, and go to state 94
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    StmtBlock   go to state 99
+    Stmt        go to state 196
+    ExprStmt    go to state 102
+    IfStmt      go to state 103
+    WhileStmt   go to state 104
+    ForStmt     go to state 105
+    BreakStmt   go to state 106
+    ReturnStmt  go to state 107
+    PrintStmt   go to state 108
+    Expr        go to state 109
+    Lvalue      go to state 110
+    Call        go to state 111
+    Constant    go to state 112
+
+
+State 187
+
+   56 ForStmt: t_FOR t_LEFTPAREN OptExpr t_SEMICOLON . Expr t_SEMICOLON OptExpr t_RIGHTPAREN Stmt
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    Expr      go to state 197
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+
+
+State 188
+
+   92 Actuals: Expr MoreExprs .
+
+    $default  reduce using rule 92 (Actuals)
+
+
+State 189
+
+   90 Call: t_ID t_LEFTPAREN Actuals t_RIGHTPAREN .
+
+    $default  reduce using rule 90 (Call)
+
+
+State 190
+
+   91 Call: t_ID t_PERIOD t_ID t_LEFTPAREN . Actuals t_RIGHTPAREN
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    $default  reduce using rule 98 (epsilon)
+
+    Expr      go to state 160
+    Lvalue    go to state 110
+    Call      go to state 111
+    Actuals   go to state 198
+    Constant  go to state 112
+    epsilon   go to state 162
+
+
+State 191
+
+   52 IfStmt: t_IF t_LEFTPAREN Expr t_RIGHTPAREN . Stmt OptElseStmt
+
+    t_PRINTLN          shift, and go to state 82
+    t_LEFTPAREN        shift, and go to state 83
+    t_LEFTBRACE        shift, and go to state 59
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_BREAK            shift, and go to state 85
+    t_READLN           shift, and go to state 86
+    t_WHILE            shift, and go to state 87
+    t_SEMICOLON        shift, and go to state 88
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_FOR              shift, and go to state 90
+    t_RETURN           shift, and go to state 91
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_IF               shift, and go to state 94
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    StmtBlock   go to state 99
+    Stmt        go to state 199
+    ExprStmt    go to state 102
+    IfStmt      go to state 103
+    WhileStmt   go to state 104
+    ForStmt     go to state 105
+    BreakStmt   go to state 106
+    ReturnStmt  go to state 107
+    PrintStmt   go to state 108
+    Expr        go to state 109
+    Lvalue      go to state 110
+    Call        go to state 111
+    Constant    go to state 112
+
+
+State 192
+
+   86 Expr: t_NEWARRAY t_LEFTPAREN t_INTCONSTANT t_COMMA . Type t_RIGHTPAREN
+
+    t_BOOLEAN  shift, and go to state 1
+    t_INT      shift, and go to state 3
+    t_ID       shift, and go to state 6
+    t_DOUBLE   shift, and go to state 7
+    t_STRING   shift, and go to state 8
+
+    Type  go to state 200
+
+
+State 193
+
+   88 Lvalue: Lvalue t_LEFTBRACKET Expr t_RIGHTBRACKET .
+
+    $default  reduce using rule 88 (Lvalue)
+
+
+State 194
+
+   61 PrintStmt: t_PRINTLN t_LEFTPAREN OptExprs t_RIGHTPAREN t_SEMICOLON .
+
+    $default  reduce using rule 61 (PrintStmt)
+
+
+State 195
+
+   63 MoreExprs: t_COMMA Expr . MoreExprs
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    t_COMMA           shift, and go to state 183
+    t_OR              shift, and go to state 135
+    t_AND             shift, and go to state 136
+    t_EQUAL           shift, and go to state 137
+    t_NOTEQUAL        shift, and go to state 138
+    t_LESS            shift, and go to state 139
+    t_GREATER         shift, and go to state 140
+    t_GREATEREQUAL    shift, and go to state 141
+    t_LESSEQUAL       shift, and go to state 142
+    t_PLUS            shift, and go to state 143
+    t_MINUS           shift, and go to state 144
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+    $default  reduce using rule 98 (epsilon)
+
+    MoreExprs  go to state 201
+    epsilon    go to state 185
+
+
+State 196
+
+   55 WhileStmt: t_WHILE t_LEFTPAREN Expr t_RIGHTPAREN Stmt .
+
+    $default  reduce using rule 55 (WhileStmt)
+
+
+State 197
+
+   56 ForStmt: t_FOR t_LEFTPAREN OptExpr t_SEMICOLON Expr . t_SEMICOLON OptExpr t_RIGHTPAREN Stmt
+   70 Expr: Expr . t_PLUS Expr
+   71     | Expr . t_MINUS Expr
+   72     | Expr . t_MULTIPLICATION Expr
+   73     | Expr . t_DIVISION Expr
+   74     | Expr . t_MOD Expr
+   76     | Expr . t_LESS Expr
+   77     | Expr . t_LESSEQUAL Expr
+   78     | Expr . t_GREATER Expr
+   79     | Expr . t_GREATEREQUAL Expr
+   80     | Expr . t_EQUAL Expr
+   81     | Expr . t_NOTEQUAL Expr
+   82     | Expr . t_AND Expr
+   83     | Expr . t_OR Expr
+
+    t_SEMICOLON       shift, and go to state 202
+    t_OR              shift, and go to state 135
+    t_AND             shift, and go to state 136
+    t_EQUAL           shift, and go to state 137
+    t_NOTEQUAL        shift, and go to state 138
+    t_LESS            shift, and go to state 139
+    t_GREATER         shift, and go to state 140
+    t_GREATEREQUAL    shift, and go to state 141
+    t_LESSEQUAL       shift, and go to state 142
+    t_PLUS            shift, and go to state 143
+    t_MINUS           shift, and go to state 144
+    t_MULTIPLICATION  shift, and go to state 145
+    t_DIVISION        shift, and go to state 146
+    t_MOD             shift, and go to state 147
+
+
+State 198
+
+   91 Call: t_ID t_PERIOD t_ID t_LEFTPAREN Actuals . t_RIGHTPAREN
+
+    t_RIGHTPAREN  shift, and go to state 203
+
+
+State 199
+
+   52 IfStmt: t_IF t_LEFTPAREN Expr t_RIGHTPAREN Stmt . OptElseStmt
+
+    t_ELSE  shift, and go to state 204
+
+    t_ELSE    [reduce using rule 98 (epsilon)]
+    $default  reduce using rule 98 (epsilon)
+
+    OptElseStmt  go to state 205
+    epsilon      go to state 206
+
+
+State 200
+
+   14 Type: Type . t_LEFTBRACKET t_RIGHTBRACKET
+   86 Expr: t_NEWARRAY t_LEFTPAREN t_INTCONSTANT t_COMMA Type . t_RIGHTPAREN
+
+    t_RIGHTPAREN   shift, and go to state 207
+    t_LEFTBRACKET  shift, and go to state 25
+
+
+State 201
+
+   63 MoreExprs: t_COMMA Expr MoreExprs .
+
+    $default  reduce using rule 63 (MoreExprs)
+
+
+State 202
+
+   56 ForStmt: t_FOR t_LEFTPAREN OptExpr t_SEMICOLON Expr t_SEMICOLON . OptExpr t_RIGHTPAREN Stmt
+
+    t_LEFTPAREN        shift, and go to state 83
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_READLN           shift, and go to state 86
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    $default  reduce using rule 98 (epsilon)
+
+    OptExpr   go to state 208
+    Expr      go to state 124
+    Lvalue    go to state 110
+    Call      go to state 111
+    Constant  go to state 112
+    epsilon   go to state 125
+
+
+State 203
+
+   91 Call: t_ID t_PERIOD t_ID t_LEFTPAREN Actuals t_RIGHTPAREN .
+
+    $default  reduce using rule 91 (Call)
+
+
+State 204
+
+   53 OptElseStmt: t_ELSE . Stmt
+
+    t_PRINTLN          shift, and go to state 82
+    t_LEFTPAREN        shift, and go to state 83
+    t_LEFTBRACE        shift, and go to state 59
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_BREAK            shift, and go to state 85
+    t_READLN           shift, and go to state 86
+    t_WHILE            shift, and go to state 87
+    t_SEMICOLON        shift, and go to state 88
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_FOR              shift, and go to state 90
+    t_RETURN           shift, and go to state 91
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_IF               shift, and go to state 94
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    StmtBlock   go to state 99
+    Stmt        go to state 209
+    ExprStmt    go to state 102
+    IfStmt      go to state 103
+    WhileStmt   go to state 104
+    ForStmt     go to state 105
+    BreakStmt   go to state 106
+    ReturnStmt  go to state 107
+    PrintStmt   go to state 108
+    Expr        go to state 109
+    Lvalue      go to state 110
+    Call        go to state 111
+    Constant    go to state 112
+
+
+State 205
+
+   52 IfStmt: t_IF t_LEFTPAREN Expr t_RIGHTPAREN Stmt OptElseStmt .
+
+    $default  reduce using rule 52 (IfStmt)
+
+
+State 206
+
+   54 OptElseStmt: epsilon .
+
+    $default  reduce using rule 54 (OptElseStmt)
+
+
+State 207
+
+   86 Expr: t_NEWARRAY t_LEFTPAREN t_INTCONSTANT t_COMMA Type t_RIGHTPAREN .
+
+    $default  reduce using rule 86 (Expr)
+
+
+State 208
+
+   56 ForStmt: t_FOR t_LEFTPAREN OptExpr t_SEMICOLON Expr t_SEMICOLON OptExpr . t_RIGHTPAREN Stmt
+
+    t_RIGHTPAREN  shift, and go to state 210
+
+
+State 209
+
+   53 OptElseStmt: t_ELSE Stmt .
+
+    $default  reduce using rule 53 (OptElseStmt)
+
+
+State 210
+
+   56 ForStmt: t_FOR t_LEFTPAREN OptExpr t_SEMICOLON Expr t_SEMICOLON OptExpr t_RIGHTPAREN . Stmt
+
+    t_PRINTLN          shift, and go to state 82
+    t_LEFTPAREN        shift, and go to state 83
+    t_LEFTBRACE        shift, and go to state 59
+    t_STRINGCONSTANT   shift, and go to state 84
+    t_BREAK            shift, and go to state 85
+    t_READLN           shift, and go to state 86
+    t_WHILE            shift, and go to state 87
+    t_SEMICOLON        shift, and go to state 88
+    t_BOOLEANCONSTANT  shift, and go to state 89
+    t_FOR              shift, and go to state 90
+    t_RETURN           shift, and go to state 91
+    t_INTCONSTANT      shift, and go to state 92
+    t_ID               shift, and go to state 93
+    t_IF               shift, and go to state 94
+    t_NEWARRAY         shift, and go to state 95
+    t_DOUBLECONSTANT   shift, and go to state 96
+    t_MINUS            shift, and go to state 97
+    t_NOT              shift, and go to state 98
+
+    StmtBlock   go to state 99
+    Stmt        go to state 211
+    ExprStmt    go to state 102
+    IfStmt      go to state 103
+    WhileStmt   go to state 104
+    ForStmt     go to state 105
+    BreakStmt   go to state 106
+    ReturnStmt  go to state 107
+    PrintStmt   go to state 108
+    Expr        go to state 109
+    Lvalue      go to state 110
+    Call        go to state 111
+    Constant    go to state 112
+
+
+State 211
+
+   56 ForStmt: t_FOR t_LEFTPAREN OptExpr t_SEMICOLON Expr t_SEMICOLON OptExpr t_RIGHTPAREN Stmt .
+
+    $default  reduce using rule 56 (ForStmt)
