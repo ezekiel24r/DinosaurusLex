@@ -1,0 +1,138 @@
+    0 $accept: Start $end
+
+    1 Start: Program
+
+    2 Program: Decl Program
+    3        | Decl
+
+    4 Decl: VariableDecl
+    5     | FunctionDecl
+    6     | ClassDecl
+    7     | InterfaceDecl
+
+    8 VariableDecl: Variable t_SEMICOLON
+
+    9 Variable: Type t_ID
+
+   10 Type: t_INT
+   11     | t_DOUBLE
+   12     | t_BOOLEAN
+   13     | t_STRING
+   14     | Type t_LEFTBRACKET t_RIGHTBRACKET
+   15     | t_ID
+
+   16 FunctionDecl: Type t_ID t_LEFTPAREN Formals t_RIGHTPAREN StmtBlock
+   17             | t_VOID t_ID t_LEFTPAREN Formals t_RIGHTPAREN StmtBlock
+
+   18 Formals: Variable MoreVariables
+   19        | epsilon
+
+   20 MoreVariables: t_COMMA Variable MoreVariables
+   21              | epsilon
+
+   22 ClassDecl: t_CLASS t_ID OptExtends OptImplements t_LEFTBRACE OptFields t_RIGHTBRACE
+
+   23 OptExtends: t_EXTENDS t_ID
+   24           | epsilon
+
+   25 OptImplements: t_IMPLEMENTS t_ID MoreIDs
+   26              | epsilon
+
+   27 MoreIDs: t_COMMA t_ID MoreIDs
+   28        | epsilon
+
+   29 OptFields: Field OptFields
+   30          | epsilon
+
+   31 Field: VariableDecl
+   32      | FunctionDecl
+
+   33 InterfaceDecl: t_INTERFACE t_ID t_LEFTBRACE OptPrototypes t_RIGHTBRACE
+
+   34 OptPrototypes: Prototype OptPrototypes
+   35              | epsilon
+
+   36 Prototype: Type t_ID t_LEFTPAREN Formals t_RIGHTPAREN t_SEMICOLON
+   37          | t_VOID t_ID t_LEFTPAREN Formals t_RIGHTPAREN t_SEMICOLON
+
+   38 StmtBlock: t_LEFTBRACE OptStmtBlock t_RIGHTBRACE
+
+   39 OptStmtBlock: OptVariableDecl
+   40             | OptStmt
+
+   41 OptVariableDecl: VariableDecl OptVariableDecl
+   42                | OptStmt
+
+   43 OptStmt: Stmt OptStmt
+   44        | epsilon
+
+   45 Stmt: OptExpr t_SEMICOLON
+   46     | IfStmt
+   47     | WhileStmt
+   48     | ForStmt
+   49     | BreakStmt
+   50     | ReturnStmt
+   51     | PrintStmt
+   52     | StmtBlock
+
+   53 IfStmt: t_IF t_LEFTPAREN Expr t_RIGHTPAREN Stmt
+   54       | t_IF t_LEFTPAREN Expr t_RIGHTPAREN Stmt t_ELSE Stmt
+
+   55 WhileStmt: t_WHILE t_LEFTPAREN Expr t_RIGHTPAREN Stmt
+
+   56 ForStmt: t_FOR t_LEFTPAREN OptExpr t_SEMICOLON Expr t_SEMICOLON OptExpr t_RIGHTPAREN Stmt
+
+   57 OptExpr: Expr
+   58        | epsilon
+
+   59 BreakStmt: t_BREAK t_SEMICOLON
+
+   60 ReturnStmt: t_RETURN OptExpr t_SEMICOLON
+
+   61 PrintStmt: t_PRINTLN t_LEFTPAREN OptExprs t_RIGHTPAREN t_SEMICOLON
+
+   62 OptExprs: Expr MoreExprs
+
+   63 MoreExprs: t_COMMA Expr MoreExprs
+   64          | epsilon
+
+   65 Expr: Lvalue t_ASSIGNOP Expr
+   66     | Constant
+   67     | Lvalue
+   68     | Call
+   69     | t_LEFTPAREN Expr t_RIGHTPAREN
+   70     | Expr t_PLUS Expr
+   71     | Expr t_MINUS Expr
+   72     | Expr t_MULTIPLICATION Expr
+   73     | Expr t_DIVISION Expr
+   74     | Expr t_MOD Expr
+   75     | t_MINUS Expr
+   76     | Expr t_LESS Expr
+   77     | Expr t_LESSEQUAL Expr
+   78     | Expr t_GREATER Expr
+   79     | Expr t_GREATEREQUAL Expr
+   80     | Expr t_EQUAL Expr
+   81     | Expr t_NOTEQUAL Expr
+   82     | Expr t_AND Expr
+   83     | Expr t_OR Expr
+   84     | t_NOT Expr
+   85     | t_READLN t_LEFTPAREN t_RIGHTPAREN
+   86     | t_NEWARRAY t_LEFTPAREN t_INTCONSTANT t_COMMA Type t_RIGHTPAREN
+
+   87 Lvalue: t_ID
+   88       | Lvalue t_PERIOD t_ID
+   89       | Lvalue t_LEFTBRACKET Expr t_RIGHTBRACKET
+
+   90 Call: t_ID t_LEFTPAREN Actuals t_RIGHTPAREN
+   91     | t_ID t_PERIOD t_ID t_LEFTPAREN Actuals t_RIGHTPAREN
+
+   92 Actuals: Expr MoreExprs
+   93        | epsilon
+
+   94 Constant: t_INTCONSTANT
+   95         | t_DOUBLECONSTANT
+   96         | t_STRINGCONSTANT
+   97         | t_BOOLEANCONSTANT
+
+   98 epsilon: %empty
+

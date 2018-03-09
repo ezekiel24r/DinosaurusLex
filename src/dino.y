@@ -217,7 +217,7 @@ void yyerror(char *s) {
 int main() {
     initFirstLetter();
     initSymAndNext();
-    yydebug = 1;
+    //yydebug = 1;
     return(yyparse());
 }
 
