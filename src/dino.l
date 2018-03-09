@@ -1,10 +1,10 @@
 %{
 /* CS 411: Compilers and Interpreters
-   Project 1
+   Project 2
    Team Members: Eric Rensel, Anthony Vu, Awais Ibrahim
 
    How to compile and run program (if your computer does not have Lex intalled):
-   	1. Connect to the cal poly pomona campus server using an ssh shell (such as putty)
+   	1. Connect to the Cal Poly Pomona campus server using an ssh shell (such as putty)
 		@ login.cpp.edu.
 	2. Use an ssh file transfer program (such as winscp) to transfer all files from the src
 		folder into a folder in the ssh shell.
