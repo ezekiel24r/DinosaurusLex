@@ -157,10 +157,9 @@ MoreExprs :  t_COMMA Expr MoreExprs
  | epsilon
 ;
 
-Expr : Lvalue t_ASSIGNOP Expr
+Expr :Lvalue t_ASSIGNOP Expr
  | Constant 
- | LvalueNotID
- | t_ID
+ | Lvalue
  | Call
  | t_LEFTPAREN Expr t_RIGHTPAREN 
  | Expr t_PLUS Expr 
@@ -183,12 +182,9 @@ Expr : Lvalue t_ASSIGNOP Expr
 ;
 
 Lvalue : t_ID
- | LvalueNotID
-;
-
-LvalueNotID : LvalueNotID t_LEFTBRACKET Expr t_RIGHTBRACKET
  | Lvalue t_PERIOD t_ID
- | t_ID t_LEFTBRACKET Expr t_RIGHTBRACKET
+ | Lvalue t_LEFTBRACKET Expr t_RIGHTBRACKET
+;
 
 Call : t_ID t_LEFTPAREN Actuals t_RIGHTPAREN
 | t_ID t_PERIOD t_ID t_LEFTPAREN Actuals t_RIGHTPAREN
