@@ -64,6 +64,27 @@
 /* Copy the first part of user declarations.  */
 #line 1 "dino.y" /* yacc.c:339  */
 
+/*
+    CS 411: Compilers and Interpreters
+   Project 2
+   Team Members: Eric Rensel, Anthony Vu, Awais Ibrahim
+
+   Instructions for compiling and running the project:
+   	1. Connect to the Cal Poly Pomona campus server using an ssh shell (such as putty)
+		@ login.cpp.edu.
+	2. Use an ssh file transfer program (such as winscp) to transfer all files from the src
+		folder into a folder in the ssh shell.
+   	3. Make sure dino.l, dino.y, west.toy, test.toy and inputString[1 to 12].toy are in the same folder.
+	4. Type "lex dino.l" to change the lex file into c code. This should create "lex.yy.c"
+	5. Type “yacc -vd dino.y” to change the yacc file into c code. This should create “y.output”, “y.tab.c”, and “y.tab.h”.
+	6. Type "cc lex.yy.c  y.tab.c -lfl" to compile the c code file.
+	7. Type "./a.out" to test the parser with your own input. At any point you can press CTRL+D to have the program begin 
+	   parsing the input. The program will exit upon accepting the input or display a syntax error.
+	8. Type "./a.out < test.toy" to use the input file given in the included project directory.
+	9. Type "./a.out < west.toy" or "./a.out < inputString12.toy" to use our test files that we created to account for 
+	   possible inputs for the parser.
+
+*/
 
     #include <stdio.h>
     #ifdef YYDEBUG
@@ -73,7 +94,7 @@
     int dflag;
 
 
-#line 77 "y.tab.c" /* yacc.c:339  */
+#line 98 "y.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -224,7 +245,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 228 "y.tab.c" /* yacc.c:358  */
+#line 249 "y.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -526,16 +547,16 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    31,    31,    34,    35,    38,    39,    40,    41,    44,
-      47,    51,    52,    53,    54,    55,    56,    59,    60,    63,
-      64,    67,    68,    71,    74,    75,    78,    79,    82,    83,
-      86,    87,    90,    91,    94,    97,    98,   101,   102,   105,
-     108,   109,   112,   113,   116,   117,   120,   121,   122,   123,
-     124,   125,   126,   127,   130,   131,   134,   137,   140,   141,
-     144,   147,   150,   153,   156,   157,   160,   161,   162,   163,
-     164,   165,   166,   167,   168,   169,   170,   171,   172,   173,
-     174,   175,   176,   177,   178,   179,   180,   181,   184,   185,
-     186,   189,   190,   193,   194,   197,   198,   199,   200,   203
+       0,    52,    52,    55,    56,    59,    60,    61,    62,    65,
+      68,    72,    73,    74,    75,    76,    77,    80,    81,    84,
+      85,    88,    89,    92,    95,    96,    99,   100,   103,   104,
+     107,   108,   111,   112,   115,   118,   119,   122,   123,   126,
+     129,   130,   133,   134,   137,   138,   141,   142,   143,   144,
+     145,   146,   147,   148,   151,   152,   155,   158,   161,   162,
+     165,   168,   171,   174,   177,   178,   181,   182,   183,   184,
+     185,   186,   187,   188,   189,   190,   191,   192,   193,   194,
+     195,   196,   197,   198,   199,   200,   201,   202,   205,   206,
+     207,   210,   211,   214,   215,   218,   219,   220,   221,   224
 };
 #endif
 
@@ -1487,595 +1508,595 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 31 "dino.y" /* yacc.c:1646  */
+#line 52 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 0]\n[accept]\n");}
-#line 1493 "y.tab.c" /* yacc.c:1646  */
+#line 1514 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 34 "dino.y" /* yacc.c:1646  */
+#line 55 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 1]");}
-#line 1499 "y.tab.c" /* yacc.c:1646  */
+#line 1520 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 35 "dino.y" /* yacc.c:1646  */
+#line 56 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 2]");}
-#line 1505 "y.tab.c" /* yacc.c:1646  */
+#line 1526 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 38 "dino.y" /* yacc.c:1646  */
+#line 59 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 3]");}
-#line 1511 "y.tab.c" /* yacc.c:1646  */
+#line 1532 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 39 "dino.y" /* yacc.c:1646  */
+#line 60 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 4]");}
-#line 1517 "y.tab.c" /* yacc.c:1646  */
+#line 1538 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 40 "dino.y" /* yacc.c:1646  */
+#line 61 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 5]");}
-#line 1523 "y.tab.c" /* yacc.c:1646  */
+#line 1544 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 41 "dino.y" /* yacc.c:1646  */
+#line 62 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 6]");}
-#line 1529 "y.tab.c" /* yacc.c:1646  */
+#line 1550 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 44 "dino.y" /* yacc.c:1646  */
+#line 65 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 7]");}
-#line 1535 "y.tab.c" /* yacc.c:1646  */
+#line 1556 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 47 "dino.y" /* yacc.c:1646  */
+#line 68 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 8]");}
-#line 1541 "y.tab.c" /* yacc.c:1646  */
+#line 1562 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 51 "dino.y" /* yacc.c:1646  */
+#line 72 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 9]");}
-#line 1547 "y.tab.c" /* yacc.c:1646  */
+#line 1568 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 52 "dino.y" /* yacc.c:1646  */
+#line 73 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 10]");}
-#line 1553 "y.tab.c" /* yacc.c:1646  */
+#line 1574 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 53 "dino.y" /* yacc.c:1646  */
+#line 74 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 11]");}
-#line 1559 "y.tab.c" /* yacc.c:1646  */
+#line 1580 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 54 "dino.y" /* yacc.c:1646  */
+#line 75 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 12]");}
-#line 1565 "y.tab.c" /* yacc.c:1646  */
+#line 1586 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 55 "dino.y" /* yacc.c:1646  */
+#line 76 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 13]");}
-#line 1571 "y.tab.c" /* yacc.c:1646  */
+#line 1592 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 56 "dino.y" /* yacc.c:1646  */
+#line 77 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 14]");}
-#line 1577 "y.tab.c" /* yacc.c:1646  */
+#line 1598 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 59 "dino.y" /* yacc.c:1646  */
+#line 80 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 15]");}
-#line 1583 "y.tab.c" /* yacc.c:1646  */
+#line 1604 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 60 "dino.y" /* yacc.c:1646  */
+#line 81 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 16]");}
-#line 1589 "y.tab.c" /* yacc.c:1646  */
+#line 1610 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 63 "dino.y" /* yacc.c:1646  */
+#line 84 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 17]");}
-#line 1595 "y.tab.c" /* yacc.c:1646  */
+#line 1616 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 64 "dino.y" /* yacc.c:1646  */
+#line 85 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 18]");}
-#line 1601 "y.tab.c" /* yacc.c:1646  */
+#line 1622 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 67 "dino.y" /* yacc.c:1646  */
+#line 88 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 19]");}
-#line 1607 "y.tab.c" /* yacc.c:1646  */
+#line 1628 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 68 "dino.y" /* yacc.c:1646  */
+#line 89 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 20]");}
-#line 1613 "y.tab.c" /* yacc.c:1646  */
+#line 1634 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 71 "dino.y" /* yacc.c:1646  */
+#line 92 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 21]");}
-#line 1619 "y.tab.c" /* yacc.c:1646  */
+#line 1640 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 74 "dino.y" /* yacc.c:1646  */
+#line 95 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 22]");}
-#line 1625 "y.tab.c" /* yacc.c:1646  */
+#line 1646 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 75 "dino.y" /* yacc.c:1646  */
+#line 96 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 23]");}
-#line 1631 "y.tab.c" /* yacc.c:1646  */
+#line 1652 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 78 "dino.y" /* yacc.c:1646  */
+#line 99 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 24]");}
-#line 1637 "y.tab.c" /* yacc.c:1646  */
+#line 1658 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 79 "dino.y" /* yacc.c:1646  */
+#line 100 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 25]");}
-#line 1643 "y.tab.c" /* yacc.c:1646  */
+#line 1664 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 82 "dino.y" /* yacc.c:1646  */
+#line 103 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 26]");}
-#line 1649 "y.tab.c" /* yacc.c:1646  */
+#line 1670 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 83 "dino.y" /* yacc.c:1646  */
+#line 104 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 27]");}
-#line 1655 "y.tab.c" /* yacc.c:1646  */
+#line 1676 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 86 "dino.y" /* yacc.c:1646  */
+#line 107 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 28]");}
-#line 1661 "y.tab.c" /* yacc.c:1646  */
+#line 1682 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 87 "dino.y" /* yacc.c:1646  */
+#line 108 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 29]");}
-#line 1667 "y.tab.c" /* yacc.c:1646  */
+#line 1688 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 90 "dino.y" /* yacc.c:1646  */
+#line 111 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 30]");}
-#line 1673 "y.tab.c" /* yacc.c:1646  */
+#line 1694 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 91 "dino.y" /* yacc.c:1646  */
+#line 112 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 31]");}
-#line 1679 "y.tab.c" /* yacc.c:1646  */
+#line 1700 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 94 "dino.y" /* yacc.c:1646  */
+#line 115 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 32]");}
-#line 1685 "y.tab.c" /* yacc.c:1646  */
+#line 1706 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 97 "dino.y" /* yacc.c:1646  */
+#line 118 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 33]");}
-#line 1691 "y.tab.c" /* yacc.c:1646  */
+#line 1712 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 98 "dino.y" /* yacc.c:1646  */
+#line 119 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 34]");}
-#line 1697 "y.tab.c" /* yacc.c:1646  */
+#line 1718 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 101 "dino.y" /* yacc.c:1646  */
+#line 122 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 35]");}
-#line 1703 "y.tab.c" /* yacc.c:1646  */
+#line 1724 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 38:
-#line 102 "dino.y" /* yacc.c:1646  */
+#line 123 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 36]");}
-#line 1709 "y.tab.c" /* yacc.c:1646  */
+#line 1730 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 39:
-#line 105 "dino.y" /* yacc.c:1646  */
+#line 126 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 37]");}
-#line 1715 "y.tab.c" /* yacc.c:1646  */
+#line 1736 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 40:
-#line 108 "dino.y" /* yacc.c:1646  */
+#line 129 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 38]");}
-#line 1721 "y.tab.c" /* yacc.c:1646  */
+#line 1742 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 41:
-#line 109 "dino.y" /* yacc.c:1646  */
+#line 130 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 39]");}
-#line 1727 "y.tab.c" /* yacc.c:1646  */
+#line 1748 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 42:
-#line 112 "dino.y" /* yacc.c:1646  */
+#line 133 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 40]");}
-#line 1733 "y.tab.c" /* yacc.c:1646  */
+#line 1754 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 43:
-#line 113 "dino.y" /* yacc.c:1646  */
+#line 134 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 41]");}
-#line 1739 "y.tab.c" /* yacc.c:1646  */
+#line 1760 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 44:
-#line 116 "dino.y" /* yacc.c:1646  */
+#line 137 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 42]");}
-#line 1745 "y.tab.c" /* yacc.c:1646  */
+#line 1766 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 45:
-#line 117 "dino.y" /* yacc.c:1646  */
+#line 138 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 43]");}
-#line 1751 "y.tab.c" /* yacc.c:1646  */
+#line 1772 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 46:
-#line 120 "dino.y" /* yacc.c:1646  */
+#line 141 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 44]");}
-#line 1757 "y.tab.c" /* yacc.c:1646  */
+#line 1778 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 47:
-#line 121 "dino.y" /* yacc.c:1646  */
+#line 142 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 45]");}
-#line 1763 "y.tab.c" /* yacc.c:1646  */
+#line 1784 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 48:
-#line 122 "dino.y" /* yacc.c:1646  */
+#line 143 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 46]");}
-#line 1769 "y.tab.c" /* yacc.c:1646  */
+#line 1790 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 49:
-#line 123 "dino.y" /* yacc.c:1646  */
+#line 144 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 47]");}
-#line 1775 "y.tab.c" /* yacc.c:1646  */
+#line 1796 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 50:
-#line 124 "dino.y" /* yacc.c:1646  */
+#line 145 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 48]");}
-#line 1781 "y.tab.c" /* yacc.c:1646  */
+#line 1802 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 51:
-#line 125 "dino.y" /* yacc.c:1646  */
+#line 146 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 49]");}
-#line 1787 "y.tab.c" /* yacc.c:1646  */
+#line 1808 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 52:
-#line 126 "dino.y" /* yacc.c:1646  */
+#line 147 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 50]");}
-#line 1793 "y.tab.c" /* yacc.c:1646  */
+#line 1814 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 53:
-#line 127 "dino.y" /* yacc.c:1646  */
+#line 148 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 51]");}
-#line 1799 "y.tab.c" /* yacc.c:1646  */
+#line 1820 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 54:
-#line 130 "dino.y" /* yacc.c:1646  */
+#line 151 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 52]");}
-#line 1805 "y.tab.c" /* yacc.c:1646  */
+#line 1826 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 55:
-#line 131 "dino.y" /* yacc.c:1646  */
+#line 152 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 53]");}
-#line 1811 "y.tab.c" /* yacc.c:1646  */
+#line 1832 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 56:
-#line 134 "dino.y" /* yacc.c:1646  */
+#line 155 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 54]");}
-#line 1817 "y.tab.c" /* yacc.c:1646  */
+#line 1838 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 57:
-#line 137 "dino.y" /* yacc.c:1646  */
+#line 158 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 55]");}
-#line 1823 "y.tab.c" /* yacc.c:1646  */
+#line 1844 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 58:
-#line 140 "dino.y" /* yacc.c:1646  */
+#line 161 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 56]");}
-#line 1829 "y.tab.c" /* yacc.c:1646  */
+#line 1850 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 59:
-#line 141 "dino.y" /* yacc.c:1646  */
+#line 162 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 57]");}
-#line 1835 "y.tab.c" /* yacc.c:1646  */
+#line 1856 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 60:
-#line 144 "dino.y" /* yacc.c:1646  */
+#line 165 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 58]");}
-#line 1841 "y.tab.c" /* yacc.c:1646  */
+#line 1862 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 61:
-#line 147 "dino.y" /* yacc.c:1646  */
+#line 168 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 59]");}
-#line 1847 "y.tab.c" /* yacc.c:1646  */
+#line 1868 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 62:
-#line 150 "dino.y" /* yacc.c:1646  */
+#line 171 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 60]");}
-#line 1853 "y.tab.c" /* yacc.c:1646  */
+#line 1874 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 63:
-#line 153 "dino.y" /* yacc.c:1646  */
+#line 174 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 61]");}
-#line 1859 "y.tab.c" /* yacc.c:1646  */
+#line 1880 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 64:
-#line 156 "dino.y" /* yacc.c:1646  */
+#line 177 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 62]");}
-#line 1865 "y.tab.c" /* yacc.c:1646  */
+#line 1886 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 65:
-#line 157 "dino.y" /* yacc.c:1646  */
+#line 178 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 63]");}
-#line 1871 "y.tab.c" /* yacc.c:1646  */
+#line 1892 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 66:
-#line 160 "dino.y" /* yacc.c:1646  */
+#line 181 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 64]");}
-#line 1877 "y.tab.c" /* yacc.c:1646  */
+#line 1898 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 67:
-#line 161 "dino.y" /* yacc.c:1646  */
+#line 182 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 65]");}
-#line 1883 "y.tab.c" /* yacc.c:1646  */
+#line 1904 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 68:
-#line 162 "dino.y" /* yacc.c:1646  */
+#line 183 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 66]");}
-#line 1889 "y.tab.c" /* yacc.c:1646  */
+#line 1910 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 69:
-#line 163 "dino.y" /* yacc.c:1646  */
+#line 184 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 67]");}
-#line 1895 "y.tab.c" /* yacc.c:1646  */
+#line 1916 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 70:
-#line 164 "dino.y" /* yacc.c:1646  */
+#line 185 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 68]");}
-#line 1901 "y.tab.c" /* yacc.c:1646  */
+#line 1922 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 71:
-#line 165 "dino.y" /* yacc.c:1646  */
+#line 186 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 69]");}
-#line 1907 "y.tab.c" /* yacc.c:1646  */
+#line 1928 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 72:
-#line 166 "dino.y" /* yacc.c:1646  */
+#line 187 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 70]");}
-#line 1913 "y.tab.c" /* yacc.c:1646  */
+#line 1934 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 73:
-#line 167 "dino.y" /* yacc.c:1646  */
+#line 188 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 71]");}
-#line 1919 "y.tab.c" /* yacc.c:1646  */
+#line 1940 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 74:
-#line 168 "dino.y" /* yacc.c:1646  */
+#line 189 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 72]");}
-#line 1925 "y.tab.c" /* yacc.c:1646  */
+#line 1946 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 75:
-#line 169 "dino.y" /* yacc.c:1646  */
+#line 190 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 73]");}
-#line 1931 "y.tab.c" /* yacc.c:1646  */
+#line 1952 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 76:
-#line 170 "dino.y" /* yacc.c:1646  */
+#line 191 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 74]");}
-#line 1937 "y.tab.c" /* yacc.c:1646  */
+#line 1958 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 77:
-#line 171 "dino.y" /* yacc.c:1646  */
+#line 192 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 75]");}
-#line 1943 "y.tab.c" /* yacc.c:1646  */
+#line 1964 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 78:
-#line 172 "dino.y" /* yacc.c:1646  */
+#line 193 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 76]");}
-#line 1949 "y.tab.c" /* yacc.c:1646  */
+#line 1970 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 79:
-#line 173 "dino.y" /* yacc.c:1646  */
+#line 194 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 77]");}
-#line 1955 "y.tab.c" /* yacc.c:1646  */
+#line 1976 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 80:
-#line 174 "dino.y" /* yacc.c:1646  */
+#line 195 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 78]");}
-#line 1961 "y.tab.c" /* yacc.c:1646  */
+#line 1982 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 81:
-#line 175 "dino.y" /* yacc.c:1646  */
+#line 196 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 79]");}
-#line 1967 "y.tab.c" /* yacc.c:1646  */
+#line 1988 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 82:
-#line 176 "dino.y" /* yacc.c:1646  */
+#line 197 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 80]");}
-#line 1973 "y.tab.c" /* yacc.c:1646  */
+#line 1994 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 83:
-#line 177 "dino.y" /* yacc.c:1646  */
+#line 198 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 81]");}
-#line 1979 "y.tab.c" /* yacc.c:1646  */
+#line 2000 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 84:
-#line 178 "dino.y" /* yacc.c:1646  */
+#line 199 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 82]");}
-#line 1985 "y.tab.c" /* yacc.c:1646  */
+#line 2006 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 85:
-#line 179 "dino.y" /* yacc.c:1646  */
+#line 200 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 83]");}
-#line 1991 "y.tab.c" /* yacc.c:1646  */
+#line 2012 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 86:
-#line 180 "dino.y" /* yacc.c:1646  */
+#line 201 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 84]");}
-#line 1997 "y.tab.c" /* yacc.c:1646  */
+#line 2018 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 87:
-#line 181 "dino.y" /* yacc.c:1646  */
+#line 202 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 85]");}
-#line 2003 "y.tab.c" /* yacc.c:1646  */
+#line 2024 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 88:
-#line 184 "dino.y" /* yacc.c:1646  */
+#line 205 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 86]");}
-#line 2009 "y.tab.c" /* yacc.c:1646  */
+#line 2030 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 89:
-#line 185 "dino.y" /* yacc.c:1646  */
+#line 206 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 87]");}
-#line 2015 "y.tab.c" /* yacc.c:1646  */
+#line 2036 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 90:
-#line 186 "dino.y" /* yacc.c:1646  */
+#line 207 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 88]");}
-#line 2021 "y.tab.c" /* yacc.c:1646  */
+#line 2042 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 91:
-#line 189 "dino.y" /* yacc.c:1646  */
+#line 210 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 89]");}
-#line 2027 "y.tab.c" /* yacc.c:1646  */
+#line 2048 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 92:
-#line 190 "dino.y" /* yacc.c:1646  */
+#line 211 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 90]");}
-#line 2033 "y.tab.c" /* yacc.c:1646  */
+#line 2054 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 93:
-#line 193 "dino.y" /* yacc.c:1646  */
+#line 214 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 91]");}
-#line 2039 "y.tab.c" /* yacc.c:1646  */
+#line 2060 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 94:
-#line 194 "dino.y" /* yacc.c:1646  */
+#line 215 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 92]");}
-#line 2045 "y.tab.c" /* yacc.c:1646  */
+#line 2066 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 95:
-#line 197 "dino.y" /* yacc.c:1646  */
+#line 218 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 93]");}
-#line 2051 "y.tab.c" /* yacc.c:1646  */
+#line 2072 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 96:
-#line 198 "dino.y" /* yacc.c:1646  */
+#line 219 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 93]");}
-#line 2057 "y.tab.c" /* yacc.c:1646  */
+#line 2078 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 97:
-#line 199 "dino.y" /* yacc.c:1646  */
+#line 220 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 94]");}
-#line 2063 "y.tab.c" /* yacc.c:1646  */
+#line 2084 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 98:
-#line 200 "dino.y" /* yacc.c:1646  */
+#line 221 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 95]");}
-#line 2069 "y.tab.c" /* yacc.c:1646  */
+#line 2090 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 99:
-#line 203 "dino.y" /* yacc.c:1646  */
+#line 224 "dino.y" /* yacc.c:1646  */
     {printf("[reduce 96]");}
-#line 2075 "y.tab.c" /* yacc.c:1646  */
+#line 2096 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 2079 "y.tab.c" /* yacc.c:1646  */
+#line 2100 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2303,7 +2324,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 208 "dino.y" /* yacc.c:1906  */
+#line 229 "dino.y" /* yacc.c:1906  */
 
 
 
@@ -2311,7 +2332,7 @@ yyreturn:
 
 
 void yyerror(char *s) {
- fprintf(stderr, "%s\n", s);
+    fprintf(stderr, "%s\n", s);
 }
 int main() {
     initFirstLetter();
