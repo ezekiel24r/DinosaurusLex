@@ -1,0 +1,4 @@
+
+id [shift][reduce 14]
+leftbracket [shift]
+intconstant [shift]

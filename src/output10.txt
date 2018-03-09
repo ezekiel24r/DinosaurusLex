@@ -1,0 +1,5 @@
+
+class [shift]
+id [shift]
+leftbrace [shift][reduce 96][reduce 23][reduce 96][reduce 25]
+if [shift][reduce 96][reduce 29]

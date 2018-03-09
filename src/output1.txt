@@ -1,0 +1,13 @@
+
+void [shift]
+id [shift]
+leftparen [shift]
+double [shift][reduce 10]
+id [shift][reduce 8]
+comma [shift]
+double [shift][reduce 10]
+id [shift][reduce 8]
+rightparen [shift][reduce 96][reduce 20][reduce 19][reduce 17]
+leftbrace [shift]
+rightbrace [shift][reduce 96][reduce 43][reduce 39][reduce 37][reduce 16][reduce 4][reduce 2][reduce 0]
+[accept]

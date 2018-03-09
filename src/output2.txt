@@ -1,0 +1,4 @@
+
+int [shift][reduce 9]
+id [shift]
+assignop [shift][reduce 8]
