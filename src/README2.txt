@@ -1,24 +1,18 @@
-   CS 411: Compilers and Interpreters
+    CS 411: Compilers and Interpreters
    Project 2
    Team Members: Eric Rensel, Anthony Vu, Awais Ibrahim
 
-   How to compile and run program (if your computer does not have Lex intalled):
-        1. Connect to the cal poly pomona campus server using an ssh shell (such as putty)
-                @ login.cpp.edu.
-        2. Use an ssh file transfer program (such as winscp) to transfer all files from the src
-                folder into a folder in the ssh shell.
-        3. Make sure dino.l, test.toy, and java.toy are in the same folder.
-        4. Type "lex dino.l" to change the lex file into c code. This should create "lex.yy.c"
-        5. Type "cc lex.yy.c -lfl" to compile the c code file.
-        6. Type "./a.out" to test the lexical analyzer with your own input. At any point you can
-                press ctrl+d to print the trie table and exit out of the program.
-        7. Type "./a.out < test.toy" to use the input file given in the project specifications.
-        8. Type "./a.out < java.toy" to use our test file that we created to account for all
-                possible inputs for the lexical analyzer.
-    If your computer has lex installed, steps 1 and 2 can be skipped and the src files can be put
-        into your own working directory.
-
-    Shift/Reduce Conflict Removed:
-        Dangling else:
-            The issue was resolved by giving if statments without else lower
-            prescedence than if statements with else.
+   Instructions for compiling and running the project:
+    1. Connect to the Cal Poly Pomona campus server using an ssh shell (such as putty)
+        @ login.cpp.edu.
+    2. Use an ssh file transfer program (such as winscp) to transfer all files from the src
+        folder into a folder in the ssh shell.
+    3. Make sure dino.l, dino.y, west.toy, test.toy and inputString[1 to 12].toy are in the same folder.
+    4. Type "lex dino.l" to change the lex file into c code. This should create "lex.yy.c"
+    5. Type “yacc -vd dino.y” to change the yacc file into c code. This should create “y.output”, “y.tab.c”, and “y.tab.h”.
+    6. Type "cc lex.yy.c  y.tab.c -lfl" to compile the c code file.
+    7. Type "./a.out" to test the parser with your own input. At any point you can press CTRL+D to have the program begin
+       parsing the input. The program will exit upon accepting the input or display a syntax error.
+    8. Type "./a.out < test.toy" to use the input file given in the included project directory.
+    9. Type "./a.out < west.toy" or "./a.out < inputString12.toy" to use our test files that we created to account for
+       possible inputs for the parser.
